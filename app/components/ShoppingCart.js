@@ -2,26 +2,34 @@
 import { useShoppingCart } from 'use-shopping-cart'
 import CartItem from './CartItem'
 import CheckoutButton from './CheckoutButton'
+import Link from 'next/link'
 
 export default function ShoppingCart() {
   const { totalPrice, cartCount, cartDetails } = useShoppingCart()
   return (
     <>
-    <div
-      className={`z-30 bg-white text-black flex flex-col right-3 md:right-9 top-14 w-80 py-4 px-4 shadow-[0_5px_15px_0_rgba(0,0,0,.15)] rounded-md transition-opacity duration-500 justify-center text-center items-center space-y-3`}
+    <section
+      className={`z-30 bg-white text-black flex flex-col w-80 py-4 px-4 shadow-lg rounded-md text-left space-y-3`}
     >
+          <table className="table-auto text-base">
+      <tr>
+        <th className='pb-3'>Product</th>
+        <th className='pb-3'>Prijs</th>
+        <th className='pb-3'>Hoeveelheid</th>
+      </tr>
+    
       {cartCount && cartCount > 0 ? (
         <>
           {Object.values(cartDetails ?? {}).map((entry) => (
             <CartItem key={entry.id} item={entry} />
           ))}
-          <CheckoutButton />
         </>
       ) : (
-        <div className="p-5">You have no items in your cart</div>
+        <span>Je winkelmand is leeg</span>
       )}
-      <span className='w-fit text-center bg-black text-white px-5 py-1 rounded-lg'>€{totalPrice / 100},-</span>
-    </div>
+      </table>
+      <span>Totaalprijs: €{totalPrice / 100},-</span>
+    </section>
     </>
   )
 }

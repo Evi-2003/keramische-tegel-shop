@@ -59,7 +59,7 @@ export default function CheckoutButton() {
             : false
         }
       >
-        {status !== 'loading' ? 'Proceed to checkout' : 'Loading...'}
+        {status !== 'loading' ? 'Afrekenen' : 'Loading...'}
       </button>
     </article>
   )
