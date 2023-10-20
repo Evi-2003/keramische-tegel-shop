@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import { useShoppingCart } from 'use-shopping-cart'
 
@@ -11,7 +12,7 @@ export default function CheckoutButton() {
   async function handleClick(event) {
     event.preventDefault()
     if (cartCount > 0) {
-      setStatus('loading')
+      setStatus('Effe denken')
 
       try {
         const res = await fetch('/session', {
@@ -36,21 +37,19 @@ export default function CheckoutButton() {
   }
 
   return (
-    <article className="flex flex-col">
-      <div className="text-red-700 text-xs text-center">
+    <>
+      <span className="text-red-700 text-xs text-center">
         {totalPrice && totalPrice < 30
-          ? 'You must have at least £0.30 in your basket'
+          ? 'Je moet wel minimaal 30 cent betalen'
           : cartCount && cartCount > 20
-          ? 'You cannot have more than 20 items'
+          ? 'Je mag niet meer dan 20 items hebben'
           : status === 'redirect-error'
-          ? 'Unable to redirect to Stripe checkout page'
-          : status === 'no-items'
-          ? 'Please add some items to your cart'
+          ? 'Oepsie, er is chaos op de website, probeer het later nog eens'
           : null}
-      </div>
+      </span>
       <button
         onClick={handleClick}
-        className="bg-emerald-50 hover:bg-emerald-500 hover:text-white transition-colors duration-500 text-emerald-500 py-3 px-5 rounded-md w-100 disabled:bg-slate-300 disabled:cursor-not-allowed disabled:text-white"
+        className="mx-5 bg-sky-600 hover:bg-sky-900 text-white dark:bg-sky-600 dark:text-slate-100 dark:hover:bg-sky-950 transition-colors duration-500 py-2 px-5 rounded-md"
         disabled={
           (totalPrice && totalPrice < 30) ||
           (cartCount && cartCount > 20) ||
@@ -61,6 +60,6 @@ export default function CheckoutButton() {
       >
         {status !== 'loading' ? 'Afrekenen' : 'Loading...'}
       </button>
-    </article>
+    </>
   )
 }

@@ -4,6 +4,7 @@ export default function formatProductData(product){
             name: product.name,
             description: product.shortDescription,
             id: product.id,
+            slug: product.slug,
             price: parseInt(product.price) * 100,
             alt: product.image.altText,
             currency: 'EUR',

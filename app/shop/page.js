@@ -15,7 +15,7 @@ export default async function page(){
     return(
         <>
      
-            <main className="w-2/3 text-white m-5 text-center grid grid-cols-6">
+            <main className="w-2/3 text-white m-5 text-center grid grid-cols-2">
                 <h1 className="text-3xl text-slate-900 font-bold dark:text-slate-100 row-start-1 col-span-full">Shop</h1>
                 {
                 products.map(( product, index ) => (

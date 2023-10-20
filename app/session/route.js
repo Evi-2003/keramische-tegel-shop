@@ -1,6 +1,5 @@
 import Stripe from 'stripe';
-import { headers } from 'next/headers';
-import { Response } from 'next';
+import { headers } from 'next/headers'
 
 export async function POST(request) {
   if (!process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY) {
