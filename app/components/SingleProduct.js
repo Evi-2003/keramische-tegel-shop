@@ -39,8 +39,9 @@ export default function Product({ productData }) {
         <Image
           src={productData.image.sourceUrl}
           alt={productData.image.altText}
-          width={813}
-          height={519}
+          width={320}
+          priority="high"
+          height={320}
           className="row-start-1 col-start-1 w-full xl:h-[40vh] object-contain"
         ></Image>
         <aside className="row-start-2 flex flex-col lg:row-start-1 lg:col-start-2 m-10 justify-start self-start text-left space-y-5">
