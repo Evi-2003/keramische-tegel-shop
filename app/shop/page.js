@@ -15,13 +15,17 @@ export default async function page(){
     return(
         <>
      
-            <main className="w-2/3 text-white m-5 text-center grid grid-cols-2">
-                <h1 className="text-3xl text-slate-900 font-bold dark:text-slate-100 row-start-1 col-span-full">Shop</h1>
+            <main className="w-3/5 text-white text-center">
+                <h1 className="text-3xl text-slate-900 font-bold dark:text-slate-100 row-start-1 col-span-full my-5">Shop</h1>
+                <section className="grid grid-cols-1 lg:grid-cols-3 lg:gap-x-24 2xl:grid-cols-4 auto-cols-man justify-items-center gap-y-5">
+                  
                 {
                 products.map(( product, index ) => (
+                  console.log(product),
                   <Product product={product} key={product.id}/>
                 ))
                 }
+                </section>
             </main>
             
         </>

@@ -8,7 +8,7 @@ export default async function getProducts(){
       body: JSON.stringify({
         query:
     `query AllProducts {
-        products {
+        products(first: 10) {
           nodes {
             id
             name

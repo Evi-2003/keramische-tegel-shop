@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation'
 import Image from 'next/image';
-import getProductsBySlug from '@/app/data/getProductBySlug';
-import Product from '@/app/components/SingleProduct';
+import getProductsBySlug from '../../data/getProductBySlug';
+import Product from '../../components/SingleProduct';
 
 export default async function ProductPage( { params: { slug } } ) {
     const product = await getProductsBySlug(slug)

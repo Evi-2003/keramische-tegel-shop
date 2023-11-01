@@ -9,7 +9,7 @@ function CartProvider({ children }) {
       mode="checkout-session"
       stripe={process.env.NEXT_PUBLIC_STRIPE_KEY}
       currency={'EUR'}
-      allowedCountries={['US', 'GB', 'CA']}
+      allowedCountries={['NL']}
       billingAddressCollection={true}
     >
       {children}

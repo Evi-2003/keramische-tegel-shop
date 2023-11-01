@@ -32,29 +32,27 @@ export default function Product({ product }) {
   }
 
   return (
-    <article key={product.id} className='text-black flex flex-col gap-3 bg-white dark:bg-sky-900 dark:text-slate-100 rounded-xl shadow-md text-center m-5 rounded-2xl h-[200px] grid grid-cols-3'>
-    <Link href={"/producten/" + product.slug} aria-label={"Go to product page of " + product.name} className="col-start-1 h-[inherit]">
-        <Image
-            src={product.image.sourceUrl}
-            quality="50"
-            placeholder="blur"
-            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-            width={360} 
-            height={360} 
-            alt={product.image.altText} 
-            className="w-full h-[inherit] object-contain"
-        />
-    </Link>
-    <div className="py-5 flex flex-col px-5 col-start-2 col-end-4 justify-center">
-        <Link href={"/producten/" + product.slug} aria-label={"Go to product page of " + product.name} className="text-2xl text-left hover:underline">
+    <article key={product.id} className='flex flex-col w-72 text-[--menu-tekst] rounded-2xl text-left'>
+      <Link href={"/producten/" + product.slug} aria-label={"Go to product page of " + product.name} className="hover:shadow-md p-5 hover:scale-[0.97] flex bg-[--wit] w-full h-auto items-center justify-center mb-5 rounded-lg">
+          <Image
+              src={product.image.sourceUrl}
+              quality="80"
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
+              width={256}
+              height={256}
+              priority="high"
+              alt={product.image.altText || "Tegel " + product.name} 
+              className="h-64 w-64 rounded-sm"
+          />
+      </Link>
+        <Link href={"/producten/" + product.slug} aria-label={"Go to product page of " + product.name} className="flex text-xl text-left hover:underline justify-between items-center">
             {product.name}
-        </Link>
-        <p className="text-base col-span-full row-start-2 text-left my-2">{removeHtmlTags(product.shortDescription)}</p>
-        <span className="text-left dark:text-slate-100 w-fit py-1 rounded-lg ptext-xl" aria-label={"Price of " + product.name + " is €" + removeHtmlTags(product.price)}>
+            <span aria-label={"Price of " + product.name + " is €" + removeHtmlTags(product.price)} className="text-base">
             € {removeHtmlTags(product.price)}
-        </span>
-
-    </div>
+            </span>
+        </Link>
+        <p>{removeHtmlTags(product.shortDescription)}</p>
 </article>
   )
 }

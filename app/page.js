@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import { getProducts } from '@/lib/api.js'
+import { getProducts } from '../lib/api.js'
 const inter = Inter({ subsets: ['latin'] })
 
 export default async function Home() {
@@ -34,9 +34,9 @@ export default async function Home() {
   const products = data.products.nodes
   return (
     <main
-      className="text-3xl text-slate-900 font-bold dark:text-slate-100 m-5 text-center"
+      className="text-slate-900 dark:text-slate-100 m-5 text-center h-[80vh] py-5"
     >
-      <h1>Home</h1>
+      <h1 className='text-3xl font-semibold'>Keramische Tegels Shop</h1>
     </main>
   )
 }

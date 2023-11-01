@@ -1,8 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./Header";
-import Footer from "./Footer";
 import CartProvider from "./components/providers";
+import { GeistSans, GeistMono } from 'geist/font'
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -12,8 +12,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-        <body className="bg-slate-200 dark:bg-slate-950 flex flex-col items-center">
+    <html lang="nl-NL">
+        <body className={GeistSans.className + " bg-white dark:bg-slate-950 flex flex-col items-center"}>
         <CartProvider
         mode="payment"
         cartMode="checkout-session"
@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
       >
           <Header />
           {children}
-          <Footer />
+      
           </CartProvider>
         </body>
     </html>

@@ -15,14 +15,14 @@ export default function ShoppingCart() {
         name: 'Verzendkosten',
         description: 'Bezorgkosten binnen Nederland',
         id: 'verzendkosten',
-        price: 1000,
+        price: 9000,
         currency: 'EUR',
       });
     }
     checkVerzendkosten();
     setItemQuantity('verzendkosten', 1);
-  }, []); // Call the function only once when the component mounts
-
+  }, []);
+  
   return (
     <>
       <section className="z-30 bg-white dark:bg-slate-700 grid grid-cols-2 text-base text-black dark:text-slate-100 flex flex-row w-full py-5 lg:px-5 shadow-lg rounded-md text-left space-y-3">
@@ -56,7 +56,6 @@ export default function ShoppingCart() {
             <span className="row-start-2 col-start-1 mx-5">
               Totaalprijs: €{totalPrice / 100},-
             </span>
-            <CheckoutButton />
           </>
         ) : (
           <>

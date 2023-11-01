@@ -1,4 +1,10 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --primary: #C62F2C;
+    --menu-tekst: #0F182B;
+    --wit: #FFF6F6;
+  }
