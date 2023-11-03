@@ -9,7 +9,7 @@ export default function Header(){
         <>
             <header className="bg-[--wit] text-[--menu-tekst] h-fit w-full flex flex-col justify-center items-center">
                 <section className='bg-[--primary] w-full flex justify-center font-medium text-sm'>
-                    <nav className='w-2/3 py-2 text-slate-100 flex justify-between'>
+                    <nav className='w-2/3 lg:w-4/5 py-2 text-slate-100 flex justify-between'>
                         <ul className='flex space-x-10'>
                             <li className='flex'><CheckMarkGreen /> Grote showtuin</li>
                             <li className='flex'><CheckMarkGreen /> Complete tuininrichting</li>
@@ -19,7 +19,7 @@ export default function Header(){
                         <span>Bekijk onze reviews</span>
                     </nav>
                 </section>
-                <nav className="w-2/3 grid grid-cols-4 lg:grid-cols-3 justify-center items-center justify-items-center py-2 px-10">
+                <nav className="w-2/3 lg:w-11/12 grid grid-cols-4 lg:grid-cols-3 justify-center items-center justify-items-center py-2 px-10">
                     <Link href="/" aria-label='Ga terug naar Home' className='col-start-2 row-start-1 lg:col-start-1'><Image src={"https://dev.webchange.nl/wp-content/uploads/2023/10/SCR-20231031-tigj-2-removebg-preview.png"} width={256} height={60} alt='Logo van Keramische Tegel Shop' priority></Image></Link>
                     <ul className="col-span-full row-start-2 lg:row-start-1 flex space-x-5 items-center justify-center font-medium text-lg">
                         <li><Link href="/" className='hover:underline'>Home</Link></li>

@@ -23,6 +23,14 @@ export default async function getProductsBySlug(slug){
                 id
                 name
                 price
+                attributes {
+                  nodes {
+                    name
+                    label
+                    options
+                  }
+                }
+                databaseId
               }
             }
           }`

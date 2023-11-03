@@ -21,7 +21,7 @@ export default async function page(){
                   
                 {
                 products.map(( product, index ) => (
-                  console.log(product),
+                  console.log(product.attributes.nodes[1].options[0]),
                   <Product product={product} key={product.id}/>
                 ))
                 }

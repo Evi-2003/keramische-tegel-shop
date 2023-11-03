@@ -30,9 +30,12 @@ export default function Product({ product }) {
     addItem(product, { count: quantity })
     setQuantity(1)
   }
+  function formatAfmeting(text) {
+    return text.replace(/-/g, ' ');
+  }
 
   return (
-    <article key={product.id} className='flex flex-col w-72 text-[--menu-tekst] rounded-2xl text-left'>
+    <article key={product.id} className='flex flex-col w-72 text-[--menu-tekst] rounded-2xl text-left space-y-1'>
       <Link href={"/producten/" + product.slug} aria-label={"Go to product page of " + product.name} className="hover:shadow-md p-5 hover:scale-[0.97] flex bg-[--wit] w-full h-auto items-center justify-center mb-5 rounded-lg">
           <Image
               src={product.image.sourceUrl}
@@ -43,16 +46,17 @@ export default function Product({ product }) {
               height={256}
               priority="high"
               alt={product.image.altText || "Tegel " + product.name} 
-              className="h-64 w-64 rounded-sm"
+              className="w-[256] h-auto rounded-sm"
           />
       </Link>
         <Link href={"/producten/" + product.slug} aria-label={"Go to product page of " + product.name} className="flex text-xl text-left hover:underline justify-between items-center">
             {product.name}
-            <span aria-label={"Price of " + product.name + " is €" + removeHtmlTags(product.price)} className="text-base">
+        </Link>
+        <span className="bg-[--primary] w-fit rounded-lg px-2 text-slate-100">{formatAfmeting(product.attributes.nodes[0].options[0])}</span>
+        <p>{removeHtmlTags(product.shortDescription)}</p>
+        <span aria-label={"Price of " + product.name + " is €" + removeHtmlTags(product.price)} className="text-base">
             € {removeHtmlTags(product.price)}
             </span>
-        </Link>
-        <p>{removeHtmlTags(product.shortDescription)}</p>
 </article>
   )
 }
