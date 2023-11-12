@@ -6,18 +6,8 @@ import Link from 'next/link'
 export default function CartItem({ item }) {
   const { name, quantity, price, attributes } = item
   const { removeItem } = useShoppingCart()
-  let totalePrijs
   const removeItemFromCart = () => {
     removeItem(item.id)
-  }
- 
-  const minimaleBestelPrijs = '5'
-
-  if(minimaleBestelPrijs == null) {
-    console.log('slay')
-    totalePrijs = price
-  } else {
-    totalePrijs = price * minimaleBestelPrijs;
   }
 
   return (
@@ -29,7 +19,7 @@ export default function CartItem({ item }) {
   )}</td>
 
         <td data-label="Product" className='py-3 lg:px-5'>{name}</td> 
-        <td data-label="Prijs" className='py-3 lg:px-5'>{formatCurrencyString({ value: parseInt(totalePrijs), currency: 'EUR' })}</td>
+        <td data-label="Prijs" className='py-3 lg:px-5'>€{(price * quantity) / 100},-</td>
         <td data-label="Hoeveelheid" className='py-3  lg:px-5 content-between'>{quantity}</td>
       </tr>
   )

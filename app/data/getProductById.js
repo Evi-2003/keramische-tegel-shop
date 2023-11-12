@@ -21,6 +21,6 @@ export default async function getProductsById(id){
     });
     const { data } = await res.json()
     const getProductsById = data
-    console.log(getProductsById.product.slug)
+
     return getProductsById.product.slug
   }

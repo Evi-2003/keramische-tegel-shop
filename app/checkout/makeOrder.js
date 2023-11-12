@@ -9,7 +9,6 @@ export default async function makeOrder(line_items, order){
         quantity: item.quantity
       }));
       
-    console.log(formattedItems)
     try{
     const res = await fetch(
         'https://dev.webchange.nl/wp-json/wc/v3/orders',{

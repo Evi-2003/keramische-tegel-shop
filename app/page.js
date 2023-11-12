@@ -34,7 +34,7 @@ export default async function Home() {
   const products = data.products.nodes
   return (
     <main
-      className="text-slate-900 dark:text-slate-100 m-5 text-center h-[80vh] py-5"
+      className="text-slate-900 dark:text-slate-100 m-5 text-center py-5"
     >
       <h1 className='text-3xl font-semibold'>Keramische Tegels Shop</h1>
     </main>

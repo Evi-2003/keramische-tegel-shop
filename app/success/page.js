@@ -9,8 +9,6 @@ var myConfetti = confetti.create(main, {
 myConfetti({
   particleCount: 300,
   spread: 320
-  // any other options from the global
-  // confetti function
 });
   return (
     <main className="p-5 text-5xl font-semibold text-center h-[80vh] flex flex-col items-center justify-center">

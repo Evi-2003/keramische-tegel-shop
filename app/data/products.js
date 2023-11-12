@@ -1,4 +1,18 @@
-export default async function getProducts(){
+export default async function getProducts(afmetingen, zoekOpdracht){
+
+  let afmetingFilter;
+  let zoekFilter;
+  function spatiesNaarStreepjes(input) {
+    const result = input.replace(/ /g, '-');
+    return result;
+  }
+  if(afmetingen != undefined){
+    afmetingFilter = spatiesNaarStreepjes(afmetingen)
+  }
+  if(zoekOpdracht != undefined){
+    zoekFilter = spatiesNaarStreepjes(zoekOpdracht)
+ }
+
   const res = await fetch(
     process.env.NEXT_PUBLIC_WORDPRESS_API_URL,{
       method: "POST",
@@ -8,7 +22,9 @@ export default async function getProducts(){
       body: JSON.stringify({
         query:
     `query AllProducts {
-        products(first: 200) {
+      products(
+        first: 3${afmetingFilter ? `, where: { attribute: "pa_afmetingen", attributeTerm: "${afmetingFilter}" }` : '' || zoekFilter ? `, where: { search: "${zoekFilter}" }` : ''}
+      ) {
           nodes {
             id
             name
@@ -38,7 +54,9 @@ export default async function getProducts(){
         })
   });
   const { data } = await res.json()
+
   const getProducts = data.products.nodes
+
   function removeHtmlTags(str) {
     str = str.replace(/<[^>]*>/g, ''); // Remove HTML tags
     str = str.replace("€&nbsp;", ""); // Remove "€&nbsp;"
