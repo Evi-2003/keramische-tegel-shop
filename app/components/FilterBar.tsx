@@ -6,7 +6,7 @@ export default function filterBar(path: string) {
   const params = new URLSearchParams(searchParams)
   const pathname = usePathname()
   function sendFilters(formdata: FormData) {
-    getFilters(formdata, pathname, searchParams)
+    getFilters(formdata, pathname, searchParams.toString())
   }
     return(
       <form action={sendFilters}  className=" flex flex-col text-black space-y-1">
