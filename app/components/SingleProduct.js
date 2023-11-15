@@ -7,7 +7,9 @@ import Image from "next/image";
 import Script from "next/script"
 import Head from 'next/head'
 import optionsUrl from './serverActionUrl.tsx'
+import RelatedProducts from "./RelatedProducts";
 import { usePathname, useSearchParams } from 'next/navigation'
+
 export default function Product({ productData }) {
   const searchParams = useSearchParams()
   const params = new URLSearchParams(searchParams)
@@ -81,9 +83,7 @@ export default function Product({ productData }) {
     if(searchParams.get("afmeting") != undefined){
       console.log("Afmeting ingesteld")
       document.querySelector('select').value = searchParams.get("afmeting")
-    } else{
-      console.log("Afmeting niet ingesteld, want niet uit URL gehaald")
-    }
+    } 
     if(hoeveelheid >= parseInt(productData.attributes.nodes[2].options[0])){
       setQuantityFromUrl(hoeveelheid);
     } else {
@@ -92,7 +92,7 @@ export default function Product({ productData }) {
   }, []); 
  
   return (
-    <main className="w-4/5 lg:w-10/12 my-5">
+    <main className="w-4/5 lg:w-10/12 2xl:w-3/5 my-5">
       <article
         className="grid grid-cols-1 lg:grid-cols-2 w-full lg:p-10 items-center bg-slate-100 py-5 rounded-lg"
         key={productData.id}
@@ -104,20 +104,21 @@ export default function Product({ productData }) {
           width={320}
           priority="high"
           height={320}
-          className="row-start-1 col-start-1 w-4/5 justify-self-center shadow-lg object-cover hover:scale-105"
+          className="row-start-1 col-start-1 w-3/5 lg:w-4/5 2xl:w-3/5 justify-self-center shadow-lg object-cover hover:scale-105"
         ></Image>
-        <aside className="row-start-2 grid grid-cols-3 grid-rows-auto tempalte-col lg:row-start-1 lg:col-start-2 lg:col-span-3 m-10 justify-start self-start text-left space-y-2">
-          <h1  className="text-3xl font-semibold  row-start-1 col-span-full">
+        <aside className="row-start-2 grid grid-cols-3 grid-rows-auto tempalte-col lg:row-start-1 lg:col-start-2 lg:col-span-3 mx-10 justify-start self-start text-left space-y-2">
+          <h1 className="text-3xl font-medium  row-start-1 col-span-full">
             {productData.name}
           </h1>
-
-          <p className=" text-xl dark:text-slate-100 row-start-2 col-span-full">
+          
+          <p maxlength="5" className="text-base row-start-2 col-span-full">
+            <span className="text-lg font-medium ">De {productData.name} in het kort:</span><br aria-hidden="true"/>
             {productData.shortDescription && removeHtmlTags(productData.shortDescription)}
           </p>
-          <h3 className="text-lg font-medium  col-start-1 col-span-2 row-start-3">Hoeveelheid (m2)</h3>
-          <span className="col-start-1 row-start-4 text-lg border-2 border-solid border-[--primary] w-fit rounded-lg  px-5 py-1 flex items-center">{(minFormaatFloat * quantity).toFixed(2)}</span>
+          <h3 className="text-lg font-medium  col-start-1 col-span-2 row-start-3">Aantal (m2)</h3>
+          <span className="col-start-1 row-start-4 text-lg border-2 border-solid border-[--primary] w-fit rounded-lg  px-5 py-[0.15em] flex items-center self-start m-0">{(minFormaatFloat * quantity).toFixed(2)}</span>
           <h3 className="col-span-2 text-lg font-medium  col-start-1 row-start-3 lg:col-start-2">Hoeveelheid (tegels)<br aria-hidden="true"></br></h3>
-          <div className="col-start-2 row-start-4 text-lg flex items-center border-2 border-[--primary] border-solid w-fit rounded-lg py-1 ">
+          <div className="col-start-2 row-start-4 text-lg border-2 border-solid border-[--primary] w-fit rounded-lg h-fit self-start flex items-center">
             
                 {quantity > productData.attributes.nodes[2].options[0] ? (
         <button
@@ -140,7 +141,7 @@ export default function Product({ productData }) {
               +
             </button>
           </div>
-          <h3 className="col-start-1 row-start-6 text-lg font-medium  col-start-1 row-start-3">Afmetingen</h3>        
+          <h3 className="text-lg font-medium  col-start-1 row-start-6">Afmetingen</h3>        
           <select onChange={selectAfmeting} className="col-start-1 row-start-7  bg-transparent text-slate-950 rounded-lg border-2 shadow-lg border-[--primary] border-solid py-2 w-fit px-5 hover:scale-95 shadow-lg hover:cursor-pointer ">
             {
                 productData.attributes.nodes[0].options.map(( product, index ) => (
@@ -183,6 +184,11 @@ export default function Product({ productData }) {
           </a>
         </aside>
       </article>
+      <section className="overflow-auto flex-1 flex items-center bg-slate-100 p-10 rounded-lg w-full mt-5 flex-col justify-items-center shadow-xl">
+        <h3 className="text-3xl font-medium mb-5">Gerelateerde producten</h3>
+        <RelatedProducts product={productData} />
+      </section>
+      
     </main>
   );
  

@@ -23,7 +23,7 @@ export default async function getProducts(afmetingen, zoekOpdracht){
         query:
     `query AllProducts {
       products(
-        first: 3${afmetingFilter ? `, where: { attribute: "pa_afmetingen", attributeTerm: "${afmetingFilter}" }` : '' || zoekFilter ? `, where: { search: "${zoekFilter}" }` : ''}
+        first: 12${afmetingFilter ? `, where: { attribute: "pa_afmetingen", attributeTerm: "${afmetingFilter}" }` : '' || zoekFilter ? `, where: { search: "${zoekFilter}" }` : ''}
       ) {
           nodes {
             id

@@ -1,7 +1,9 @@
-'use client'
-import { formatCurrencyString, useShoppingCart } from 'use-shopping-cart'
+export async function generateMetadata() {
+  return{
+    title: 'Klantenservice - Keramischetegelshop.nl'
+  }
+}
 export default function contact(){
-    const { addItem, cartDetails } = useShoppingCart()
     return(
         <main
         className="text-slate-900 dark:text-slate-100 m-5 text-center py-5"

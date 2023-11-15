@@ -32,6 +32,19 @@ export default async function getProductsBySlug(slug){
                 }
                 databaseId
               }
+              related {
+                edges {
+                  node {
+                    id
+                    name
+                    slug
+                    image {
+                      altText
+                      sourceUrl
+                    }
+                  }
+                }
+              }
             }
           }`
           })

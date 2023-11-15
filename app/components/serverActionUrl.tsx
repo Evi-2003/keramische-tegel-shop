@@ -4,5 +4,5 @@ export default async function optionsUrl(path, searchParams, option, value){
   console.log(path)
   const params = new URLSearchParams(searchParams)
   params.set(option, value)
-    redirect(path + '?' + params)
-  }
+  redirect(path + '?' + params)
+} 

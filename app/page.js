@@ -1,8 +1,12 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import { getProducts } from '../lib/api.js'
-const inter = Inter({ subsets: ['latin'] })
 
+export async function generateMetadata() {
+  return{
+    title: 'Hoogste kwaliteit keramische tegels - Keramischetegelshop.nl'
+  }
+}
 export default async function Home() {
 
   const res = await fetch(

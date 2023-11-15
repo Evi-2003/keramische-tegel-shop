@@ -8,6 +8,6 @@
     --menu-tekst: #0F182B;
     --wit: #FFFFFF;
   }
-div{
+div, span{
   margin-block-start: 0!important;
 }
