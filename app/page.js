@@ -1,46 +1,28 @@
+'use client'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import { getProducts } from '../lib/api.js'
+import getPopulairProducts from "./data/getPopulairProducts";
+import InspiratieCarousel from './components/InspiratieCarousel.js'
+import MostSold from './components/MostSold.js'
 
-export async function generateMetadata() {
-  return{
-    title: 'Hoogste kwaliteit keramische tegels - Keramischetegelshop.nl'
-  }
-}
-export default async function Home() {
-
-  const res = await fetch(
-    process.env.NEXT_PUBLIC_WORDPRESS_API_URL,{
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        query:
-    `query AllProducts {
-            products {
-              nodes {
-                id
-                name
-                slug
-                description
-                shortDescription
-                image {
-                  altText
-                  sourceUrl
-                }
-              }
-            }
-          }`
-        })
-  });
-  const { data } = await res.json()
-  const products = data.products.nodes
+export default function Home() {
   return (
     <main
-      className="text-slate-900 dark:text-slate-100 m-5 text-center py-5"
+      className="text-slate-900 dark:text-slate-100 m-5 text-center py-5 space-y-3 w-4/5"
     >
-      <h1 className='text-3xl font-semibold'>Keramische Tegels Shop</h1>
+      <h1 className='text-3xl font-semibold'>Geniet van een moderne tuin, met keramische tegels.</h1>
+      <section className='grid grid-cols-3 grid-rows-3 space-x-5 h-96 relative'>
+          <article className='row-start-1 row-span-3 col-start-1 col-span-2 relative  hover:cursor-pointer shadow-lg rounded-lg'>
+            <span className='absolute bottom-0 left-0 z-10 bg-slate-50 text-slate-950 px-5 py-1 m-5 shadow-xl'><h2 className='text-xl font-medium'>Inspiratie</h2></span>
+              <InspiratieCarousel></InspiratieCarousel>
+          </article>
+
+            <article className='col-start-3 row-span-3 h-full w-full  text-slate-950 text-center flex justify-center items-center flex-col rounded-lg bg-slate-50 shadow-lg'>
+                <h2 className='text-xl font-medium bg-[--primary] px-5 py-1 text-slate-50 -skew-x-[5deg]'>Best verkocht</h2>
+                <MostSold></MostSold>
+            </article>
+        </section>
     </main>
   )
 }

@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 export default function RelatedProducts(product) {
+
   const relatedProducts = product.product.related.edges;
 
   return (

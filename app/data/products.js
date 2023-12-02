@@ -12,7 +12,8 @@ export default async function getProducts(afmetingen, zoekOpdracht){
   if(zoekOpdracht != undefined){
     zoekFilter = spatiesNaarStreepjes(zoekOpdracht)
  }
-
+ //console.log(zoekFilter)
+ //console.log(afmetingen)
   const res = await fetch(
     process.env.NEXT_PUBLIC_WORDPRESS_API_URL,{
       method: "POST",
@@ -21,42 +22,167 @@ export default async function getProducts(afmetingen, zoekOpdracht){
       },
       body: JSON.stringify({
         query:
-    `query AllProducts {
-      products(
-        first: 12${afmetingFilter ? `, where: { attribute: "pa_afmetingen", attributeTerm: "${afmetingFilter}" }` : '' || zoekFilter ? `, where: { search: "${zoekFilter}" }` : ''}
-      ) {
-          nodes {
+    `query GetProducts {
+      products(first: 12, where: { includeVariations: true ${zoekOpdracht ? `, search: "${zoekOpdracht}"` : ''} }){
+        edges {
+          node {
             id
-            name
-            slug
-            description
-            shortDescription
             image {
-              altText
+              databaseId
               sourceUrl
             }
-            ... on SimpleProduct {
+            ... on ProductVariation {
+              onSale
+              regularPrice
+              databaseId
               id
-              name
-              price
-              attributes {
-                nodes {
-                  name
-                  label
-                  options
+              parent {
+                node {
+                  productId
+                  ... on VariableProduct {
+                    allPaKleurNaam {
+                      nodes {
+                        databaseId
+                        id
+                        name
+                        slug
+                        paKleurNaamId
+                        variations {
+                          nodes {
+                            databaseId
+                            id
+                            price
+                            salePrice
+                            image {
+                              sourceUrl
+                              id
+                              databaseId
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
-              databaseId
             }
+            ... on VariableProduct {
+              onSale
+              content
+              regularPrice
+              databaseId
+              id
+              allPaMinimumAantal {
+                nodes {
+                  slug
+                  name
+                  id
+                  databaseId
+                }
+              }
+              allPaMinimaleHoeveelheidM2 {
+                nodes {
+                  name
+                  id
+                  databaseId
+                }
+              }
+              allPaKleurNaam {
+                nodes {
+                  databaseId
+                  id
+                  name
+                  slug
+                  paKleurNaamId
+                  variations {
+                    nodes {
+                      databaseId
+                      id
+                      price
+                      salePrice
+                      image {
+                        sourceUrl
+                        id
+                        databaseId
+                      }
+                    }
+                  }
+                }
+              }
+              allPaKleur {
+                nodes {
+                  databaseId
+                  id
+                  name
+                  slug
+                }
+              }
+              allPaAfmetingen {
+                nodes {
+                  databaseId
+                  id
+                  name
+                  slug
+                  variations {
+                    nodes {
+                      price(format: FORMATTED)
+                      salePrice(format: FORMATTED)
+                      onSale
+                    }
+                  }
+                  products {
+                    edges {
+                      node {
+                        id
+                      }
+                    }
+                  }
+                }
+                edges {
+                  node {
+                    slug
+                    variations {
+                      edges {
+                        node {
+                          id
+                          parent {
+                            node {
+                              id
+                            }
+                          }
+                        }
+                      }
+                    }
+                    id
+                    databaseId
+                    name
+                    products {
+                      edges {
+                        node {
+                          id
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            slug
+            shortDescription
+            name
+            databaseId
           }
         }
-      }`
+      }
+    }
+    `
         })
   });
   const { data } = await res.json()
 
-  const getProducts = data.products.nodes
+  const getProducts = data.products.edges
 
+  
   function removeHtmlTags(str) {
     str = str.replace(/<[^>]*>/g, ''); // Remove HTML tags
     str = str.replace("€&nbsp;", ""); // Remove "€&nbsp;"

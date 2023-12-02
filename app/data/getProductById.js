@@ -9,18 +9,134 @@ export default async function getProductsById(id){
           query:
           `
           query ProductById {
-            product(id: "${id}", idType: ID) {
+            product(id: "${id}") {
               id
-              slug
-              ... on SimpleProduct {
+    name
+    slug
+    description
+    shortDescription
+    attributes {
+      edges {
+        node {
+          id
+          name
+          options
+        }
+      }
+    }
+    image {
+      altText
+      sourceUrl
+    }
+    ... on VariableProduct {
+      onSale
+      price
+      content
+      regularPrice
+      allPaAfmetingen {
+        nodes {
+          name
+          variations {
+            edges {
+              node {
                 id
+                name
+                price
+                image {
+                  id
+                  sourceUrl
+                }
               }
             }
-          }`
+          }
+        }
+      }
+    }
+    related {
+      edges {
+        node {
+          id
+          name
+          slug
+          image {
+            altText
+            sourceUrl
+          }
+        }
+      }
+    }
+    allPaAfmetingen {
+      nodes {
+        databaseId
+        id
+        name
+      }
+    }
+    allPaKleur {
+      nodes {
+        name
+        slug
+        variations {
+          nodes {
+            databaseId
+            id
+            name
+          }
+        }
+      }
+    }
+    allPaKleurNaam {
+      nodes {
+        id
+        name
+        variations {
+          nodes {
+            id
+            name
+            featuredImage {
+              node {
+                id
+                sourceUrl
+              }
+            }
+          }
+        }
+      }
+    }
+    allPaMinimaleHoeveelheidM2 {
+      nodes {
+        id
+        name
+        databaseId
+        variations {
+          nodes {
+            id
+            name
+          }
+        }
+      }
+    }
+    allPaMinimumAantal {
+      nodes {
+        id
+        databaseId
+        name
+        variations {
+          nodes {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+}
+          `
           })
     });
     const { data } = await res.json()
-    const getProductsById = data
 
-    return getProductsById.product.slug
+    const getProductsById = data.product
+ 
+    return getProductsById
   }

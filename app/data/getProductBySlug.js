@@ -9,38 +9,76 @@ export default async function getProductsBySlug(slug){
           query:
           `
           query ProductBySlug {
-            product(id: "${slug}", idType: SLUG) {
-              id
-              name
-              slug
-              description
-              shortDescription
-              image {
-                altText
-                sourceUrl
-              }
-              ... on SimpleProduct {
-                id
-                name
-                price
-                attributes {
-                  nodes {
-                    name
-                    label
-                    options
-                  }
-                }
-                databaseId
-              }
-              related {
-                edges {
-                  node {
-                    id
-                    name
-                    slug
-                    image {
-                      altText
-                      sourceUrl
+            product(id: "794", idType: SLUG) {
+              edges {
+                node {
+                  id
+                  slug
+                  name
+                  type
+                  databaseId
+                  shortDescription
+                  ... on VariableProduct {
+                    onSale
+                    content
+                    regularPrice
+                    allPaMinimumAantal {
+                      nodes {
+                        slug
+                        name
+                        id
+                        databaseId
+                      }
+                    }
+                    allPaMinimaleHoeveelheidM2 {
+                      nodes {
+                        name
+                        id
+                        databaseId
+                      }
+                    }
+                    allPaKleurNaam {
+                      nodes {
+                        databaseId
+                        id
+                        name
+                        slug
+                      }
+                    }
+                    allPaKleur {
+                      nodes {
+                        databaseId
+                        id
+                        name
+                        slug
+                      }
+                    }
+                    allPaAfmetingen {
+                      nodes {
+                        databaseId
+                        id
+                        name
+                        slug
+                      }
+                      edges {
+                        node {
+                          variations {
+                            nodes {
+                              id
+                              image {
+                                id
+                                databaseId
+                                sourceUrl
+                              }
+                              price
+                              metaData {
+                                key
+                                value
+                              }
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 }
@@ -50,6 +88,7 @@ export default async function getProductsBySlug(slug){
           })
     });
     const { data } = await res.json()
+    ////console.log(data)
     const getProductsBySlug = data
     return getProductsBySlug
   }
