@@ -47,6 +47,7 @@ export default function MostSold() {
   
   return (
     <>
+    {mostPopulairProducts.length > 0 && (
       <div ref={sliderRef} className="keen-slider mt-5">
         {mostPopulairProducts.map((product) => (
           <div
@@ -65,6 +66,7 @@ export default function MostSold() {
           </div>
         ))}
       </div>
+    )}
     </>
   );
 }
