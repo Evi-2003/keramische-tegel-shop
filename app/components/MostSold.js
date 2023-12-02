@@ -47,7 +47,7 @@ export default function MostSold() {
   
   return (
     <>
-      <div ref={sliderRef} className="keen-slider w-full mt-5">
+      <div ref={sliderRef} className="keen-slider mt-5">
         {mostPopulairProducts.map((product) => (
           <div
             key={product.image.sourceUrl}

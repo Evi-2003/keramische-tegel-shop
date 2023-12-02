@@ -52,7 +52,7 @@ export default function InspiratieCarousel() {
   
   return (
     <>
-      <div ref={sliderRef} className="keen-slider w-full">
+      <div ref={sliderRef} className="keen-slider">
         {inspiratieFotos.map((product) => (
           <div
             key={product.sourceUrl}
