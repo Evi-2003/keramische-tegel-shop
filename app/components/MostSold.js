@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import getPopulairProducts from "../data/getPopulairProducts";
 import { useKeenSlider } from 'keen-slider/react';

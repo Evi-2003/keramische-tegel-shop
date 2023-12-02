@@ -1,8 +1,4 @@
 'use client'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import { getProducts } from '../lib/api.js'
-import getPopulairProducts from "./data/getPopulairProducts";
 import InspiratieCarousel from './components/InspiratieCarousel.js'
 import MostSold from './components/MostSold.js'
 

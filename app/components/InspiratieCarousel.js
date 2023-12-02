@@ -1,4 +1,4 @@
-'use client'
+
 import Image from 'next/image';
 import getInspiratieFotos from '../data/getInspiratieFotos';
 import { useKeenSlider } from 'keen-slider/react';
@@ -53,13 +53,13 @@ export default function InspiratieCarousel() {
   return (
     <>
     {inspiratieFotos.length > 0 && (
-      <section ref={sliderRef} className="keen-slider">
+      <section ref={sliderRef} className="keen-slider rounded-lg shadow-lg">
         {inspiratieFotos.map((product) => (
           <Image
             src={product.sourceUrl}
             alt={'Afbeelding van een tuin met keramische tegels'}
             width={1000}
-            priority="high"
+            loading="eager"
             key={product.id}
             height={1000}
             className="keen-slider__slide h-96 w-full object-cover"
