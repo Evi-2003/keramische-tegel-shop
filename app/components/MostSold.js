@@ -49,19 +49,22 @@ export default function MostSold() {
   return (
     <>
     {mostPopulairProducts.length > 0 && (
-      <div ref={sliderRef} className="keen-slider mt-5">
+      <div ref={sliderRef} className="keen-slider">
         {mostPopulairProducts.map((product) => (
           <div
             key={product.image.sourceUrl}
-            className="keen-slider__slide w-full"
+            className="keen-slider__slide w-full h-fit flex flex-col items-center"
           >
             <Image
               src={product.image.sourceUrl}
               alt={"Afbeelding van de " + product.name}
-              width={320}
-              priority="high"
-              height={320}
-              className="w-full h-5/6 object-scale-down"
+              width={500}
+              height={500}
+              quality="50"
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
+              priority="high"  
+              className="w-64 h-64 object-scale-down"
             />
             <span className="text-black text-lg p-2">{product.name}</span>
           </div>

@@ -14,8 +14,8 @@ export default function Home() {
             <InspiratieCarousel></InspiratieCarousel>
           </div>
 
-            <article className='col-start-3 row-span-3 h-full w-full  text-slate-950 text-center flex justify-center items-center flex-col rounded-lg bg-slate-50 shadow-lg'>
-                <h2 className='text-xl font-medium bg-[--primary] px-5 py-1 text-slate-50 -skew-x-[5deg]'>Best verkocht</h2>
+            <article className='col-start-3 row-span-3 h-full w-full  text-slate-950 text-center flex justify-center items-center flex-col'>
+                <h2 className='text-xl font-medium bg-[--primary] px-5 py-1 text-slate-50 mb-5'>Best verkocht</h2>
                 <MostSold></MostSold>
             </article>
         </section>

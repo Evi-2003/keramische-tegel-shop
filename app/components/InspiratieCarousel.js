@@ -58,10 +58,13 @@ export default function InspiratieCarousel() {
           <Image
             src={product.sourceUrl}
             alt={'Afbeelding van een tuin met keramische tegels'}
-            width={1000}
-            loading="eager"
+            width={500}
+            quality="50"
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
             key={product.id}
-            height={1000}
+            priority="high"
+            height={500}
             className="keen-slider__slide h-96 w-full object-cover"
           /> 
         ))}

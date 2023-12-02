@@ -13,7 +13,7 @@ export default async function getInspiratieFotos(){
               id
               gallerij {
                 inspiratie {
-                  sourceUrl(size: LARGE)
+                  sourceUrl
                 }
               }
             }
