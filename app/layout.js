@@ -1,9 +1,10 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./Header";
+import Footer from "./Footer";
 import CartProvider from "./components/providers";
 import { GeistSans, GeistMono } from 'geist/font'
-
+import { AnimatePresence } from 'framer-motion'
 
 export default function RootLayout({ children }) {
   return (
@@ -15,7 +16,7 @@ export default function RootLayout({ children }) {
       >
           <Header />
           {children}
-      
+          <Footer />
           </CartProvider>
         </body>
 

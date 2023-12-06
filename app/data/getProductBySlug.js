@@ -9,77 +9,52 @@ export default async function getProductsBySlug(slug){
           query:
           `
           query ProductBySlug {
-            product(id: "794", idType: SLUG) {
-              edges {
-                node {
-                  id
-                  slug
-                  name
-                  type
-                  databaseId
-                  shortDescription
-                  ... on VariableProduct {
-                    onSale
-                    content
-                    regularPrice
-                    allPaMinimumAantal {
+            product(id: "${slug}", idType: SLUG) {
+              id
+              name
+              slug
+              description
+              shortDescription
+              variantAttributes {
+                name
+                value
+                productId
+                productSlug
+              }
+              image {
+                altText
+                sourceUrl
+              }
+              ... on SimpleProduct {
+                id
+                name
+                price
+                attributes {
+                  nodes {
+                    name
+                    label
+                    options
+                  }
+                }
+                databaseId
+              }
+              related {
+                nodes {
+                  ... on SimpleProduct {
+                    id
+                    name
+                    slug
+                    attributes {
                       nodes {
-                        slug
                         name
-                        id
-                        databaseId
+                        label
+                        options
                       }
                     }
-                    allPaMinimaleHoeveelheidM2 {
-                      nodes {
-                        name
-                        id
-                        databaseId
-                      }
+                    image {
+                      sourceUrl
                     }
-                    allPaKleurNaam {
-                      nodes {
-                        databaseId
-                        id
-                        name
-                        slug
-                      }
-                    }
-                    allPaKleur {
-                      nodes {
-                        databaseId
-                        id
-                        name
-                        slug
-                      }
-                    }
-                    allPaAfmetingen {
-                      nodes {
-                        databaseId
-                        id
-                        name
-                        slug
-                      }
-                      edges {
-                        node {
-                          variations {
-                            nodes {
-                              id
-                              image {
-                                id
-                                databaseId
-                                sourceUrl
-                              }
-                              price
-                              metaData {
-                                key
-                                value
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
+                    price
                   }
                 }
               }

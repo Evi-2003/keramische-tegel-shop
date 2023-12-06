@@ -2,13 +2,14 @@
 import ShoppingCart from '../components/ShoppingCart'
 import makeOrder from '../checkout/makeOrder.js'
 import { useShoppingCart } from 'use-shopping-cart';
+import { PageWrapper } from "../components/pageWrapper.tsx";
 
 export default function Winkelmand() {
   const { addItem, totalPrice, cartCount, cartDetails, setItemQuantity } = useShoppingCart();
   const maakDeOrder = makeOrder.bind(null, cartDetails)
 
   return (
-    <main className="w-4/5 lg:w-2/3 text-3xl text-slate-900 font-bold dark:text-slate-100 m-5 text-center flex space-x-10">
+    <PageWrapper className="w-4/5 lg:w-2/3 text-3xl text-slate-900 font-bold dark:text-slate-100 m-5 text-center flex space-x-10">
       <section className='w-1/2 py-5'>
         <h1 className='mb-3'>Winkelmand</h1>
         <ShoppingCart/>
@@ -69,6 +70,6 @@ export default function Winkelmand() {
     <button type="submit" value="Plaats bestelling" accessKey='s'>Plaats bestelling</button>
         </form>
       </section>
-    </main>
+    </PageWrapper>
   )
 }

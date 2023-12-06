@@ -24,7 +24,7 @@ export default function CheckoutButton() {
         const result = await redirectToCheckout(data.sessionId)
 
         if (result?.error) {
-          console.error(result.error) // Log the error message
+          console.error(result.error)
           setStatus('redirect-error')
         }
       } catch (error) {

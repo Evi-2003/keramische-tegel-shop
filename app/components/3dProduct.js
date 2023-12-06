@@ -5,7 +5,7 @@ import { useFrame } from 'react-three-fiber';
 export default function ThreejsProduct({ imageUrl }) {
     const mountRef = useRef(null);
     const cubeRef = useRef(null);
-    //console.log(imageUrl)
+
     useEffect(() => {
       let scene, camera, renderer, controls;
       let frameId;
@@ -17,8 +17,8 @@ export default function ThreejsProduct({ imageUrl }) {
     const width = mountRef.current.clientWidth;
     const height = mountRef.current.clientHeight;
     const aspect = width / height;
-    camera = new THREE.PerspectiveCamera(100, aspect, 0.1, 5000);
-    camera.position.z = 40
+    camera = new THREE.PerspectiveCamera(50, aspect, 0.1, 500);
+    camera.position.z = 140
 
 
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });

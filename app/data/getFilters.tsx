@@ -15,6 +15,6 @@ export default async function getFilters(formdata : FormData, path : string, sea
     const paramString = Array.from(params.entries())
         .map(([key, values]) => `${key}=${values.map(value => encodeURIComponent(value).replace(/%20/g, '+')).join(',')}`)
         .join('&');
-
+    console.log(paramString)
     redirect(path + '?' + paramString);
 }
