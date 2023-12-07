@@ -19,6 +19,7 @@ export default function Product({ productData }) {
   const params = new URLSearchParams(searchParams);
   const hoeveelheid = searchParams.get("hoeveelheid");
   const pathname = usePathname();
+  console.log(productData)
   const minHoeveelheidTegels = parseInt(
     productData.attributes.nodes.find(
       (node) => node.name == "pa_minimum-aantal"
@@ -128,7 +129,7 @@ export default function Product({ productData }) {
 
   const m2SizeCalculated = (length * widthTegel) / 10000;
 
-  const getVariations = (data, currentDimension) => {
+  const getVariations = (productData, currentDimension) => {
     // splits het huidige productSlug op "-" en verwijder het laatste onderdeel (de afmeting)
     const baseSlug = currentDimension.slug.split("-").slice(0, -1).join("-");
 
@@ -137,8 +138,7 @@ export default function Product({ productData }) {
     // Gebruik een Set om duplicaten bij te houden
     const seenSlugs = new Set();
 
-    data
-      .filter(
+    productData.filter(
         (el) =>
           el.productSlug.startsWith(baseSlug) &&
           el.name === "pa_afmetingen" &&

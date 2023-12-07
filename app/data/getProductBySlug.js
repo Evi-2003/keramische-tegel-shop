@@ -63,7 +63,9 @@ export default async function getProductsBySlug(slug){
           })
     });
     const { data } = await res.json()
-    ////console.log(data)
+
     const getProductsBySlug = data
+    console.log('PRODUCT')
+    console.log(data)
     return getProductsBySlug
   }
