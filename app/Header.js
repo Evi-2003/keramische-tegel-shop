@@ -15,7 +15,7 @@ export default function Header() {
   function search(opdracht) {
     const zoekOpdracht = opdracht.get("zoeken");
     if (zoekOpdracht != undefined) {
-      optionsUrl("http://localhost:3001/shop", "", "zoeken", zoekOpdracht);
+      optionsUrl("https://headless-wp-react-webshop.vercel.app/shop", "", "zoeken", zoekOpdracht);
     }
   }
   return (
