@@ -11,7 +11,7 @@ export default async function makeOrder(line_items, order){
       
     try{
     const res = await fetch(
-        'https://dev.webchange.nl/wp-json/wc/v3/orders',{
+        'https://betalen.keramischetegelshop.nl/wp-json/wc/v3/orders',{
           method: "POST",
           headers: {
             "Content-Type": "application/json",

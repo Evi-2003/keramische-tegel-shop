@@ -1,6 +1,6 @@
 export default async function getInspiratieFotos(){
     const res = await fetch(
-      'https://dev.webchange.nl/graphql',{
+      'https://betalen.keramischetegelshop.nl/graphql',{
         method: "POST",
         headers: {
           "Content-Type": "application/json",
