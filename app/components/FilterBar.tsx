@@ -9,7 +9,7 @@ import {
   Spacer,
 } from "@nextui-org/react";
 
-export default function filterBar(path: string) {
+export default function FilterBar(path: string) {
 
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams);

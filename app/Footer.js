@@ -14,7 +14,7 @@ export default function Footer(){
                     alt="Logo van Keramische Tegel Shop"
                     priority
                     ></Image></Link>
-                    <h4 className="col-start-1 row-start-1 text-lg font-bold">Pagina's</h4>
+                    <h4 className="col-start-1 row-start-1 text-lg font-bold">Pagina</h4>
                     <ul className="col-start-1 row-start-2 flex flex-col">
                         <Link href="/" aria-label="Ga naar Home" className="hover:underline hover:scale-95">Home</Link>
                         <Link href="/shop" aria-label="Ga naar de producten" className="hover:underline hover:scale-95">Producten</Link>
