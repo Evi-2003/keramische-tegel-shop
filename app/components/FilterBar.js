@@ -1,6 +1,6 @@
 "use client";
 import { usePathname, useSearchParams } from "next/navigation";
-import getFilters from "../data/getFilters.tsx";
+import getFilters from "../data/getFilters";
 import Creatable from "react-select";
 import {
   Select as NextSelect,
@@ -8,10 +8,9 @@ import {
   Slider,
   Spacer,
 } from "@nextui-org/react";
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-export default function FilterBar(path: string) {
-  
+export default function FilterBar() {
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams);
 
@@ -23,47 +22,41 @@ export default function FilterBar(path: string) {
     }
     getFilters(formdata, pathname, searchParams.toString());
   };
-  const handleSelectChange = (key, isCheckbox = false) => (event) => {
-
-    if (isCheckbox) {
-      params.delete(key);
-  
-      const checkboxContainer = event.target.parentElement.parentElement;
-  
-
-      const checkboxes = checkboxContainer.querySelectorAll(`[name=${key}]`);
-  
-      for (let checkbox of checkboxes) {
-        if (checkbox.checked) {
-         
-          params.append(key, checkbox.value);
-        }
-      }
-    
-    } else {
-
-      if (event) {
-        params.set(key, event.value);
-      } else {
+  const handleSelectChange =
+    (key, isCheckbox = false) =>
+    (event) => {
+      if (isCheckbox) {
         params.delete(key);
-      }
-    }
-  
-    sendFilters();
-  
-  };
-  useEffect(() => {
 
-    if (!searchParams.toString()) {
+        const checkboxContainer = event.target.parentElement.parentElement;
 
-        const checkboxes = document.querySelectorAll('input[type=checkbox]');
+        const checkboxes = checkboxContainer.querySelectorAll(`[name=${key}]`);
 
         for (let checkbox of checkboxes) {
-            checkbox.checked = false;
+          if (checkbox.checked) {
+            params.append(key, checkbox.value);
+          }
         }
+      } else {
+        if (event) {
+          params.set(key, event.value);
+        } else {
+          params.delete(key);
+        }
+      }
+      sendFilters();
+    };
+
+  useEffect(() => {
+    if (!searchParams.toString()) {
+      const checkboxes = document.querySelectorAll("input[type=checkbox]");
+
+      for (let checkbox of checkboxes) {
+        checkbox.checked = false;
+      }
     }
-}, [searchParams]);
-  
+  }, [searchParams]);
+
   const options = [
     { value: "80x80x2cm", label: "80 x 80 x 2cm" },
     { value: "80x80x3cm", label: "80 x 80 x 3cm" },
@@ -72,6 +65,7 @@ export default function FilterBar(path: string) {
     { value: "tuin-tegels", label: "Tuin Tegels" },
     { value: "woon-tegels", label: "Woon tegels" },
   ];
+  
   return (
     <form
       action={sendFilters}
@@ -79,26 +73,28 @@ export default function FilterBar(path: string) {
     >
       <section className="mb-5">
         <span className="text-2xl">Filters</span>
-        <hr className="my-3"/>
+        <hr className="my-3" />
         <h2 className="text-lg font-semibold">Categorieën</h2>
         <Creatable
-        isClearable
+          isClearable
           options={categorieën}
           className="mt-2 text-base text-slate-950"
           placeholder="Categorieën"
           name="categorie"
-          onChange={handleSelectChange('categorie')}
+          onChange={handleSelectChange("categorie")}
         />
       </section>
       <section className="mb-5">
-        <h2 className="text-lg font-semibold"><label>Afmetingen</label></h2>
+        <h2 className="text-lg font-semibold">
+          <label>Afmetingen</label>
+        </h2>
         <Creatable
-        isClearable
+          isClearable
           options={options}
           className="mt-2 text-base text-slate-950"
           placeholder="Afmetingen"
           name="afmetingen"
-          onChange={handleSelectChange('afmetingen')}
+          onChange={handleSelectChange("afmetingen")}
         />
       </section>
       <section>
@@ -111,7 +107,7 @@ export default function FilterBar(path: string) {
               value="MBI"
               name="fabrikant"
               id="mbi"
-              onChange={handleSelectChange('fabrikant', true)}
+              onChange={handleSelectChange("fabrikant", true)}
             />
             <label className="w-fit col-start-2" htmlFor="mbi">
               MBI
@@ -123,7 +119,7 @@ export default function FilterBar(path: string) {
               type="checkbox"
               value="Gardenlux"
               name="fabrikant"
-              onChange={handleSelectChange('fabrikant', true)}
+              onChange={handleSelectChange("fabrikant", true)}
               id="gardenlux"
             />
             <label className="w-fit col-start-2" htmlFor="gardenlux">
@@ -142,7 +138,7 @@ export default function FilterBar(path: string) {
               value="1cm"
               name="dikte"
               id="1cm"
-              onChange={handleSelectChange('dikte', true)}
+              onChange={handleSelectChange("dikte", true)}
             />
             <label className="w-fit col-start-2" htmlFor="dikte">
               1cm
@@ -155,7 +151,7 @@ export default function FilterBar(path: string) {
               value="2cm"
               name="dikte"
               id="2cm"
-              onChange={handleSelectChange('dikte', true)}
+              onChange={handleSelectChange("dikte", true)}
             />
             <label className="w-fit col-start-2" htmlFor="dikte">
               2cm
