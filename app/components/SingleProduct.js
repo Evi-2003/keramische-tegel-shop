@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { formatCurrencyString, useShoppingCart } from "use-shopping-cart";
 import formatProductData from "../data/formatProductData";
 import Image from "next/image";
-import Script from "next/script";
 import Head from "next/head";
 import optionsUrl from "./serverActionUrl.tsx";
 import RelatedProducts from "./RelatedProducts";
@@ -13,13 +12,59 @@ import ThreejsProduct from "./3dProduct.js";
 import { usePathname, useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import { lazy, Suspense } from "react";
+import Script from "next/script";
+import getProductBySlug from "../data/getProductBySlug";
+// eslint-disable-next-line
+export default function Product({ product, slug }) {
 
-export default function Product({ productData }) {
+  let productData = product.product
+  function removeHtmlTags(str, shouldClean = true) {
+    if (shouldClean) {
+      str = str.replace(/<[^>]*>/g, "");
+      str = str.replace("€&nbsp;", "");
+    }
+    return str;
+  }
+
+  function cleanupObject(obj) {
+    for (let key in obj) {
+      if (typeof obj[key] === "object" && obj[key] !== null) {
+        cleanupObject(obj[key]);
+      } else if (typeof obj[key] === "string") {
+        obj[key] = removeHtmlTags(obj[key], key !== "description");
+      }
+    }
+  }
+
+  cleanupObject(productData);
+
+  if (!product) {
+      redirect('/404')
+  }
+  function removeHtmlTags(str, shouldClean=true) {
+    if (shouldClean) {
+      str = str.replace(/<[^>]*>/g, '');
+      str = str.replace("€&nbsp;", ""); 
+    }
+    return str;
+}
+
+function cleanupObject(obj) {
+    for (let key in obj) {
+      if (typeof obj[key] === "object" && obj[key] !== null) {
+        cleanupObject(obj[key]);
+      } else if (typeof obj[key] === "string") {
+        obj[key] = removeHtmlTags(obj[key], key !== 'description');
+      }
+    }
+}
+
+
+cleanupObject(productData)
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams);
   const hoeveelheid = searchParams.get("hoeveelheid");
   const pathname = usePathname();
-  console.log(productData)
   const minHoeveelheidTegels = parseInt(
     productData.attributes.nodes.find(
       (node) => node.name == "pa_minimum-aantal"
@@ -59,19 +104,20 @@ export default function Product({ productData }) {
   const decreaseQuantity = () => {
     if (quantity >= minHoeveelheidTegels) {
       setQuantity(quantity - 1);
-      optionsUrl(pathname, searchParams, "hoeveelheid", quantity - 1);
+      optionsUrl('',pathname, searchParams, "hoeveelheid", quantity - 1, 'push');
     }
   };
   const handleQuantityChange = (event) => {
     const newQuantity = parseInt(event.target.textContent);
     if (!isNaN(newQuantity) && newQuantity >= minHoeveelheidTegels) {
       setQuantity(newQuantity);
-      optionsUrl(pathname, searchParams, "hoeveelheid", newQuantity);
+      optionsUrl('',pathname, searchParams, "hoeveelheid", newQuantity);
     } else {
       alert("Minimum hoeveelheid tegels is " + minHoeveelheidTegels);
       event.target.textContent = parseInt(minHoeveelheidTegels);
       setQuantity(parseInt(minHoeveelheidTegels));
       optionsUrl(
+        '',
         pathname,
         searchParams,
         "hoeveelheid",
@@ -81,7 +127,7 @@ export default function Product({ productData }) {
   };
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
-    optionsUrl(pathname, searchParams, "hoeveelheid", quantity + 1);
+    optionsUrl('http://', pathname, searchParams, "hoeveelheid", quantity + 1, 	'push');
   };
 
   const addToCart = () => {
@@ -232,26 +278,26 @@ export default function Product({ productData }) {
   return (
     <>
       <article
-        className="grid grid-cols-1 lg:grid-cols-2 w-full lg:p-6 items-center shadow-md hover:shadow-lg border-2 border-solid border-primary rounded-lg"
+        className="flex flex-col md:grid grid-cols-1 lg:grid-cols-5 w-full lg:p-6 items-center shadow-md hover:shadow-lg border-2 border-solid border-primary rounded-lg dark:text-slate-100 py-5"
         key={productData.id}
       >
-        <Image
-          src={productData.image.sourceUrl}
-          alt={"Afbeelding van de " + productData.name}
-          width={320}
-          priority="high"
-          height={320}
-          className="row-start-1 col-start-1 w-4/5 lg:w-4/5 2xl:w-3/5 justify-self-center shadow-lg object-cover hover:scale-105"
-        ></Image>
-        <aside className="row-start-2 grid grid-cols-2 auto-rows-min tempalte-col lg:row-start-1 lg:col-start-2 lg:col-span-3 mx-10 justify-start self-start text-left space-y-1 rounded-lg">
-          <h1 className="text-[1.70rem] font-medium  row-start-1 col-span-full">
+          <Image
+            src={productData.image.sourceUrl}
+            alt={"Afbeelding van de " + productData.name}
+            width={320}
+            priority="high"
+            height={320}
+            className="row-start-1 col-start-1 col-span-2 w-4/5 lg:w-4/5 2xl:w-3/5 justify-self-center shadow-lg object-cover hover:scale-105"
+          ></Image>
+        <aside className="row-start-2 grid grid-cols-2 auto-rows-min tempalte-col lg:row-start-1 lg:col-start-3 lg:col-span-3 mx-10 justify-start self-start text-left space-y-1 rounded-lg">
+          <h1 className="text-[1.70rem] font-semibold  row-start-1 col-span-full">
             {productData.name} <br aria-hidden="true" />
             <span className="-mt-5 flex w-fit bg-[--primary] text-white px-5 rounded-lg text-base shadow-lg font-medium">
               {afmetingMetSpaties}
             </span>
           </h1>
 
-          <p maxlength="50" className="text-base row-start-2 col-span-full">
+          <p className="text-base row-start-2 col-span-full h-36 text-ellipsis overflow-hidden line-clamp-6">
             <span className="text-lg font-medium ">
               De {productData.name} in het kort:
             </span>
@@ -259,7 +305,6 @@ export default function Product({ productData }) {
             {productData.shortDescription &&
               removeHtmlTags(productData.shortDescription)}
           </p>
-          <section></section>
           <h3 className="text-lg font-medium  col-start-1 col-span-2 row-start-3">
             Aantal (m2)
           </h3>
@@ -305,7 +350,7 @@ export default function Product({ productData }) {
             Afmetingen
           </h3>
           <select
-            className="col-start-1 row-start-7  bg-transparent text-slate-950 rounded-lg border-2 shadow-lg border-[--primary] border-solid py-2 w-fit px-5 hover:scale-95 shadow-lg hover:cursor-pointer "
+            className="col-start-1 row-start-7  bg-transparent text-slate-950 dark:text-slate-100 rounded-lg border-2 shadow-lg border-[--primary] border-solid py-2 w-fit px-5 hover:scale-95 shadow-lg hover:cursor-pointer "
             onChange={(e) => (window.location.href = e.target.value)}
           >
             {Array.isArray(afmetingen) ? (
@@ -324,7 +369,7 @@ export default function Product({ productData }) {
           </h3>
           <select
             id="kleurSelect"
-            className="col-start-2 row-start-7 bg-transparent text-slate-950 rounded-lg border-2 border-[--primary] border-solid py-2 px-5 hover:scale-95 shadow-lg hover:cursor-pointer"
+            className="col-start-2 row-start-7 bg-transparent text-slate-950 dark:text-slate-100 rounded-lg border-2 border-[--primary] border-solid py-2 px-5 hover:scale-95 shadow-lg hover:cursor-pointer"
             onChange={handleChange}
             style={{ width: width }}
           >
@@ -372,7 +417,7 @@ export default function Product({ productData }) {
           <a
             onClick={() => addToCart(productData)}
             href="/winkelmand"
-            className="flex top-2 relative col-span-full row-start-10 text-left px-5 bg-green-500 text-white font-semibold w-fit py-1 rounded-lg text-lg hover:scale-95 shadow-lg hover:shadow-xl"
+            className="flex top-2 relative col-span-full row-start-10 text-left px-5 bg-green-500 dark:bg-green-800 text-white font-semibold w-fit py-1 rounded-lg text-lg hover:scale-95 shadow-lg hover:shadow-xl"
           >
             Toevoegen aan winkelmand
           </a>
@@ -380,9 +425,9 @@ export default function Product({ productData }) {
         </aside>
       </article>
 
-      <section className="bg-white space-x-5 w-full flex">
-        <section className="overflow-auto flex-1 inline-flex items-center shadow-md hover:shadow-lg border-2 border-solid border-primary p-10 rounded-lg mt-5 flex-col justify-items-center  w-2/3">
-          <h2 className="text-3xl font-medium mb-2 w-full text-left">
+      <section className="dark:text-slate-100 md:space-x-5 w-full flex md:flex-row flex-col">
+        <section className="overflow-auto flex-1 inline-flex items-center shadow-md hover:shadow-lg border-2 border-solid border-primary p-10 rounded-lg mt-5 flex-col justify-items-center md:w-2/3">
+          <h2 className="text-2xl font-medium mb-2 w-full text-left">
             Beschrijving {productData.name}
           </h2>
           <div
@@ -390,8 +435,8 @@ export default function Product({ productData }) {
           ></div>
         </section>
 
-        <section className="w-1/3 inline-flex items-center p-10 rounded-lg mt-5 flex-col justify-items-center shadow-md hover:shadow-lg border-2 border-solid border-primary relative">
-          <h3 className="text-3xl font-medium mb-5 text-slate-950">
+        <section className="md:w-1/3 h-96 md:h-auto inline-flex items-center p-10 rounded-lg mt-5 flex-col justify-items-center shadow-md hover:shadow-lg border-2 border-solid border-primary relative">
+          <h3 className="text-3xl font-medium mb-5 text-slate-950 dark:text-slate-100">
             Product in 3D
           </h3>
           <svg
@@ -408,8 +453,8 @@ export default function Product({ productData }) {
       </section>
 
       <section className="overflow-auto flex-1 flex items-center p-10 rounded-lg w-full mt-5 flex-col justify-items-center shadow-md hover:shadow-lg border-2 border-solid border-primary">
-        <h3 className="text-3xl font-medium mb-5">Gerelateerde producten</h3>
-        <RelatedProducts product={productData} />
+        <h3 className="text-3xl font-medium mb-5 dark:text-slate-100">Gerelateerde producten</h3>
+        {/*<RelatedProducts product={productData} />*/}
       </section>
     </>
   );

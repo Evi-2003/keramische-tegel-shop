@@ -8,17 +8,62 @@ import {
   Slider,
   Spacer,
 } from "@nextui-org/react";
+import { useEffect } from 'react';
 
 export default function FilterBar(path: string) {
-
+  
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams);
 
   const pathname = usePathname();
-  function sendFilters(formdata: FormData) {
+  const sendFilters = () => {
+    const formdata = new FormData();
+    for (const [key, value] of params) {
+      formdata.append(key, value);
+    }
     getFilters(formdata, pathname, searchParams.toString());
-  }
+  };
+  const handleSelectChange = (key, isCheckbox = false) => (event) => {
 
+    if (isCheckbox) {
+      params.delete(key);
+  
+      const checkboxContainer = event.target.parentElement.parentElement;
+  
+
+      const checkboxes = checkboxContainer.querySelectorAll(`[name=${key}]`);
+  
+      for (let checkbox of checkboxes) {
+        if (checkbox.checked) {
+         
+          params.append(key, checkbox.value);
+        }
+      }
+    
+    } else {
+
+      if (event) {
+        params.set(key, event.value);
+      } else {
+        params.delete(key);
+      }
+    }
+  
+    sendFilters();
+  
+  };
+  useEffect(() => {
+
+    if (!searchParams.toString()) {
+
+        const checkboxes = document.querySelectorAll('input[type=checkbox]');
+
+        for (let checkbox of checkboxes) {
+            checkbox.checked = false;
+        }
+    }
+}, [searchParams]);
+  
   const options = [
     { value: "80x80x2cm", label: "80 x 80 x 2cm" },
     { value: "80x80x3cm", label: "80 x 80 x 3cm" },
@@ -30,16 +75,19 @@ export default function FilterBar(path: string) {
   return (
     <form
       action={sendFilters}
-      className="flex flex-col text-gray-800 space-y-4 p-5 bg-white shadow-lg rounded-lg w-full"
+      className="flex flex-col text-gray-800 dark:text-slate-100 space-y-4 p-5 border shadow-lg rounded-lg w-full"
     >
       <section className="mb-5">
+        <span className="text-2xl">Filters</span>
+        <hr className="my-3"/>
         <h2 className="text-lg font-semibold">Categorieën</h2>
         <Creatable
         isClearable
           options={categorieën}
-          className="mt-2 text-base"
+          className="mt-2 text-base text-slate-950"
           placeholder="Categorieën"
           name="categorie"
+          onChange={handleSelectChange('categorie')}
         />
       </section>
       <section className="mb-5">
@@ -47,9 +95,10 @@ export default function FilterBar(path: string) {
         <Creatable
         isClearable
           options={options}
-          className="mt-2 text-base"
+          className="mt-2 text-base text-slate-950"
           placeholder="Afmetingen"
-          name="afmeting"
+          name="afmetingen"
+          onChange={handleSelectChange('afmetingen')}
         />
       </section>
       <section>
@@ -62,6 +111,7 @@ export default function FilterBar(path: string) {
               value="MBI"
               name="fabrikant"
               id="mbi"
+              onChange={handleSelectChange('fabrikant', true)}
             />
             <label className="w-fit col-start-2" htmlFor="mbi">
               MBI
@@ -73,6 +123,7 @@ export default function FilterBar(path: string) {
               type="checkbox"
               value="Gardenlux"
               name="fabrikant"
+              onChange={handleSelectChange('fabrikant', true)}
               id="gardenlux"
             />
             <label className="w-fit col-start-2" htmlFor="gardenlux">
@@ -80,21 +131,6 @@ export default function FilterBar(path: string) {
             </label>
           </div>
         </fieldset>
-      </section>
-      <section className="mt-4">
-        <h2 className="text-lg font-semibold mb-2">Maximale Prijs</h2>
-        <input
-          type="range"
-          min="0"
-          max="250"
-          value="250"
-          onChange={(e) => {
-            document.getElementById("priceValue").innerText = e.target.value;
-          }}
-          className="slider mt-2 w-full"
-          id="priceRange"
-        />
-        <p id="priceValue">250</p>
       </section>
       <section className="mt-4">
         <h2 className="text-lg font-semibold mb-2">Dikte</h2>
@@ -106,6 +142,7 @@ export default function FilterBar(path: string) {
               value="1cm"
               name="dikte"
               id="1cm"
+              onChange={handleSelectChange('dikte', true)}
             />
             <label className="w-fit col-start-2" htmlFor="dikte">
               1cm
@@ -118,6 +155,7 @@ export default function FilterBar(path: string) {
               value="2cm"
               name="dikte"
               id="2cm"
+              onChange={handleSelectChange('dikte', true)}
             />
             <label className="w-fit col-start-2" htmlFor="dikte">
               2cm
@@ -134,7 +172,7 @@ export default function FilterBar(path: string) {
         </button>
         <button
           type="reset"
-          className="text-gray-800 font-md mt-2 text-base hover:underline"
+          className="text-slate-950 dark:text-slate-100 font-md mt-2 text-base hover:underline"
         >
           Filters verwijderen
         </button>

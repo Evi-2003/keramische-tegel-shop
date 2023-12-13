@@ -32,7 +32,7 @@ export default function RelatedProducts(product) {
                 {element.attributes.nodes.find(node => node.name == 'pa_afmetingen').options[0].replace(/-x-/g, ' x ')}
               </span>
             </a>
-            <section className="border-t-0 border-2 border-solid border-primary rounded-lg px-3 py-3 flex flex-col">
+            <section className="border-t-0 border-2 border-solid border-primary rounded-lg px-3 py-3 flex flex-col dark:text-slate-100">
               <h3 className="break-words mb-1">
                 <a
                   href={"/producten/" + element.slug}

@@ -6,60 +6,140 @@ import CheckMarkGreen from ".//components/CheckMark";
 import logo from "../public/logo.png";
 import optionsUrl from ".//components/serverActionUrl";
 import { usePathname, useSearchParams } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
+import Snowfall from "react-snowfall";
+import SnowFlake from '../public/snowflake.svg';
+
 export default function Header() {
   const [hover, setHover] = useState(false);
+  const [isMenuOpen, setMenuOpen] = useState(false);
   const searchParams = useSearchParams();
   const zoekTerm = searchParams.get("zoeken");
   const params = new URLSearchParams(searchParams);
+
   function search(opdracht) {
     const zoekOpdracht = opdracht.get("zoeken");
     if (zoekOpdracht != undefined) {
-      optionsUrl("http://localhost:3001/shop", "", "zoeken", zoekOpdracht);
+
+      optionsUrl('http://',  'shop', "", "zoeken", zoekOpdracht);
     }
   }
+
+  /* Darkmode */
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Function to toggle theme
+  const toggleTheme = () => {
+    if (document.body.classList.contains("dark")) {
+      document.body.classList.remove("dark");
+      setIsDarkMode(false);
+    } else {
+      document.body.classList.add("dark");
+      setIsDarkMode(true);
+    }
+  };
+
+  useEffect(() => {
+    const darkMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const lightMediaQuery = window.matchMedia("(prefers-color-scheme: light)");
+
+    const checkNightTime = () => {
+      const now = new Date();
+      return now.getHours() > 18 || now.getHours() < 6;
+    };
+
+    const updateTheme = () => {
+      if (darkMediaQuery.matches) {
+        document.body.classList.add("dark");
+        setIsDarkMode(true);
+      } else if (
+        lightMediaQuery.matches ||
+        (!darkMediaQuery.matches && !checkNightTime())
+      ) {
+        document.body.classList.remove("dark");
+        setIsDarkMode(false);
+      } else if (
+        !darkMediaQuery.matches &&
+        !lightMediaQuery.matches &&
+        checkNightTime()
+      ) {
+        document.body.classList.add("dark");
+        setIsDarkMode(true);
+      }
+    };
+
+    // Set initial theme
+    updateTheme();
+
+    // Listen for changes in the OS preferred color scheme
+    darkMediaQuery.addEventListener("change", updateTheme);
+    lightMediaQuery.addEventListener("change", updateTheme);
+
+    // Cleanup listener on unmount
+    return () => {
+      darkMediaQuery.removeEventListener("change", updateTheme);
+      lightMediaQuery.removeEventListener("change", updateTheme);
+    };
+  }, []);
   return (
     <>
-      <section className="bg-slate-100 w-full flex justify-center font-medium text-sm">
-        <nav className="w-full lg:w-4/5 2xl:w-3/5 py-2 text-slate-950 flex justify-between">
-          <ul className="w-full flex mx-5 space-x-5 lg:mx-0 lg:space-x-10 justify-center text-xs">
-            <li className="flex">
-              <CheckMarkGreen />{" "}
-              <a
-                href="https://maps.app.goo.gl/FYbZueE6XBV4nC6x7"
-                target="_blank"
-                aria-label="Open de routebeschrijving naar Nudetuin / Keramische tegel shop"
-                className="hover:underline opacity-80"
-              >
-                Grote showtuin
-              </a>
-            </li>
-            <li className="hidden lg:flex opacity-80">
-              <CheckMarkGreen /> Complete tuininrichting
-            </li>
-            <li className="hidden lg:flex opacity-80">
-              <CheckMarkGreen /> Verkoop, aanleg en montage
-            </li>
-            <li className="flex opacity-80">
-              <CheckMarkGreen />{" "}
-              <span className="hidden lg:flex">Direct contact:</span>
-              <a
-                href="tel:0317 765 005"
-                aria-label="Bel Keramische Tegel Shop"
-                className="hover:underline"
-              >
-                &nbsp;0317 765 005
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </section>
-      <header className="bg-[--wit] text-[--menu-tekst] h-fit w-full flex flex-col justify-center items-center sticky top-0 z-50">
-        <nav className="lg:w-5/6 xl:w-5/6 2xl:w-4/6 grid grid-cols-3 space-between justify-items-center lg:justify-items-start lg:items-center py-1">
+      <figure className="z-[99]">
+        <Snowfall snowflakeCount={10} images={SnowFlake} radius={[7,1]} color={isDarkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(150, 199, 245, 0.3)'}/>
+      </figure>
+
+      <header className="bg-[--wit] dark:bg-[#0d0c0c] text-[--menu-tekst] dark:text-slate-100 h-fit w-full flex flex-col justify-center items-center md:sticky top-0 z-50">
+        <section className=" dark:bg-slate-950 dark:text-slate-50 w-full text-center py-2 sticky top-0">
+          <span className="font-semibold">
+            Fijne feestdagen! <br aria-hidden="true" className="md:hidden"></br>
+            De showroom is gesloten op eerste kerstdag!
+          </span>
+        </section>
+        <section className="bg-slate-100 dark:bg-black w-full flex justify-center font-medium text-sm">
+          <nav className="w-full md:w-4/5 2xl:w-3/5 py-2 dark:text-slate-100 flex justify-between">
+            <ul className="w-full flex mx-5 space-x-5 md:mx-0 md:space-x-10 justify-center text-xs">
+              <li className="flex">
+                <CheckMarkGreen />{" "}
+                <a
+                  href="https://maps.app.goo.gl/FYbZueE6XBV4nC6x7"
+                  target="_blank"
+                  aria-label="Open de routebeschrijving naar Nudetuin / Keramische tegel shop"
+                  className="hover:underline opacity-80"
+                >
+                  Grote showtuin
+                </a>
+              </li>
+              <li className="hidden md:flex opacity-80">
+                <CheckMarkGreen /> Complete tuininrichting
+              </li>
+              <li className="hidden md:flex opacity-80">
+                <CheckMarkGreen /> Verkoop, aanleg en montage
+              </li>
+              <li className="flex opacity-80">
+                <CheckMarkGreen />{" "}
+                <span className="hidden md:flex">Direct contact:</span>
+                <a
+                  href="tel:0317 765 005"
+                  aria-label="Bel Keramische Tegel Shop"
+                  className="hover:underline"
+                >
+                  &nbsp;0317 765 005
+                </a>
+              </li>
+              <li>
+                <button onClick={toggleTheme} className="font-bold">
+                  Thema:
+                  {isDarkMode ? " Donker" : " Licht"}
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </section>
+        <nav className="md:w-5/6 lg:w-9/12 grid grid-cols-3 space-between justify-items-center md:justify-items-start md:items-center py-2">
           <Link
             href="/"
             aria-label="Ga terug naar Home"
-            className="col-span-full w-full lg:col-start-1 lg:col-span-1"
+            className="col-span-full w-full md:col-start-1 row-start-1 md:col-span-1 px-3 flex justify-center"
           >
             <Image
               src={logo}
@@ -67,11 +147,12 @@ export default function Header() {
               height={100}
               alt="Logo van Keramische Tegel Shop"
               priority
+              className="bg-white dark:bg-white rounded-lg w-2/3 md:w-full"
             ></Image>
           </Link>
           <form
             action={search}
-            className="w-5/6 col-span-full row-start-1 lg:col-start-2 lg:w-5/6 flex flex-col relative lg:justify-self-center"
+            className="w-5/6 col-span-full row-start-2 md:row-start-1 md:col-start-2 md:w-5/6 flex flex-col relative md:justify-self-center"
           >
             <label htmlFor="zoeken" className="text-lg">
               Waar ben je naar opzoek?
@@ -81,72 +162,80 @@ export default function Header() {
               name="zoeken"
               type="text"
               placeholder="Bijvoorbeeld: Cera3line"
-              className="shadow-md bg-slate-100 hover:bg-slate-50 rounded-lg py-1 px-4 lg:py-2 lg:px-5 text-sm lg:text-base hover:shadow-lg"
+              className="shadow-md border h-10 bg-transparent dark:text-slate-50 rounded-lg px-4 md:px-5 text-sm md:text-base hover:shadow-lg"
               defaultValue={zoekTerm ? zoekTerm : undefined}
             />
             <button
               aria-label="Zoeken"
-              className="hover:shadow-xl hover:scale-95 bg-[--primary] text-white w-fit py-[0.8%] px-4 lg:py-2 lg:px-5 rounded-lg absolute right-0 bottom-0 font-semibold"
+              className="hover:shadow-xl h-10 hover:scale-95 bg-[--primary] text-white w-fit py-[0.8%] px-4 md:px-5 rounded-r-lg border absolute right-0 bottom-0 font-semibold"
             >
               Zoeken
             </button>
           </form>
-
           <iframe
             frameborder="no"
             title="Bekijk onze reviews via 5sterrenspecialist.nl"
             allowtransparency=""
-            className="col-start-4 row-start-1 overflow-hidden box-border w-[310px] h-[60px]"
+            className="hidden lg:block col-start-4 row-start-1 overflow-hidden box-border w-[310px] h-[60px] bg-white rounded-md"
             src="https://www.5sterrenspecialist.nl/widget.html?hash=43db16322af3ee96ea945c67bd694b71&type=reviews&webshop-or-regular=regular&logo-position=right&size=small&logo-color=black&background=transparent&border=1"
           ></iframe>
         </nav>
-        <section className="flex bg-slate-50 text-sky-950 w-full items-center text-center justify-center py-1 shadow-sm transform hover:transition-all duration-200">
-          <nav onMouseEnter={() => setHover(true)}
-                onMouseLeave={() => setHover(false)} className="lg:w-2/4 xl:w-3/6 2xl:w-3/5 grid lg:gap-x-10 justify-center items-center justify-items-center py-1 px-10 transform transition-all duration-200" style={{ height: hover ? "auto" : "50px", overflow: "hidden" }}>
-            <Link href="/" aria-label="Ga naar de startpagina" className="col-start-1 row-start-1 font-semibold grid-auto-cols-auto hover:underline">Home</Link>
-            <span className="col-start-2 row-start-1 font-semibold">Fabrikanten</span>
-            {hover && <>
-            <hr className="bg-[--primary] h-[2px] w-1/2 col-start-2 row-start-2"></hr>
-            <ul className="col-start-2 row-start-3 mt-3 h-full">
-              <li>MBI</li>
-              <li>Gardenlux</li>
-            </ul>
-            </>}
 
-            <Link href="/shop" aria-label="Bekijk onze assortiment" className="col-start-3 row-start-1 font-semibold hover:underline grid-auto-cols-auto">Assortiment</Link>
-            {hover && <>
-            <hr className="bg-[--primary] h-[2px] w-1/2 col-start-3 row-start-2 "></hr>
-            <ul className="col-start-3 row-start-3 mt-3 h-full">
-              <li>Keramische tegels Huis</li>
-              <li>Keramische tegels Tuin</li>
+        <section className="flex py-1 dark:bg-black dark:text-slate-100 text-sky-950 w-full items-center text-center justify-center shadow-sm transform hover:transition-all duration-200">
+          <nav
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+            className={`z-50 md:w-2/4 xl:w-3/6 2xl:w-3/5 grid md:gap-x-10 justify-center items-start py-1 px-10 transform transition-all duration-200 ${
+              isMenuOpen
+                ? "fixed inset-0 h-screen bg-white overflow-scroll w-full"
+                : "hidden md:grid"
+            }`}
+          >
+            <ul className="flex items-center justify-center gap-x-5">
+              <li className="font-semibold hover:underline">
+                <Link href="/" aria-label="Ga naar de startpagina">
+                  Home
+                </Link>
+              </li>
+              <li className="group font-semibold hover:underline">
+                <Link href="/shop" aria-label="Bekijk onze assortiment">
+                  Assortiment
+                </Link>
+              </li>
+              <li className="group font-semibold hover:underline">
+                <Link href="/over-ons" aria-label="Bekijk onze assortiment">
+                  Over Ons
+                </Link>
+              </li>
+              <li className="group font-semibold hover:scale-95 hover:underline">
+                <Link
+                  href="/klantenservice"
+                  aria-label="Ga naar de klantenservice"
+                >
+                  Klantenservice
+                </Link>
+              </li>
+              <li className="flex items-center bg-[--primary] text-slate-100 w-fit h-fit justify-self-center px-3 py-1 rounded-lg shadow-xl hover:scale-95 text-base font-medium">
+                <Link
+                  href="/winkelmand"
+                  aria-label="Ga naar je winkelmand"
+                  className="w-fit h-fit flex justify-center items-center"
+                >
+                  <svg
+                    className="fill-slate-100 md:mr-2"
+                    height="28"
+                    version="1.1"
+                    viewBox="0 0 1200 1200"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="m92.25 144c-9.5508 0.49609-18.512 4.7656-24.91 11.867-6.4023 7.1055-9.7188 16.461-9.2227 26.008 0.5 9.5508 4.7695 18.508 11.875 24.91 7.1016 6.3984 16.461 9.7148 26.008 9.2148h116.25l148.88 549.38c2.0664 7.6602 6.6055 14.426 12.914 19.238 6.3047 4.8164 14.027 7.4102 21.961 7.3867h588c9.6367 0.13672 18.926-3.5977 25.785-10.363 6.8633-6.7656 10.727-16 10.727-25.637s-3.8633-18.871-10.727-25.637c-6.8594-6.7656-16.148-10.5-25.785-10.363h-560.25l-13.125-48h597.38c7.8867 0.046875 15.57-2.4961 21.871-7.2383 6.2969-4.7422 10.867-11.422 13.004-19.012l96-348c3.0625-10.887 0.82812-22.578-6.0273-31.574-6.8555-8.9922-17.539-14.242-28.848-14.176h-807l-22.125-81.375c-2.0664-7.6602-6.6055-14.426-12.914-19.238-6.3047-4.8164-14.027-7.4102-21.961-7.3867h-144c-1.25-0.066406-2.5-0.066406-3.75 0zm224.25 180h739.88l-76.125 276h-589.12zm175.5 516c-59.219 0-108 48.781-108 108s48.781 108 108 108 108-48.781 108-108-48.781-108-108-108zm408 0c-59.219 0-108 48.781-108 108s48.781 108 108 108 108-48.781 108-108-48.781-108-108-108zm-408 72c20.309 0 36 15.691 36 36s-15.691 36-36 36-36-15.691-36-36 15.691-36 36-36zm408 0c20.309 0 36 15.691 36 36s-15.691 36-36 36-36-15.691-36-36 15.691-36 36-36z" />
+                  </svg>
+                  <span className="hidden md:flex place-self-center font-semibold">
+                    Winkelmand
+                  </span>
+                </Link>
+              </li>
             </ul>
-            </>}
-
-            <Link href="/klantenservice" aria-label="Ga naar de klantenservice" className="col-start-4 row-start-1 font-semibold grid-auto-cols-auto hover:scale-95 hover:underline">Klantenservice</Link>
-            {hover && <>
-            <hr className="bg-[--primary] h-[2px] w-1/2 col-start-4 row-start-2"></hr>
-            <ul className="col-start-4 row-start-3 mt-3 justify-start h-full">
-              <li>Contact</li>
-              <li>Showroom</li>
-            </ul>
-            </>}
-
-            <Link
-              href="/winkelmand"
-              aria-label="Ga naar je winkelmand"
-              className="flex items-center row-start-1 col-start-5 bg-[--primary] text-slate-100 w-fit justify-self-center px-4 py-2 rounded-lg shadow-xl hover:scale-95 text-base font-medium ml-5"
-            >
-              <svg
-                className="fill-slate-100 lg:mr-2"
-                height="24"
-                viewBox="0 0 16 16"
-                width="24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M0 1V3H2.15287L2.98347 7.98361L2.01942 12.8039C2.00612 12.8704 1.99972 12.9375 2 13.0041C2.00141 13.3451 2 13.6507 2 14C2 15.1046 2.89543 16 4 16C5.10457 16 6 15.1046 6 14H10C10 15.1046 10.8954 16 12 16C13.1046 16 14 15.1046 14 14C14 12.8954 13.1046 12 12 12H4.2198L4.6198 10H15V1H0Z" />
-              </svg>
-              <span className="hidden lg:flex">Winkelmand</span>
-            </Link>
           </nav>
         </section>
       </header>

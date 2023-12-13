@@ -3,23 +3,30 @@ import "./globals.css";
 import Header from "./Header";
 import Footer from "./Footer";
 import CartProvider from "./components/providers";
-import { GeistSans, GeistMono } from 'geist/font'
-import { AnimatePresence } from 'framer-motion'
+import { GeistSans, GeistMono } from "geist/font";
+
 
 export default function RootLayout({ children }) {
+  
   return (
     <html lang="nl-NL">
-        <body className={GeistSans.className + "bg-white dark:bg-slate-950 flex flex-col items-center"}>
-        <CartProvider
-        mode="payment"
-        currency="EUR"
+      <link rel="icon" href="/favicon.ico" sizes="any" />
+      <body
+        className={
+          GeistSans.className +
+          " bg-white dark:bg-dark-bg flex flex-col items-center justify-center"
+        }
       >
+                  
+        <CartProvider mode="payment" currency="EUR">
           <Header />
-          {children}
+            <main className="bg-white dark:bg-dark-bg flex w-full justify-center">
+              {children}
+              
+            </main>
           <Footer />
-          </CartProvider>
-        </body>
-
+        </CartProvider>
+      </body>
     </html>
   );
 }

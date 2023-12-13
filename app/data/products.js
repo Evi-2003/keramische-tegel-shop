@@ -1,17 +1,20 @@
-export default async function getProducts(afmetingen, zoekOpdracht){
+export default async function getProducts(afmetingen, zoekOpdracht, categorie, aantal){
 
-  let afmetingFilter;
-  let zoekFilter;
-  function spatiesNaarStreepjes(input) {
-    const result = input.replace(/ /g, '-');
-    return result;
+  const whereClauses = [];
+
+  if(afmetingen) {
+    const afmetingMetSpaties = afmetingen.split('x').join(' x ');
+    whereClauses.push(`attribute: "pa_afmetingen", attributeTerm: "${afmetingMetSpaties}"`);
   }
-  if(afmetingen != undefined){
-    afmetingFilter = spatiesNaarStreepjes(afmetingen)
+    
+  if(zoekOpdracht) {
+    const zoekFilter = zoekOpdracht.replace(/ /g, '-');
+    whereClauses.push(`search: "${zoekFilter}"`);
   }
-  if(zoekOpdracht != undefined){
-    zoekFilter = spatiesNaarStreepjes(zoekOpdracht)
- }
+  
+  if(categorie) {
+    whereClauses.push(`categoryIn: "${categorie}"`);
+  }
 
   const res = await fetch(
     process.env.NEXT_PUBLIC_WORDPRESS_API_URL,{
@@ -23,7 +26,8 @@ export default async function getProducts(afmetingen, zoekOpdracht){
         query:
     `query AllProducts {
       products(
-        first: 12${afmetingFilter ? `, where: { attribute: "pa_afmetingen", attributeTerm: "${afmetingen}" }` : '' || zoekFilter ? `, where: { search: "${zoekFilter}" }` : ''}
+        first: 100,
+        where: { ${whereClauses.join(', ')} }
       ) {
           nodes {
             id
@@ -56,12 +60,6 @@ export default async function getProducts(afmetingen, zoekOpdracht){
   const { data } = await res.json()
 
   const getProducts = data.products.nodes
-
-  function removeHtmlTags(str) {
-    str = str.replace(/<[^>]*>/g, ''); // Remove HTML tags
-    str = str.replace("€&nbsp;", ""); // Remove "€&nbsp;"
-    return str;
-  }
 
   return getProducts
 }
