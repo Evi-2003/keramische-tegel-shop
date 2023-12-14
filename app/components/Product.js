@@ -25,6 +25,7 @@ export default function Product({ product, afmeting }) {
   const afmetingMetSpaties = afmetingFromProduct.replace(/-x-/g, " x ");
 
   return (
+    
     <article
       key={product.id}
       className="product-card flex flex-col w-full h-full rounded-2xl text-left transform transition hover:scale-105"

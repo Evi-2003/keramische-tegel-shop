@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import { useShoppingCart } from "use-shopping-cart";
 import Image from "next/image";
 import CheckMarkGreen from ".//components/CheckMark";
 import logo from "../public/logo.png";
@@ -10,6 +9,7 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import Snowfall from "react-snowfall";
 import SnowFlake from "../public/snowflake.svg";
+import Script from 'next/script'
 
 export default function Header() {
   const [hover, setHover] = useState(false);
@@ -27,15 +27,15 @@ export default function Header() {
 
   /* Darkmode */
   const [isDarkMode, setIsDarkMode] = useState(false);
-
-  // Function to toggle theme
   const toggleTheme = () => {
     if (document.body.classList.contains("dark")) {
       document.body.classList.remove("dark");
       setIsDarkMode(false);
+      localStorage.setItem("theme", "light");
     } else {
       document.body.classList.add("dark");
       setIsDarkMode(true);
+      localStorage.setItem("theme", "dark");
     }
   };
 
@@ -67,9 +67,19 @@ export default function Header() {
         setIsDarkMode(true);
       }
     };
-
-    // Set initial theme
-    updateTheme();
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark");
+      setIsDarkMode(true);
+    }
+    if (savedTheme === "light") {
+      document.body.classList.remove("dark");
+      setIsDarkMode(false);
+    }
+    if (!(savedTheme === "dark" || savedTheme === "light")) {
+      updateTheme();
+    }
+  
 
     // Listen for changes in the OS preferred color scheme
     darkMediaQuery.addEventListener("change", updateTheme);

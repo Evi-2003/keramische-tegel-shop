@@ -12,6 +12,7 @@
   "dependencies": {
     "@nextui-org/react": "^2.2.9",
     "@react-three/drei": "^9.88.16",
+    "@stripe/stripe-js": "^2.2.1",
     "canvas-confetti": "^1.9.0",
     "cors": "^2.8.5",
     "embla-carousel-autoplay": "^8.0.0-rc15",
@@ -32,6 +33,7 @@
     "react-snowfall": "^1.2.1",
     "react-three-fiber": "^6.0.13",
     "ssr": "^6.2.64",
+    "stripe": "^14.8.0",
     "three": "^0.158.0",
     "three-orbit-controls": "^82.1.0",
     "use-shopping-cart": "^3.1.8"
