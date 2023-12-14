@@ -65,7 +65,7 @@ export default function FilterBar() {
     { value: "tuin-tegels", label: "Tuin Tegels" },
     { value: "woon-tegels", label: "Woon tegels" },
   ];
-  
+
   return (
     <form
       action={sendFilters}
@@ -86,7 +86,7 @@ export default function FilterBar() {
       </section>
       <section className="mb-5">
         <h2 className="text-lg font-semibold">
-          <label>Afmetingen</label>
+          <label htmlFor="afmetingen">Afmetingen</label>
         </h2>
         <Creatable
           isClearable

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -16,8 +17,7 @@ import Script from "next/script";
 import getProductBySlug from "../data/getProductBySlug";
 // eslint-disable-next-line
 export default function Product({ product, slug }) {
-
-  let productData = product.product
+  let productData = product.product;
   function removeHtmlTags(str, shouldClean = true) {
     if (shouldClean) {
       str = str.replace(/<[^>]*>/g, "");
@@ -39,28 +39,27 @@ export default function Product({ product, slug }) {
   cleanupObject(productData);
 
   if (!product) {
-      redirect('/404')
+    redirect("/404");
   }
-  function removeHtmlTags(str, shouldClean=true) {
+  function removeHtmlTags(str, shouldClean = true) {
     if (shouldClean) {
-      str = str.replace(/<[^>]*>/g, '');
-      str = str.replace("€&nbsp;", ""); 
+      str = str.replace(/<[^>]*>/g, "");
+      str = str.replace("€&nbsp;", "");
     }
     return str;
-}
+  }
 
-function cleanupObject(obj) {
+  function cleanupObject(obj) {
     for (let key in obj) {
       if (typeof obj[key] === "object" && obj[key] !== null) {
         cleanupObject(obj[key]);
       } else if (typeof obj[key] === "string") {
-        obj[key] = removeHtmlTags(obj[key], key !== 'description');
+        obj[key] = removeHtmlTags(obj[key], key !== "description");
       }
     }
-}
+  }
 
-
-cleanupObject(productData)
+  cleanupObject(productData);
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams);
   const hoeveelheid = searchParams.get("hoeveelheid");
@@ -104,20 +103,34 @@ cleanupObject(productData)
   const decreaseQuantity = () => {
     if (quantity >= minHoeveelheidTegels) {
       setQuantity(quantity - 1);
-      optionsUrl('',pathname, searchParams, "hoeveelheid", quantity - 1, 'push');
+      optionsUrl(
+        "",
+        pathname,
+        searchParams,
+        "hoeveelheid",
+        quantity - 1,
+        "push"
+      );
     }
   };
   const handleQuantityChange = (event) => {
     const newQuantity = parseInt(event.target.textContent);
     if (!isNaN(newQuantity) && newQuantity >= minHoeveelheidTegels) {
       setQuantity(newQuantity);
-      optionsUrl('',pathname, searchParams, "hoeveelheid", newQuantity);
+      optionsUrl(
+        "http://",
+        pathname,
+        searchParams,
+        "hoeveelheid",
+        newQuantity,
+        "push"
+      );
     } else {
       alert("Minimum hoeveelheid tegels is " + minHoeveelheidTegels);
       event.target.textContent = parseInt(minHoeveelheidTegels);
       setQuantity(parseInt(minHoeveelheidTegels));
       optionsUrl(
-        '',
+        "",
         pathname,
         searchParams,
         "hoeveelheid",
@@ -127,11 +140,20 @@ cleanupObject(productData)
   };
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
-    optionsUrl('http://', pathname, searchParams, "hoeveelheid", quantity + 1, 	'push');
+    optionsUrl(
+      "http://",
+      pathname,
+      searchParams,
+      "hoeveelheid",
+      quantity + 1,
+      "push"
+    );
   };
 
   const addToCart = () => {
-    addItem(productFormattedData[0], { count: quantity });
+    const productForCart = formatProductData(productData, quantity);
+    console.log(productForCart[0]);
+    addItem(productForCart[0], { count: quantity });
   };
   function minimaleBestelFormaat(nummer) {
     return nummer.replace(/-/g, ".");
@@ -140,9 +162,9 @@ cleanupObject(productData)
   let m2Size;
 
   const prijsOpFormaat = removeHtmlTags(productData.price);
+  const prijsinFloat = parseFloat(prijsOpFormaat.replace(",", ".")) * quantity;
+  const totalePrijs = prijsinFloat.toFixed(2).toString().replace(".", ",");
 
-  const prijsinFloat = parseFloat(prijsOpFormaat) * quantity;
-  const totalePrijs = prijsinFloat.toString().replace(".", ",");
   const totalePrijsZonderBtwinFloat = parseFloat(
     prijsinFloat - (prijsinFloat / 100) * 21
   ).toFixed(2);
@@ -184,7 +206,8 @@ cleanupObject(productData)
     // Gebruik een Set om duplicaten bij te houden
     const seenSlugs = new Set();
 
-    productData.filter(
+    productData
+      .filter(
         (el) =>
           el.productSlug.startsWith(baseSlug) &&
           el.name === "pa_afmetingen" &&
@@ -281,14 +304,14 @@ cleanupObject(productData)
         className="flex flex-col md:grid grid-cols-1 lg:grid-cols-5 w-full lg:p-6 items-center shadow-md hover:shadow-lg border-2 border-solid border-primary rounded-lg dark:text-slate-100 py-5"
         key={productData.id}
       >
-          <Image
-            src={productData.image.sourceUrl}
-            alt={"Afbeelding van de " + productData.name}
-            width={320}
-            priority="high"
-            height={320}
-            className="row-start-1 col-start-1 col-span-2 w-4/5 lg:w-4/5 2xl:w-3/5 justify-self-center shadow-lg object-cover hover:scale-105"
-          ></Image>
+        <Image
+          src={productData.image.sourceUrl}
+          alt={"Afbeelding van de " + productData.name}
+          width={320}
+          priority="high"
+          height={320}
+          className="row-start-1 col-start-1 col-span-2 w-4/5 lg:w-4/5 2xl:w-3/5 justify-self-center shadow-lg object-cover hover:scale-105"
+        ></Image>
         <aside className="row-start-2 grid grid-cols-2 auto-rows-min tempalte-col lg:row-start-1 lg:col-start-3 lg:col-span-3 mx-10 justify-start self-start text-left space-y-1 rounded-lg">
           <h1 className="text-[1.70rem] font-semibold  row-start-1 col-span-full">
             {productData.name} <br aria-hidden="true" />
@@ -335,6 +358,8 @@ cleanupObject(productData)
               suppressContentEditableWarning={true}
               contentEditable={true}
               onBlur={handleQuantityChange}
+              role="textbox"
+              tabIndex="0"
               className="w-10 text-center rounded-md hover:underline hover:cursor-pointer"
             >
               {quantity}
@@ -350,7 +375,7 @@ cleanupObject(productData)
             Afmetingen
           </h3>
           <select
-            className="col-start-1 row-start-7  bg-transparent text-slate-950 dark:text-slate-100 rounded-lg border-2 shadow-lg border-[--primary] border-solid py-2 w-fit px-5 hover:scale-95 shadow-lg hover:cursor-pointer "
+            className="col-start-1 row-start-7  bg-transparent text-slate-950 dark:text-slate-100 rounded-lg border-2 border-[--primary] border-solid py-2 w-fit px-5 hover:scale-95 shadow-lg hover:cursor-pointer "
             onChange={(e) => (window.location.href = e.target.value)}
           >
             {Array.isArray(afmetingen) ? (
@@ -421,7 +446,6 @@ cleanupObject(productData)
           >
             Toevoegen aan winkelmand
           </a>
-          
         </aside>
       </article>
 
@@ -451,10 +475,14 @@ cleanupObject(productData)
           <ThreejsProduct imageUrl={productData.image.sourceUrl} />
         </section>
       </section>
-
-      <section className="overflow-auto flex-1 flex items-center p-10 rounded-lg w-full mt-5 flex-col justify-items-center shadow-md hover:shadow-lg border-2 border-solid border-primary">
-        <h3 className="text-3xl font-medium mb-5 dark:text-slate-100">Gerelateerde producten</h3>
-        {/*<RelatedProducts product={productData} />*/}
+      
+      <section className="items-center p-10 rounded-lg w-full mt-5 shadow-md hover:shadow-lg border-2 border-solid border-primary">
+      <h3 className="text-3xl font-medium mb-5 dark:text-slate-100">
+          Gerelateerde producten
+        </h3>
+        <Suspense fallback="<section classname='animate-pulse border w-full h-32'></section>">
+          <RelatedProducts product={productData} />
+        </Suspense>
       </section>
     </>
   );

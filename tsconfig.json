@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "app/components/3dProduct.jsx"  ],
+, "app/components/3dProduct.jsx", "app/components/FilterBar.jsx"  ],
   "exclude": [
     "node_modules"
   ]

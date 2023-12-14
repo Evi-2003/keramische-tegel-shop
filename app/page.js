@@ -41,13 +41,11 @@ export default async function Home() {
           Geniet van een moderne tuin, met keramische tegels.
         </h1>
         <section className="flex flex-col lg:grid grid-rows-2 md:grid-cols-5 md:grid-rows-3 space-x-0 md:space-x-5 md:h-[28rem] xl:h-[24rem] 2xl:h-[29rem] relative w-full">
-          <Link
-            href="/shop"
-            aria-label="Shop"
+          <section
             className="row-start-1 md:row-span-2 md:col-span-4 hover:scale-95"
           >
             <InspiratieCarousel></InspiratieCarousel>
-          </Link>
+          </section>
 
           <article className="hidden row-start-2 w-5/6 md:w-fit md:row-start-auto md:col-start-5 md:col-span-full md:grid flex-col space-y-5 text-slate-950 text-center mt-5 md:mt-0 place-self-center md:place-self-auto">
             <span className="text-xl font-medium bg-[--primary] px-5 py-1 text-slate-50 self-center">
@@ -64,7 +62,7 @@ export default async function Home() {
         <section className="grid grid-cols-1 md:grid-cols-2 grid-rows-auto gap-5">
           <Link
             href="/shop?"
-            aria-label="Keramiek 1 cm"
+            aria-label="Bekijk de Keramiek 1 cm, geschikt voor binnen"
             className="col-start-1 lg:row-start-1 flex flex-col text-black dark:text-slate-100 hover:scale-95"
           >
             <Image
@@ -84,7 +82,7 @@ export default async function Home() {
 
           <Link
             href="/shop?"
-            aria-label="Keramiek 1 cm"
+            aria-label="Bekijk de Keramiek 2 cm Geschikt voor binnen & dakterrassen"
             className="lg:col-start-2 lg:row-start-1 flex flex-col text-black dark:text-slate-100 hover:scale-95"
           >
             <Image
@@ -104,7 +102,7 @@ export default async function Home() {
 
           <Link
             href="/shop?"
-            aria-label="Keramiek 1 cm"
+            aria-label="Bekijk de Keramiek 3 cm Geschikt voor buiten"
             className="col-start-1 lg:row-start-2 flex flex-col text-black dark:text-slate-100 hover:scale-95"
           >
             <Image
@@ -124,7 +122,7 @@ export default async function Home() {
 
           <Link
             href="/shop?"
-            aria-label="Keramiek 1 cm"
+            aria-label="Bekijk de Keramiek 4 cm Geschikt voor buiten"
             className="lg:col-start-2 lg:row-start-2 flex flex-col text-black dark:text-slate-100 hover:scale-95"
           >
             <Image
@@ -144,7 +142,8 @@ export default async function Home() {
 
           <Link
             href="/shop?"
-            aria-label="Keramiek 1 cm"
+            aria-label="Bekijk de 
+            Keramiek 5 cm Geschikt voor buiten"
             className="col-start-1 lg:row-start-3 flex flex-col text-black dark:text-slate-100 hover:scale-95"
           >
             <Image
@@ -164,7 +163,7 @@ export default async function Home() {
 
           <Link
             href="/shop?"
-            aria-label="Keramiek 1 cm"
+            aria-label="Bekijk de Keramiek 6 cm Geschikt voor oprit"
             className="lg:col-start-2 lg:row-start-3 flex flex-col text-black dark:text-slate-100 hover:scale-95"
           >
             <Image
@@ -188,32 +187,32 @@ export default async function Home() {
             Onze fabrikanten
           </h2>
           <Link
-            href="/shop?"
-            aria-label="Tegels van Claessen"
-            className="col-start-1 row-start-3 flex flex-col text-black dark:text-slate-100 hover:scale-95"
-          >
-            <Image
-              src={claessen}
-              alt={"Claessen"}
-              width={300}
-              quality="50"
-              placeholder="blur"
-              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-              loading="lazy"
-              height={100}
-              className="h-32 w-full object-contain rounded-lg shadow-sm hover:shadow-xl"
-            />
-            <h3 className="text-lg font-medium pt-3">Claessen</h3>
-          </Link>
-          <Link
-            href="/shop?"
-            aria-label="Tegels van Excluton"
-            className="col-start-2 row-start-2 flex flex-col text-black dark:text-slate-100 hover:scale-95"
-          >
+   href="/shop?"
+   aria-label="Tegels van Claessen"
+   className="col-start-1 row-start-3 flex flex-col text-black dark:text-slate-100 hover:scale-95"
+>
+   <Image
+      src={claessen}
+      alt="Tegels van Claessen"
+      width={300}
+      quality="50"
+      placeholder="blur"
+      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
+      loading="lazy"
+      height={100}
+      className="h-32 w-full object-contain rounded-lg shadow-sm hover:shadow-xl"
+   />
+   <h3 className="text-lg font-medium pt-3">Claessen</h3>
+</Link>
+<Link
+   href="/shop?"
+   aria-label="Tegels van Excluton"
+   className="col-start-1 row-start-3 flex flex-col text-black dark:text-slate-100 hover:scale-95"
+>
             <figure className="h-32 flex justify-center items-center">
               <Image
                 src={excluton}
-                alt={"excluton"}
+                alt={"Tegels van Excluton"}
                 width={300}
                 quality="50"
                 placeholder="blur"
@@ -232,7 +231,7 @@ export default async function Home() {
           >
             <Image
               src={gardenlux}
-              alt={"gardenlux"}
+              alt={"Tegels van Gardenlux"}
               width={300}
               quality="50"
               placeholder="blur"
@@ -250,7 +249,7 @@ export default async function Home() {
           >
             <Image
               src={klijn}
-              alt="Klijn"
+              alt="Tegels van Klijn"
               width={300}
               quality="50"
               placeholder="blur"
@@ -269,7 +268,7 @@ export default async function Home() {
             <figure className="h-32 flex justify-center items-center">
               <Image
                 src={lightpro}
-                alt={"LightPro"}
+                alt={"Tegels van LightPro"}
                 width={300}
                 quality="50"
                 placeholder="blur"
@@ -289,7 +288,7 @@ export default async function Home() {
             <figure className="h-32 flex justify-center items-center">
               <Image
                 src={mbi}
-                alt={"Mbi"}
+                alt={"Tegels van Mbi"}
                 width={300}
                 quality="50"
                 placeholder="blur"
@@ -309,7 +308,7 @@ export default async function Home() {
             <figure className="h-32 flex justify-center items-center">
               <Image
                 src={stonesenter}
-                alt={"Stonesenter"}
+                alt={"Tegels van Stonesenter"}
                 width={300}
                 quality="50"
                 placeholder="blur"
@@ -330,7 +329,7 @@ export default async function Home() {
             <figure className="h-32 flex justify-center items-center">
               <Image
                 src={swaansbeton}
-                alt={"Swaansbeton"}
+                alt={"Tegels van Swaansbeton"}
                 width={300}
                 quality="50"
                 placeholder="blur"

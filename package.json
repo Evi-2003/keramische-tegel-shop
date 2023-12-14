@@ -32,7 +32,6 @@
     "react-snowfall": "^1.2.1",
     "react-three-fiber": "^6.0.13",
     "ssr": "^6.2.64",
-    "stripe": "^14.1.0",
     "three": "^0.158.0",
     "three-orbit-controls": "^82.1.0",
     "use-shopping-cart": "^3.1.8"
@@ -41,6 +40,7 @@
     "autoprefixer": "^10",
     "eslint": "^8",
     "eslint-config-next": "^14.0.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
     "postcss": "^8",
     "tailwindcss": "^3"
   }

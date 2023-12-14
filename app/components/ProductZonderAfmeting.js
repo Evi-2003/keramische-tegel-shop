@@ -49,7 +49,7 @@ let productId = removeText(atob(product.id))
 
   return (
 <article key={product.id} className='product-card flex flex-col w-full h-full rounded-2xl text-left transform transition hover:scale-95'>
-    <Link href={"/producten/" + product.slug} aria-label={"Ga naar productpagina van " + product.name} className="product-image flex bg-white w-full h-auto items-center justify-center rounded-lg relative">
+    <Link href={"/producten/" + product.slug} aria-label={"Ga naar productpagina van " + product.name + " deze kost € " + product.price} className="product-image flex bg-white w-full h-auto items-center justify-center rounded-lg relative">
         <Image
             src={product.image.sourceUrl}
             quality="60"
@@ -68,10 +68,10 @@ let productId = removeText(atob(product.id))
     </Link>
 
     <div className="product-details flex flex-col justify-between border-2 border-solid border-primary border-t-0 px-3 py-2 my-0 rounded-b-lg h-full min-h-[4.5rem]">
-        <h3 href={"/producten/" + product.slug} aria-label={"Ga naar productpagina van " + product.name} className="text-slate-900 dark:text-slate-100  product-name flex text-xl 2xl:text-lg text-left hover:underline pb-7 md:pb-0">
+        <h3 href={"/producten/" + product.slug} aria-label={"Bekijk de productpagina van " + product.name} className="text-slate-900 dark:text-slate-100  product-name flex text-xl 2xl:text-lg text-left hover:underline pb-7 md:pb-0">
             {product.name}
         </h3>
-        <Link href={"/producten/" + product.slug} aria-label={"Ga naar productpagina van " + product.name} className="text-[--primary] dark:text-slate-100  hover:text-red-800 hover:underline self-end absolute bottom-0 right-0 m-3">Bekijken</Link>
+        <Link href={"/producten/" + product.slug} aria-label={"Bekijk de productpagina van " + product.name} className="text-[--primary] dark:text-slate-100  hover:text-red-800 hover:underline self-end absolute bottom-0 right-0 m-3">Bekijken</Link>
     </div>
 </article>
 

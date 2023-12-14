@@ -1,21 +1,13 @@
-export default function formatProductData(product){
-
-
-    //const data = product.allPaAfmetingen.nodes
-  
+export default function formatProductData(product, quantity){
+    const prijsInDecimaal = parseFloat(product.price.replace(",", "."));
+    const prijsInCenten = Math.round(prijsInDecimaal * 100);
     const productForCart = [
         {
             name: product.name,
             description: product.shortDescription,
             id: atob(product.id),
-            slug: product.slug,
-            price: parseInt(product.price) * 100,
-            //alt: product.image.altText,
+            price: prijsInCenten,
             currency: 'EUR',
-            image: product.image,
-            //attributes: product.attributess[0]
-        
-
         }
     ]
 

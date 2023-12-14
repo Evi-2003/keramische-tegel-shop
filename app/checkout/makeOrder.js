@@ -5,10 +5,11 @@ export default async function makeOrder(line_items, order){
     let betalen;
     const winkelmand = Object.entries(line_items)
     const formattedItems = winkelmand.map(([productId, item]) => ({
-        product_id: productId,
+        product_id: parseInt(productId.replace(/\D/g, ''), 10),
         quantity: item.quantity
       }));
-      
+    console.log(winkelmand)
+    console.log(formattedItems)
     try{
     const res = await fetch(
         'https://betalen.keramischetegelshop.nl/wp-json/wc/v3/orders',{

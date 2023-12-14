@@ -7,7 +7,6 @@ function CartProvider({ children }) {
   return (
     <USCProvider
       mode="checkout-session"
-      stripe={process.env.NEXT_PUBLIC_STRIPE_KEY}
       currency={'EUR'}
       allowedCountries={['NL']}
       billingAddressCollection={true}

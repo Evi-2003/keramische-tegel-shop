@@ -9,7 +9,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import Snowfall from "react-snowfall";
-import SnowFlake from '../public/snowflake.svg';
+import SnowFlake from "../public/snowflake.svg";
 
 export default function Header() {
   const [hover, setHover] = useState(false);
@@ -21,8 +21,7 @@ export default function Header() {
   function search(opdracht) {
     const zoekOpdracht = opdracht.get("zoeken");
     if (zoekOpdracht != undefined) {
-
-      optionsUrl('http://',  'shop', "", "zoeken", zoekOpdracht);
+      optionsUrl("http://", "shop", "", "zoeken", zoekOpdracht);
     }
   }
 
@@ -85,7 +84,19 @@ export default function Header() {
   return (
     <>
       <figure className="z-[99]">
-        <Snowfall snowflakeCount={10} images={SnowFlake} radius={[7,1]} color={isDarkMode ? 'rgba(255, 255, 255, 0.3)' : 'rgba(150, 199, 245, 0.3)'}/>
+        <Snowfall
+          snowflakeCount={4}
+          style={{
+            position: "fixed",
+            width: "100vw",
+            height: "100vh",
+          }}
+          images={SnowFlake}
+          radius={[7, 1]}
+          color={
+            isDarkMode ? "rgba(255, 255, 255, 0.3)" : "rgba(150, 199, 245, 0.3)"
+          }
+        />
       </figure>
 
       <header className="bg-[--wit] dark:bg-[#0d0c0c] text-[--menu-tekst] dark:text-slate-100 h-fit w-full flex flex-col justify-center items-center md:sticky top-0 z-50">
@@ -100,14 +111,7 @@ export default function Header() {
             <ul className="w-full flex mx-5 space-x-5 md:mx-0 md:space-x-10 justify-center text-xs">
               <li className="flex">
                 <CheckMarkGreen />{" "}
-                <a
-                  href="https://maps.app.goo.gl/FYbZueE6XBV4nC6x7"
-                  target="_blank"
-                  aria-label="Open de routebeschrijving naar Nudetuin / Keramische tegel shop"
-                  className="hover:underline opacity-80"
-                >
-                  Grote showtuin
-                </a>
+                <a href="https://maps.app.goo.gl/FYbZueE6XBV4nC6x7" target="_blank" aria-label="Grote Showtuin - Open de routebeschrijving naar Nudetuin / Keramische tegel shop" class="hover:underline opacity-80">Grote Showtuin</a>
               </li>
               <li className="hidden md:flex opacity-80">
                 <CheckMarkGreen /> Complete tuininrichting
@@ -119,12 +123,12 @@ export default function Header() {
                 <CheckMarkGreen />{" "}
                 <span className="hidden md:flex">Direct contact:</span>
                 <a
-                  href="tel:0317 765 005"
-                  aria-label="Bel Keramische Tegel Shop"
-                  className="hover:underline"
-                >
-                  &nbsp;0317 765 005
-                </a>
+   href="tel:0317 765 005"
+   aria-label="Bel Keramische Tegel Shop op 0317 765 005"
+   className="hover:underline"
+>
+   &nbsp;0317 765 005
+</a>
               </li>
               <li>
                 <button onClick={toggleTheme} className="font-bold">
@@ -193,7 +197,7 @@ export default function Header() {
           >
             <ul className="flex items-center justify-center gap-x-5">
               <li className="font-semibold hover:underline">
-                <Link href="/" aria-label="Ga naar de startpagina">
+                <Link href="/" aria-label="Ga naar Home">
                   Home
                 </Link>
               </li>
@@ -203,7 +207,7 @@ export default function Header() {
                 </Link>
               </li>
               <li className="group font-semibold hover:underline">
-                <Link href="/over-ons" aria-label="Bekijk onze assortiment">
+                <Link href="/over-ons" aria-label="Bekijk onze over ons">
                   Over Ons
                 </Link>
               </li>
