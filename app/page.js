@@ -68,11 +68,12 @@ export default async function Home() {
             <Image
               src={binnen}
               alt={"Afbeelding van keramiek 1 cm binnen"}
-              width={100}
+              width={300}
               quality="100"
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
               height={300}
+              loading="lazy"
               className="h-64 w-full object-cover rounded-lg shadow-sm hover:shadow-xl"
             />
             <h2 className="text-lg font-medium pt-3">Keramiek 1 cm</h2>
@@ -88,10 +89,11 @@ export default async function Home() {
               src={daktuin}
               alt={"Afbeelding van keramiek 2cm dakterras"}
               width={300}
-              quality="50"
+              quality="80"
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
               height={300}
+              loading="lazy"
               className="h-64 w-full object-cover rounded-lg shadow-sm hover:shadow-xl"
             />
             <h2 className="text-lg font-medium pt-3">Keramiek 2 cm</h2>
@@ -107,10 +109,10 @@ export default async function Home() {
               src={buiten1}
               alt={"Afbeelding van keramiek 3cm buiten"}
               width={300}
-              quality="50"
+              quality="80"
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-
+              loading="lazy"
               height={300}
               className="h-64 w-full object-cover rounded-lg shadow-sm hover:shadow-xl"
             />
@@ -127,10 +129,10 @@ export default async function Home() {
               src={buiten2}
               alt={"Afbeelding van keramiek 4cm buiten"}
               width={300}
-              quality="50"
+              quality="80"
+              loading="lazy"
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-
               height={300}
               className="h-64 w-full object-cover rounded-lg shadow-sm hover:shadow-xl"
             />
@@ -148,10 +150,10 @@ export default async function Home() {
               src={buiten4}
               alt={"Afbeelding van keramiek 5cm buiten"}
               width={300}
-              quality="50"
+              quality="80"
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-
+              loading="lazy"
               height={300}
               className="h-64 w-full object-cover rounded-lg shadow-sm hover:shadow-xl"
             />
@@ -168,10 +170,10 @@ export default async function Home() {
               src={oprit}
               alt={"Afbeelding van keramiek 6cm oprit"}
               width={300}
-              quality="50"
+              quality="80"
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-
+              loading="lazy"
               height={300}
               className="h-64 w-full object-cover rounded-lg shadow-sm hover:shadow-xl"
             />
@@ -193,7 +195,7 @@ export default async function Home() {
       src={claessen}
       alt="Tegels van Claessen"
       width={300}
-      quality="50"
+      quality="80"
       placeholder="blur"
       blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
       loading="lazy"
@@ -212,10 +214,10 @@ export default async function Home() {
                 src={excluton}
                 alt={"Tegels van Excluton"}
                 width={300}
-                quality="50"
+                quality="80"
                 placeholder="blur"
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-  
+                loading="lazy"
                 height={100}
                 className="w-full object-contain rounded-lg shadow-sm hover:shadow-xl bg-black px-5 h-full"
               />
@@ -231,10 +233,10 @@ export default async function Home() {
               src={gardenlux}
               alt={"Tegels van Gardenlux"}
               width={300}
-              quality="50"
+              quality="80"
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-
+              loading="lazy"
               height={100}
               className="h-32 w-full object-contain rounded-lg shadow-sm bg-black px-5 hover:shadow-xl"
             />
@@ -249,7 +251,8 @@ export default async function Home() {
               src={klijn}
               alt="Tegels van Klijn"
               width={300}
-              quality="50"
+              quality="80"
+              loading="lazy"
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
 
@@ -268,10 +271,10 @@ export default async function Home() {
                 src={lightpro}
                 alt={"Tegels van LightPro"}
                 width={300}
-                quality="50"
+                quality="80"
                 placeholder="blur"
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-  
+                loading="lazy"
                 height={100}
                 className="w-full object-contain rounded-lg shadow-sm hover:shadow-xl bg-black px-5 py-10 h-fit"
               />
@@ -291,7 +294,7 @@ export default async function Home() {
                 quality="50"
                 placeholder="blur"
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-  
+                loading="lazy"
                 height={100}
                 className="w-full object-contain rounded-lg shadow-sm hover:shadow-xl px-5 py-4 h-32"
               />
@@ -311,7 +314,7 @@ export default async function Home() {
                 quality="50"
                 placeholder="blur"
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-  
+                loading="lazy"
                 height={100}
                 className="w-full object-contain rounded-lg shadow-sm hover:shadow-xl px-5 py-10 h-32"
               />
@@ -332,7 +335,7 @@ export default async function Home() {
                 quality="50"
                 placeholder="blur"
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-  
+                loading="lazy"
                 height={100}
                 className="w-full object-contain rounded-lg shadow-sm bg-white hover:shadow-xl px-5 py-4 h-32"
               />
@@ -351,6 +354,7 @@ export default async function Home() {
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
             height={300}
             loading="lazy"
+            
             className="w-fit object-contain h-72 rounded-lg col-start-1 row-start-2md:row-start-1"
           />
           <article className="row-start-2 md:row-start-1 col-start-1 md:col-start-2 text-left md:mx-5">

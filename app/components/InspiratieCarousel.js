@@ -53,8 +53,8 @@ export default function InspiratieCarousel() {
                         ref={(el) => (imageRefs.current[index] = el)}
                         src={src}
                         key={index}
-                        quality={50}
-                        width={350}
+                        quality={100}
+                        width={400}
                         height={250}
                         alt={`Inspiratie afbeelding ${index + 1}`}
                         className="lazy keen-slider__slide"

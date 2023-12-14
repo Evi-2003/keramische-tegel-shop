@@ -157,7 +157,7 @@ export default function Header() {
           >
             <Image
               src={logo}
-              width={450}
+              width={300}
               height={100}
               alt="Logo van Keramische Tegel Shop"
               priority

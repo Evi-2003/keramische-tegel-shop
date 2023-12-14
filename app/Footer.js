@@ -17,7 +17,8 @@ export default function Footer() {
               width={250}
               height={100}
               alt="Logo van Keramische Tegel Shop"
-              priority
+              loading="lazy"
+
             ></Image>
           </Link>
           <span className="col-start-1 row-start-1 text-lg font-bold">
@@ -164,7 +165,7 @@ export default function Footer() {
               width={250}
               height={100}
               alt="Showroom van Keramische Tegel Shop"
-              priority
+              loading="lazy"
               className="rounded-xl"
             ></Image>
           </Link>
