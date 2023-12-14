@@ -12,7 +12,7 @@ import { Suspense } from "react";
 import Pagination from "../components/Pagination.js";
 export default async function ProductFeed({ searchParams }) {
   let hoeveelProducten = 1;
-  let huidigePagina = searchParams.pagina || 1;
+  let huidigePagina = searchParams.pagina || 0;
   let aantalPerPagina = 24;
   const products = await getProducts(
     searchParams.afmetingen,
@@ -20,8 +20,8 @@ export default async function ProductFeed({ searchParams }) {
     searchParams.categorie
   );
 
-  let start = huidigePagina * aantalPerPagina;
-  let eind = start + aantalPerPagina;
+  let start = huidigePagina;
+  let eind = ( start * huidigePagina ) + aantalPerPagina;
   let productPagination = products.slice(start, eind);
   function removeHtmlTags(str) {
     str = str.replace(/<[^>]*>/g, "");

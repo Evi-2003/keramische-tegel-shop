@@ -8,8 +8,10 @@ export default async function getProducts(afmetingen, zoekOpdracht, categorie, a
   }
     
   if(zoekOpdracht) {
+    console.log(zoekOpdracht)
     const zoekFilter = zoekOpdracht.replace(/ /g, '-');
-    whereClauses.push(`search: "${zoekFilter}"`);
+    console.log(zoekFilter)
+    whereClauses.push(`search: "${zoekOpdracht}"`);
   }
   
   if(categorie) {

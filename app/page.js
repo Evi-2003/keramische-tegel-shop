@@ -68,11 +68,10 @@ export default async function Home() {
             <Image
               src={binnen}
               alt={"Afbeelding van keramiek 1 cm binnen"}
-              width={300}
-              quality="50"
+              width={100}
+              quality="100"
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-              loading="lazy"
               height={300}
               className="h-64 w-full object-cover rounded-lg shadow-sm hover:shadow-xl"
             />
@@ -92,7 +91,6 @@ export default async function Home() {
               quality="50"
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-              loading="lazy"
               height={300}
               className="h-64 w-full object-cover rounded-lg shadow-sm hover:shadow-xl"
             />
@@ -112,7 +110,7 @@ export default async function Home() {
               quality="50"
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-              loading="lazy"
+
               height={300}
               className="h-64 w-full object-cover rounded-lg shadow-sm hover:shadow-xl"
             />
@@ -132,7 +130,7 @@ export default async function Home() {
               quality="50"
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-              loading="lazy"
+
               height={300}
               className="h-64 w-full object-cover rounded-lg shadow-sm hover:shadow-xl"
             />
@@ -153,7 +151,7 @@ export default async function Home() {
               quality="50"
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-              loading="lazy"
+
               height={300}
               className="h-64 w-full object-cover rounded-lg shadow-sm hover:shadow-xl"
             />
@@ -173,7 +171,7 @@ export default async function Home() {
               quality="50"
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-              loading="lazy"
+
               height={300}
               className="h-64 w-full object-cover rounded-lg shadow-sm hover:shadow-xl"
             />
@@ -217,7 +215,7 @@ export default async function Home() {
                 quality="50"
                 placeholder="blur"
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-                loading="lazy"
+  
                 height={100}
                 className="w-full object-contain rounded-lg shadow-sm hover:shadow-xl bg-black px-5 h-full"
               />
@@ -236,7 +234,7 @@ export default async function Home() {
               quality="50"
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-              loading="lazy"
+
               height={100}
               className="h-32 w-full object-contain rounded-lg shadow-sm bg-black px-5 hover:shadow-xl"
             />
@@ -254,7 +252,7 @@ export default async function Home() {
               quality="50"
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-              loading="lazy"
+
               height={100}
               className="h-32 w-full object-contain rounded-lg shadow-sm hover:shadow-xl bg-black px-5"
             />
@@ -273,7 +271,7 @@ export default async function Home() {
                 quality="50"
                 placeholder="blur"
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-                loading="lazy"
+  
                 height={100}
                 className="w-full object-contain rounded-lg shadow-sm hover:shadow-xl bg-black px-5 py-10 h-fit"
               />
@@ -293,7 +291,7 @@ export default async function Home() {
                 quality="50"
                 placeholder="blur"
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-                loading="lazy"
+  
                 height={100}
                 className="w-full object-contain rounded-lg shadow-sm hover:shadow-xl px-5 py-4 h-32"
               />
@@ -313,7 +311,7 @@ export default async function Home() {
                 quality="50"
                 placeholder="blur"
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-                loading="lazy"
+  
                 height={100}
                 className="w-full object-contain rounded-lg shadow-sm hover:shadow-xl px-5 py-10 h-32"
               />
@@ -334,7 +332,7 @@ export default async function Home() {
                 quality="50"
                 placeholder="blur"
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-                loading="lazy"
+  
                 height={100}
                 className="w-full object-contain rounded-lg shadow-sm bg-white hover:shadow-xl px-5 py-4 h-32"
               />
@@ -413,14 +411,6 @@ export default async function Home() {
               </li>
             </ul>
           </article>
-        </section>
-        <section className="pt-5 w-full grid grid-cols-1 lg:grid-cols-5 justify-items-center gap-y-5 gap-x-5">
-          <h2 className="text-3xl mb-3 lg:text-3xl font-medium -mt-5 md:-mt-0 row-start-1 col-span-full text-center">Meest verkochte tegels</h2>
-          <section className="row-start-2 col-span-full grid grid-col-1 lg:grid-cols-5 gap-x-5 gap-y-5">
-            {products.slice(0, 5).map((product, index) => (
-              <ProductZonderAfmeting product={product} key={product.id} />
-            ))}
-          </section>
         </section>
       </PageWrapper>
     </>

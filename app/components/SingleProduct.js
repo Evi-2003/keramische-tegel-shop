@@ -186,11 +186,11 @@ export default function Product({ product, slug }) {
 
   const dimensions = afmetingFromProduct.split("-x-");
   const afmetingMetSlug = {
-    afmeting: afmetingFromProduct.replace(/-x-/g, " x "),
+    afmeting: afmetingFromProduct.replace(/-x-/g, " x ").replace(/-/g, "."),
     slug: productData.slug,
     id: productData.databaseId,
   };
-  const afmetingMetSpaties = afmetingFromProduct.replace(/-x-/g, " x ");
+  const afmetingMetSpaties = afmetingFromProduct.replace(/-x-/g, " x ").replace(/-/g, ".");
   const length = parseInt(dimensions[0]);
   const widthTegel = parseInt(dimensions[1]);
   const thickness = parseInt(dimensions[2].replace("cm", ""));
