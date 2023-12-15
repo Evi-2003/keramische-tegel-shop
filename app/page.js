@@ -42,7 +42,7 @@ export default async function Home() {
         </h1>
         <section className="flex flex-col lg:grid grid-rows-2 md:grid-cols-5 md:grid-rows-3 space-x-0 md:space-x-5 md:h-[28rem] xl:h-[24rem] 2xl:h-[29rem] relative w-full">
           <section
-            className="row-start-1 md:row-span-2 md:col-span-4 hover:scale-95"
+            className="row-start-1 md:row-span-2 md:col-span-4"
           >
             <InspiratieCarousel></InspiratieCarousel>
           </section>
@@ -207,7 +207,7 @@ export default async function Home() {
 <Link
    href="/shop?"
    aria-label="Tegels van Excluton"
-   className="col-start-1 row-start-3 flex flex-col text-black dark:text-slate-100 hover:scale-95"
+   className="col-start-2 row-start-2 flex flex-col text-black dark:text-slate-100 hover:scale-95"
 >
             <figure className="h-32 flex justify-center items-center">
               <Image

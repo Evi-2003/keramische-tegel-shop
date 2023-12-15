@@ -48,7 +48,7 @@ export default function Product({ product, slug }) {
     }
     return str;
   }
-
+  console.log(productData);
   function cleanupObject(obj) {
     for (let key in obj) {
       if (typeof obj[key] === "object" && obj[key] !== null) {
@@ -190,7 +190,9 @@ export default function Product({ product, slug }) {
     slug: productData.slug,
     id: productData.databaseId,
   };
-  const afmetingMetSpaties = afmetingFromProduct.replace(/-x-/g, " x ").replace(/-/g, ".");
+  const afmetingMetSpaties = afmetingFromProduct
+    .replace(/-x-/g, " x ")
+    .replace(/-/g, ".");
   const length = parseInt(dimensions[0]);
   const widthTegel = parseInt(dimensions[1]);
   const thickness = parseInt(dimensions[2].replace("cm", ""));
@@ -203,7 +205,6 @@ export default function Product({ product, slug }) {
 
     const variants = [];
 
-    // Gebruik een Set om duplicaten bij te houden
     const seenSlugs = new Set();
 
     productData
@@ -230,46 +231,34 @@ export default function Product({ product, slug }) {
     productData.variantAttributes,
     afmetingMetSlug
   );
-  console.log(productData);
   if (afmetingMetSlug) {
     afmetingen.unshift(afmetingMetSlug);
   }
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
-  //  Het gaat hier om de officele kleurnaam, inplaats van een gemakkelijkere begrijpelijke kleur
   let kleuren = [];
-
-  const kleurMetSlug = { kleur: kleurProduct, slug: productData.slug };
-  productData.variantAttributes.forEach((attribute) => {
-    if (attribute.value != kleurProduct) {
-      if (attribute.name === "pa_kleur-naam") {
-        // Checkt of het object met deze kleur al bestaat in de kleuren-array
-        let exists = kleuren.find(
-          (kleurObj) => kleurObj.kleur === attribute.value
-        );
-
-        // Als het niet bestaat, voeg het toe aan de array
-        if (!exists) {
-          kleuren.push({
-            kleur: attribute.value,
-            slug: attribute.productSlug,
-          });
+  let serieNaam = productData.attributes.nodes.find(attr => attr.name === 'pa_serienaam').options[0];
+  let currentColorAttr = productData.attributes.nodes.find(attr => attr.name === 'pa_kleur').options[0];
+  
+  for(let i = 0; i < productData.variantAttributes.length; i++){
+    if(productData.variantAttributes[i].name === 'pa_serienaam' && productData.variantAttributes[i].value === serieNaam) {
+      let colorAttr = productData.variantAttributes.find(attr => attr.name === 'pa_kleur-naam' && attr.productId === productData.variantAttributes[i].productId);
+      if(colorAttr && colorAttr.value !== currentColorAttr) {
+        if(!kleuren.some(kleur => kleur.kleur === colorAttr.value)) {
+          kleuren.push({ kleur: colorAttr.value, slug: colorAttr.productSlug });
         }
       }
     }
-  });
-
-  if (kleurMetSlug) {
-    let exists = kleuren.find(
-      (kleurObj) => kleurObj.kleur === kleurMetSlug.kleur
-    );
-
-    // Checkt of het object met deze kleur al bestaat in de kleuren-array
-    if (!exists) {
-      kleuren.unshift(kleurMetSlug);
-    }
   }
 
-  // Width van de Kleuren Select aanpassen op basis van de geselecteerde optie
+  kleuren.unshift({
+    kleur: capitalizeFirstLetter(currentColorAttr),
+    slug: productData.productSlug,
+  });
+  console.log(kleuren);
+
 
   const [width, setWidth] = useState("130px");
 
@@ -475,9 +464,9 @@ export default function Product({ product, slug }) {
           <ThreejsProduct imageUrl={productData.image.sourceUrl} />
         </section>
       </section>
-      
+
       <section className="items-center p-10 rounded-lg w-full mt-5 shadow-md hover:shadow-lg border-2 border-solid border-primary">
-      <h3 className="text-3xl font-medium mb-5 dark:text-slate-100">
+        <h3 className="text-3xl font-medium mb-5 dark:text-slate-100">
           Gerelateerde producten
         </h3>
         <Suspense fallback="<section classname='animate-pulse border w-full h-32'></section>">

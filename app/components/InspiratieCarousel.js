@@ -54,10 +54,10 @@ export default function InspiratieCarousel() {
                         src={src}
                         key={index}
                         quality={100}
-                        width={400}
-                        height={250}
+                        width={500}
+                        height={350}
                         alt={`Inspiratie afbeelding ${index + 1}`}
-                        className="lazy keen-slider__slide"
+                        className="lazy keen-slider__slide object-cover"
                         placeholder="blur"
                         blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
                         fetchPriority="high"
@@ -65,6 +65,7 @@ export default function InspiratieCarousel() {
                         priority={true}
                     />
             ))}
+            <span className="w-fit py-2 px-5 bg-white dark:bg-slate-950 text-slate-950 dark:text-slate-100 rounded-lg left-0 bottom-0 absolute m-5 text-xl font-semibold">Inspiratie</span>
         </section>
     );
 }
