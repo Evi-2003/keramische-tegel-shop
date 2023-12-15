@@ -21,7 +21,7 @@ export default function Header() {
   function search(opdracht) {
     const zoekOpdracht = opdracht.get("zoeken");
     if (zoekOpdracht != undefined) {
-      optionsUrl("http://", "shop", "", "zoeken", zoekOpdracht);
+      optionsUrl("https://", "shop", "", "zoeken", zoekOpdracht);
     }
   }
 

@@ -9,7 +9,7 @@ import optionsUrl from './/serverActionUrl'
         // is 8.33
         let huidigePagina = searchparams.pagina || 1;
         function redirectToNextPage(welkePagina) {
-            optionsUrl('http://', 'shop', "", "pagina", welkePagina, 'push')
+            optionsUrl('https://', 'shop', "", "pagina", welkePagina, 'push')
         }
         return(
         <>
