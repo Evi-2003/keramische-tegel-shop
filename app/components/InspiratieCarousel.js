@@ -91,9 +91,6 @@ export default function InspiratieCarousel() {
                         className="lazy keen-slider__slide object-cover"
                         placeholder="blur"
                         blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-                        fetchPriority="high"
-                        rel="preload"
-                        priority={true}
                     />
             ))}
             <span className="w-fit py-2 px-5 bg-white dark:bg-slate-950 text-slate-950 dark:text-slate-100 rounded-lg left-0 bottom-0 absolute m-5 text-xl font-medium md:font-semibold">Inspiratie</span>

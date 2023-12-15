@@ -524,14 +524,4 @@ export default function Product({ product, slug }) {
     </>
   );
 }
-const structuredData = {
-  "@context": "https://schema.org/",
-  "@type": "Product",
-  name: "GeoCeramica Patina Taupe",
-  image: "productData.image.sourceUrl",
-  offers: {
-    "@type": "Offer",
-    priceCurrency: "EUR",
-    price: "606.66",
-  },
-};
+
