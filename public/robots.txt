@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: keramischetegelshop.nl
+Host: https://dev.keramischetegelshop.nl
 
 # Sitemaps
-Sitemap: keramischetegelshop.nl/sitemap.xml
+Sitemap: https://dev.keramischetegelshop.nl/sitemap.xml
