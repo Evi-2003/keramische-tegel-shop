@@ -149,7 +149,7 @@ export default function Header() {
             </ul>
           </nav>
         </section>
-        <nav className="md:w-5/6 lg:w-9/12 grid grid-cols-3 space-between justify-items-center md:justify-items-start md:items-center py-2">
+        <nav className="md:w-5/6 lg:w-9/12 2xl:w-7/12 grid grid-cols-3 space-between justify-items-center md:justify-items-start md:items-center py-2">
           <Link
             href="/"
             aria-label="Ga terug naar Home"

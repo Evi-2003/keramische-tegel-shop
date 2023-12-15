@@ -320,9 +320,9 @@ export default function Product({ product, slug }) {
           width={320}
           priority="high"
           height={320}
-          className="row-start-1 col-start-1 col-span-2 w-10/12 lg:w-11/12 2xl:w-3/5 justify-self-center shadow-lg object-cover hover:scale-105"
+          className="row-start-1 col-start-1 col-span-2 w-10/12 lg:w-11/12 2xl:w-4/5 justify-self-center shadow-lg object-cover hover:scale-105"
         ></Image>
-        <aside className="row-start-2 grid grid-cols-2 auto-rows-min tempalte-col lg:row-start-1 lg:col-start-3 lg:col-span-3 m-5 md:mx-10 justify-start self-start text-left space-y-1 rounded-lg">
+        <aside className="row-start-2 grid grid-cols-2 2xl:w-2/3 auto-rows-min tempalte-col lg:row-start-1 lg:col-start-3 lg:col-span-3 m-5 md:mx-10 justify-start self-start text-left space-y-1 rounded-lg">
           <h1 className="text-[1.70rem] font-semibold  row-start-1 col-span-full">
             {productData.name} <br aria-hidden="true" />
             <span className="-mt-5 flex w-fit bg-[--primary] text-white px-5 rounded-lg text-base shadow-lg font-medium">
@@ -404,9 +404,8 @@ export default function Product({ product, slug }) {
           </h3>
           <select
             id="kleurSelect"
-            className="col-start-2 row-start-7 bg-transparent text-slate-950 dark:text-slate-100 rounded-lg border-2 border-[--primary] border-solid py-2 px-5 hover:scale-95 shadow-lg hover:cursor-pointer"
+            className="col-start-2 w-fit row-start-7 bg-transparent text-slate-950 dark:text-slate-100 rounded-lg border-2 border-[--primary] border-solid py-2 px-5 hover:scale-95 shadow-lg hover:cursor-pointer"
             onChange={handleChange}
-            style={{ width: width }}
           >
             {Array.isArray(kleuren) ? (
               kleuren.map(({ kleur, slug, selected }, index) => (
