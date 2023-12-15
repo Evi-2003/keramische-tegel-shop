@@ -9,16 +9,12 @@ import Head from "next/head";
 import CheckMarkGreen from "./CheckMark";
 import optionsUrl from "./serverActionUrl.tsx";
 import RelatedProducts from "./RelatedProducts";
-import getProducts from "../data/products.js";
-import ThreejsProduct from "./3dProduct.js";
 import { usePathname, useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import { lazy, Suspense } from "react";
 import { getRouteProps } from "next/navigation";
-import Script from "next/script";
 import { useRouter } from 'next/navigation'
 import { redirect } from "next/navigation"
-import getProductBySlug from "../data/getProductBySlug";
 // eslint-disable-next-line
 export default function Product({ product, slug }) {
   let productData = product.product;

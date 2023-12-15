@@ -197,13 +197,7 @@ export default function Header() {
 
         <section className="flex py-1 dark:bg-black dark:text-slate-100 text-sky-950 w-full items-center text-center justify-center shadow-sm transform hover:transition-all duration-200">
           <nav
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
-            className={`z-50 md:w-2/4 xl:w-3/6 2xl:w-3/5 grid md:gap-x-10 justify-center items-start py-1 px-10 transform transition-all duration-200 ${
-              isMenuOpen
-                ? "fixed inset-0 h-screen bg-white overflow-scroll w-full"
-                : "hidden md:grid"
-            }`}
+            className="z-50 md:w-2/4 xl:w-3/6 2xl:w-3/5 grid md:gap-x-10 justify-center items-start py-1 px-10 transform transition-all duration-200"
           >
             <ul className="flex items-center justify-center gap-x-5">
               <li className="font-semibold hover:underline">

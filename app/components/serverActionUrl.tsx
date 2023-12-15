@@ -4,5 +4,5 @@ export default async function optionsUrl(connection, path, searchParams, option,
   const params = new URLSearchParams(searchParams)
   params.set(option, value)
   console.log(push)
-  redirect(connection + process.env.NEXT_PUBLIC_DOMAIN + '/' + path + '?' + params, push)
+  redirect(connection + process.env.NEXT_PUBLIC_DOMAIN + '/' + path + '?' + params)
 } 

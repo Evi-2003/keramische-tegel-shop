@@ -141,7 +141,7 @@ export default function contact() {
             Is er een kleurverschil met het geleverde product?
           </summary>
           <p className="text-left mx-5 text-base">
-            Alle foto's zijn gemaakt van de tegels zelf. Het kan zo zijn dat
+            Alle foto&apos;s zijn gemaakt van de tegels zelf. Het kan zo zijn dat
             door de belichting of de instellingen van uw beeldscherm de kleur
             iets afwijkt. Als je altijd langskomen bij onze showroom.
           </p>
