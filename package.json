@@ -34,6 +34,7 @@
     "react-slick": "^0.29.0",
     "react-snowfall": "^1.2.1",
     "react-three-fiber": "^6.0.13",
+    "sharp": "^0.33.0",
     "ssr": "^6.2.64",
     "stripe": "^14.8.0",
     "three": "^0.158.0",

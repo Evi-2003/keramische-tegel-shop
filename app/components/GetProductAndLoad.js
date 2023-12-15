@@ -10,7 +10,17 @@ export default async function GetProductAndLoad({ slug, searchParams }) {
   const afmetingFromProduct = product.product.attributes.nodes.find(
     (node) => node.name == "pa_afmetingen"
   ).options[0];
-  
+  function beperkLengte(string, maxLength) {
+    if (string.length <= maxLength) {
+      return string; // Geen wijzigingen nodig als de string al kort genoeg is
+    } else {
+      var beperkteString = string.substring(0, maxLength); // Selecteer de substring vanaf index 0 tot maxLength
+      var laatstePuntIndex = beperkteString.lastIndexOf(".");
+      return beperkteString
+        .substring(0, laatstePuntIndex + 1)
+        .replace(/<\/?[^>]+(>|$)/g, ""); // Inclusief het laatste puntteken
+    }
+  }
   const pattern = /(\d+)[^\d]+(\d+)[^\d]+(\d+)/g;
   const [_, lengte, breedte, dikte] = pattern.exec(afmetingFromProduct) || [];
   const jsonLd = {
@@ -18,7 +28,7 @@ export default async function GetProductAndLoad({ slug, searchParams }) {
     "@type": "Product",
     name: product.product.name + " " + afmetingFromProduct.replace(/-/g, " "),
     image: product.product.image.sourceUrl,
-    description: product.product.description.replace(/<[^>]+>/g, ""),
+    description: beperkLengte(product.product.description.replace(/<[^>]+>/g, ""),160),
     "offers": {
       "@type": "Offer",
       "priceCurrency": "EUR",
@@ -33,7 +43,7 @@ export default async function GetProductAndLoad({ slug, searchParams }) {
         "@type": "Product",
         name: product.product.name + " " + afmetingFromProduct.replace(/-/g, " "),
         image: product.product.image.sourceUrl,
-        description: product.product.description.replace(/<[^>]+>/g, ""),
+        description: beperkLengte(product.product.description.replace(/<[^>]+>/g, ""),160),
         width: breedte,
         height: lengte,
         thickness: dikte,
