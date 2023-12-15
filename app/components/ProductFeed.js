@@ -31,25 +31,27 @@ export default async function ProductFeed({ searchParams }) {
   return (
     <>
       {products.length >= 1 ? (
-        <span className=" border-2 border-solid border-slate-300 dark:text-slate-100 col-span-full row-start-2 text-slate-900 py-1 px-5 rounded-lg w-fit h-fit text-base justify-self-center">
+        <span className="hidden md:block border-2 border-solid border-slate-300 dark:text-slate-100 col-span-full row-start-2 text-slate-900 py-1 px-5 rounded-lg w-fit h-fit text-base justify-self-center">
           {products.length} resultaten gevonden
         </span>
       ) : (
-        <span className="border-2 border-solid border-slate-300 dark:text-slate-100  col-span-full text-slate-900 py-1 px-5 rounded-lg w-fit h-fit text-base justify-self-center">
+        <span className="hidden md:block border-2 border-solid border-slate-300 dark:text-slate-100  col-span-full text-slate-900 py-1 px-5 rounded-lg w-fit h-fit text-base justify-self-center">
           Geen resultaten gevonden
         </span>
       )}
-      <section className="col-start-2 col-span-full mt-5 grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 justify-items-center gap-y-5 gap-x-5 m-5">
+      <section className="col-span-full md:col-start-2 mt-5 grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4 justify-items-center gap-y-5 gap-x-5 m-5">
         {productPagination.map((product, index) => (
           <Suspense key={product.id} fallback={<span>Producten ophalen</span>}>
             <Product product={product} afmeting={searchParams.afmetingen} />
           </Suspense>
         ))}
+      </section>
+      <section className="col-span-full md:col-start-1">
         <Suspense fallback={<span>Filters ophalen</span>}>
-          <Pagination
-            searchparams={searchParams}
-            maxProducten={products.length}
-          />
+            <Pagination
+              searchparams={searchParams}
+              maxProducten={products.length}
+            />
         </Suspense>
       </section>
     </>

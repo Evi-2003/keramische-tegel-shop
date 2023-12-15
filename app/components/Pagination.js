@@ -13,7 +13,7 @@ import optionsUrl from './/serverActionUrl'
         }
         return(
         <>
-        <section className="flex gap-x-3 col-span-full justify-center">
+        <section className="flex gap-x-3 row-start-2 col-span-full justify-center">
         {Number(huidigePagina) - 3 >= 1 && (
             <Link className="border dark:text-slate-100 text-slate-950 w-10 h-10 rounded-lg font-bold hover:scale-90 hover:border-[--primary] flex justify-center items-center" href={`/shop/?pagina=${Number(huidigePagina) - 3}`}>
                 {Number(huidigePagina) - 3}

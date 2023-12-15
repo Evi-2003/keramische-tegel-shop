@@ -4,10 +4,41 @@ import "keen-slider/keen-slider.min.css";
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 export default function InspiratieCarousel() {
-    const [sliderRef] = useKeenSlider({
-        loop: true,
-    });
-
+    const [sliderRef] = useKeenSlider(
+        {
+          loop: true,
+        },
+        [
+          (slider) => {
+            let timeout
+            let mouseOver = false
+            function clearNextTimeout() {
+              clearTimeout(timeout)
+            }
+            function nextTimeout() {
+              clearTimeout(timeout)
+              if (mouseOver) return
+              timeout = setTimeout(() => {
+                slider.next()
+              }, 2000)
+            }
+            slider.on("created", () => {
+              slider.container.addEventListener("mouseover", () => {
+                mouseOver = true
+                clearNextTimeout()
+              })
+              slider.container.addEventListener("mouseout", () => {
+                mouseOver = false
+                nextTimeout()
+              })
+              nextTimeout()
+            })
+            slider.on("dragStarted", clearNextTimeout)
+            slider.on("animationEnded", nextTimeout)
+            slider.on("updated", nextTimeout)
+          },
+        ]
+      )
     const imageRefs = useRef([]);
     const afbeeldingen = [
         "/inspiratie/1.webp",
@@ -65,7 +96,7 @@ export default function InspiratieCarousel() {
                         priority={true}
                     />
             ))}
-            <span className="w-fit py-2 px-5 bg-white dark:bg-slate-950 text-slate-950 dark:text-slate-100 rounded-lg left-0 bottom-0 absolute m-5 text-xl font-semibold">Inspiratie</span>
+            <span className="w-fit py-2 px-5 bg-white dark:bg-slate-950 text-slate-950 dark:text-slate-100 rounded-lg left-0 bottom-0 absolute m-5 text-xl font-medium md:font-semibold">Inspiratie</span>
         </section>
     );
 }

@@ -28,7 +28,7 @@ export default function Product({ product, afmeting }) {
     
     <article
       key={product.id}
-      className="product-card flex flex-col w-full h-full rounded-2xl text-left transform transition hover:scale-105"
+      className="product-card flex flex-col w-full h-fit rounded-2xl text-left transform transition hover:scale-105"
     >
       <Link
         href={"/producten/" + product.slug}

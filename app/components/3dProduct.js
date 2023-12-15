@@ -18,7 +18,7 @@ export default function ThreejsProduct({ imageUrl }) {
     const height = mountRef.current.clientHeight;
     const aspect = width / height;
     camera = new THREE.PerspectiveCamera(50, aspect, 0.1, 500);
-    camera.position.z = 140
+    camera.position.z = 100
 
 
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
