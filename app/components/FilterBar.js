@@ -88,13 +88,13 @@ export default function FilterBar() {
 
       <section
         className={`transition-all duration-500 overflow-hidden ${
-          showFilters || window.innerWidth >= 768 ? "block w-4/6" : "hidden"
+          showFilters || window.innerWidth >= 768 ? "block w-4/6 md:w-full md:space-y-3" : "hidden"
         }`}
       >
         <section>
           <span className="text-2xl">Filters</span>
           <hr className="my-3" />
-          <h2 className="text-lg font-semibold">Categorieën</h2>
+          <h2 className="text-lg font-semibold md:mb-1">Categorieën</h2>
           <Creatable
             isClearable
             options={categorieën}
@@ -105,7 +105,7 @@ export default function FilterBar() {
           />
         </section>
         <section className="mb-5">
-          <h2 className="text-lg font-semibold">
+          <h2 className="text-lg font-semibold md:mb-1">
             <label htmlFor="afmetingen">Afmetingen</label>
           </h2>
           <Creatable

@@ -21,7 +21,7 @@ export default function Header() {
   function search(opdracht) {
     const zoekOpdracht = opdracht.get("zoeken");
     if (zoekOpdracht != undefined) {
-      optionsUrl("https://", "shop", "", "zoeken", zoekOpdracht);
+      optionsUrl("http://", "shop", "", "zoeken", zoekOpdracht);
     }
   }
 
@@ -110,7 +110,7 @@ export default function Header() {
       </figure>
 
       <header className="bg-[--wit] dark:bg-[#0d0c0c] text-[--menu-tekst] dark:text-slate-100 h-fit w-full flex flex-col justify-center items-center md:sticky top-0 z-50">
-        <section className=" dark:bg-slate-950 dark:text-slate-50 w-full text-center py-2 sticky top-0">
+        <section className=" dark:bg-slate-950 dark:text-slate-50 w-full text-center py-2 md:sticky top-0">
           <span className="font-semibold">
             Fijne feestdagen! <br aria-hidden="true" className="md:hidden"></br>
             De showroom is gesloten op eerste kerstdag!
