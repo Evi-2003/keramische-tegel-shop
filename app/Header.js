@@ -9,11 +9,10 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import Snowfall from "react-snowfall";
 import SnowFlake from "../public/snowflake.svg";
-import Script from 'next/script'
+import Script from "next/script";
 
 export default function Header() {
-  const [hover, setHover] = useState(false);
-  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const searchParams = useSearchParams();
   const zoekTerm = searchParams.get("zoeken");
   const params = new URLSearchParams(searchParams);
@@ -79,7 +78,6 @@ export default function Header() {
     if (!(savedTheme === "dark" || savedTheme === "light")) {
       updateTheme();
     }
-  
 
     // Listen for changes in the OS preferred color scheme
     darkMediaQuery.addEventListener("change", updateTheme);
@@ -121,7 +119,14 @@ export default function Header() {
             <ul className="w-full flex mx-5 space-x-5 md:mx-0 md:space-x-10 justify-center text-xs">
               <li className="flex">
                 <CheckMarkGreen />{" "}
-                <a href="https://maps.app.goo.gl/FYbZueE6XBV4nC6x7" target="_blank" aria-label="Grote Showtuin - Open de routebeschrijving naar Nudetuin / Keramische tegel shop" class="hover:underline opacity-80">Grote Showtuin</a>
+                <a
+                  href="https://maps.app.goo.gl/FYbZueE6XBV4nC6x7"
+                  target="_blank"
+                  aria-label="Grote Showtuin - Open de routebeschrijving naar Nudetuin / Keramische tegel shop"
+                  class="hover:underline opacity-80"
+                >
+                  Grote Showtuin
+                </a>
               </li>
               <li className="hidden md:flex opacity-80">
                 <CheckMarkGreen /> Complete tuininrichting
@@ -133,12 +138,12 @@ export default function Header() {
                 <CheckMarkGreen />{" "}
                 <span className="hidden md:flex">Direct contact:</span>
                 <a
-   href="tel:0317 765 005"
-   aria-label="Bel Keramische Tegel Shop op 0317 765 005"
-   className="hover:underline"
->
-   &nbsp;0317 765 005
-</a>
+                  href="tel:0317 765 005"
+                  aria-label="Bel Keramische Tegel Shop op 0317 765 005"
+                  className="hover:underline"
+                >
+                  &nbsp;0317 765 005
+                </a>
               </li>
               <li>
                 <button onClick={toggleTheme} className="font-bold">
@@ -149,11 +154,11 @@ export default function Header() {
             </ul>
           </nav>
         </section>
-        <nav className="md:w-5/6 lg:w-9/12 2xl:w-7/12 grid grid-cols-3 space-between justify-items-center md:justify-items-start md:items-center py-2">
+        <nav className="w-full md:w-5/6 lg:w-9/12 2xl:w-7/12 grid grid-cols-3 space-between justify-items-center md:justify-items-start md:items-center py-2">
           <Link
             href="/"
             aria-label="Ga terug naar Home"
-            className="col-span-full w-full md:col-start-1 row-start-1 md:col-span-1 px-3 flex justify-center"
+            className="col-start-1 col-span-3 w-full md:col-start-1 row-start-1 md:col-span-1 px-3 flex justify-center"
           >
             <Image
               src={logo}
@@ -164,9 +169,22 @@ export default function Header() {
               className="bg-white dark:bg-white rounded-lg w-2/3 md:w-full"
             ></Image>
           </Link>
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="col-start-3 row-start-1 place-self-center md:hidden border items-center justify-self-end justify-center flex w-10 h-10 mr-5 fill-[--primary] border-[--primary] dark:border-slate-100 dark:fill-slate-50 rounded-lg"
+          >
+            <svg
+              className="w-7 h-7"
+              version="1.1"
+              viewBox="0 0 1200 1200"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="m88.891 288.89h1022.2c49.09 0 88.891-39.82 88.891-88.891 0-49.133-39.754-88.891-88.844-88.891h-1022.3c-49.07 0-88.891 39.758-88.891 88.891 0 49.066 39.82 88.891 88.891 88.891zm1022.2 222.2h-1022.2c-49.09 0-88.891 39.801-88.891 88.91 0 49.09 39.82 88.891 88.891 88.891h1022.2c49.09 0 88.891-39.801 88.891-88.891-0.003906-49.109-39.805-88.91-88.895-88.91zm0 400h-1022.2c-49.09 0-88.891 39.801-88.891 88.934 0 49.09 39.82 88.891 88.891 88.891h1022.2c49.09 0 88.891-39.801 88.891-88.891-0.003906-49.133-39.805-88.934-88.895-88.934z" />
+            </svg>
+          </button>
           <form
             action={search}
-            className="w-5/6 col-span-full row-start-2 md:row-start-1 md:col-start-2 md:w-5/6 flex flex-col relative md:justify-self-center"
+            className="w-5/6 col-span-full row-start-2 mt-2 md:mt-0 md:row-start-1 md:col-start-2 md:w-5/6 flex flex-col relative md:justify-self-center"
           >
             <label htmlFor="zoeken" className="text-lg">
               Waar ben je naar opzoek?
@@ -195,23 +213,37 @@ export default function Header() {
           ></iframe>
         </nav>
 
-        <section className="flex py-1 dark:bg-black dark:text-slate-100 text-sky-950 w-full items-center text-center justify-center shadow-sm transform hover:transition-all duration-200">
-          <nav
-            className="z-50 md:w-2/4 xl:w-3/6 2xl:w-3/5 grid md:gap-x-10 justify-center items-start py-1 px-10 transform transition-all duration-200"
-          >
-            <ul className="flex items-center justify-center gap-x-5">
+        <section
+          className={`py-1 flex-col md:flex-row dark:bg-black dark:text-slate-100 text-sky-950 w-full items-center text-center justify-center shadow-sm transform hover:transition-all duration-200 ${
+            isMenuOpen ? "flex" : "hidden md:flex"
+          }`}
+        >
+          <nav className="z-50 md:w-2/4 xl:w-3/6 2xl:w-3/5 grid md:gap-x-10 justify-center items-start py-1 px-10 transform transition-all duration-200">
+            <ul className="flex flex-col md:flex-row gap-y-4 md:gap-y-0 items-center justify-center gap-x-5">
               <li className="font-semibold hover:underline">
-                <Link href="/" aria-label="Ga naar Home">
+                <Link
+                  href="/"
+                  aria-label="Ga naar Home"
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   Home
                 </Link>
               </li>
               <li className="group font-semibold hover:underline">
-                <Link href="/shop" aria-label="Bekijk onze assortiment">
+                <Link
+                  href="/shop"
+                  aria-label="Bekijk onze assortiment"
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   Assortiment
                 </Link>
               </li>
               <li className="group font-semibold hover:underline">
-                <Link href="/over-ons" aria-label="Bekijk onze over ons">
+                <Link
+                  href="/over-ons"
+                  aria-label="Bekijk onze over ons"
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   Over Ons
                 </Link>
               </li>
@@ -219,6 +251,7 @@ export default function Header() {
                 <Link
                   href="/klantenservice"
                   aria-label="Ga naar de klantenservice"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   Klantenservice
                 </Link>
@@ -228,6 +261,7 @@ export default function Header() {
                   href="/winkelmand"
                   aria-label="Ga naar je winkelmand"
                   className="w-fit h-fit flex justify-center items-center"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   <svg
                     className="fill-slate-100 md:mr-2"
