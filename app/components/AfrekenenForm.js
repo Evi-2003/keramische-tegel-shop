@@ -21,10 +21,10 @@ export default function AfrekenenForm() {
             type="text"
             name="voornaam"
             placeholder="Jan"
-            className=" block w-full px-3 py-2 bg-white border border-slate-300 dark:text-slate-950 rounded-md text-sm shadow-sm placeholder-slate-400
+            className=" block w-full px-3 py-2 border border-slate-300 dark:text-slate-50 bg-transparent  rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
       disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-      invalid:border-red-500 invalid:text-red-600
+       invalid:text-red-600
       focus:invalid:border-pink-500 focus:invalid:ring-pink-500
     "
           />
@@ -36,10 +36,10 @@ export default function AfrekenenForm() {
             type="text"
             name="achternaam"
             placeholder="Jansen"
-            className=" block w-full px-3 py-2 bg-white border border-slate-300 dark:text-slate-950 rounded-md text-sm shadow-sm placeholder-slate-400
+            className=" block w-full px-3 py-2 bg-transparent border border-slate-300 dark:text-slate-50  rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
       disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-      invalid:border-red-500 invalid:text-red-600
+       invalid:text-red-600
       focus:invalid:border-pink-500 focus:invalid:ring-pink-500
     "
           />
@@ -51,10 +51,10 @@ export default function AfrekenenForm() {
             type="email"
             name="mail"
             placeholder="jan.jansen@example.com"
-            className=" block w-full px-3 py-2 bg-white border border-slate-300 dark:text-slate-950 rounded-md text-sm shadow-sm placeholder-slate-400
+            className=" block w-full px-3 py-2 bg-transparent border border-slate-300 dark:text-slate-50  rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
       disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-      invalid:border-red-500 invalid:text-red-600
+       invalid:text-red-600
       focus:invalid:border-pink-500 focus:invalid:ring-pink-500
     "
           />
@@ -66,10 +66,10 @@ export default function AfrekenenForm() {
             type="text"
             name="adres"
             placeholder="Damrak 1"
-            className=" block w-full px-3 py-2 bg-white border border-slate-300 dark:text-slate-950 rounded-md text-sm shadow-sm placeholder-slate-400
+            className=" block w-full px-3 py-2 bg-transparent border border-slate-300 dark:text-slate-50  rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
       disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-      invalid:border-red-500 invalid:text-red-600
+       invalid:text-red-600
       focus:invalid:border-pink-500 focus:invalid:ring-pink-500
     "
           />
@@ -81,10 +81,10 @@ export default function AfrekenenForm() {
             type="text"
             name="postcode"
             placeholder="1012 LG"
-            className=" block w-full px-3 py-2 bg-white border border-slate-300 dark:text-slate-950 rounded-md text-sm shadow-sm placeholder-slate-400
+            className=" block w-full px-3 py-2 bg-transparent border border-slate-300 dark:text-slate-50  rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
       disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-      invalid:border-red-500 invalid:text-red-600
+       invalid:text-red-600
       focus:invalid:border-pink-500 focus:invalid:ring-pink-500
     "
           />
@@ -96,10 +96,10 @@ export default function AfrekenenForm() {
             type="text"
             name="plaats"
             placeholder="Amsterdam"
-            className=" block w-full px-3 py-2 bg-white border border-slate-300 dark:text-slate-950 rounded-md text-sm shadow-sm placeholder-slate-400
+            className=" block w-full px-3 py-2 bg-transparent border border-slate-300 dark:text-slate-50  rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
       disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-      invalid:border-red-500 invalid:text-red-600
+       invalid:text-red-600
       focus:invalid:border-pink-500 focus:invalid:ring-pink-500
     "
           />
@@ -111,29 +111,30 @@ export default function AfrekenenForm() {
             type="tel"
             name="nummer"
             placeholder="06-12345678"
-            className=" block w-full px-3 py-2 bg-white border border-slate-300 dark:text-slate-950 rounded-md text-sm shadow-sm placeholder-slate-400
+            className=" block w-full px-3 py-2 bg-transparent border border-slate-300 dark:text-slate-50  rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
       disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-      invalid:border-red-500 invalid:text-red-600
+       invalid:text-red-600
       focus:invalid:border-pink-500 focus:invalid:ring-pink-500
     "
           />
-
-          <button
-            type="submit"
-            value="Plaats bestelling"
-            className="bg-[--primary] py-1 rounded-lg font-medium w-fit px-5 text-slate-100 hover:scale-95 hover:shadow-sm"
-          >
-            Plaats bestelling
-          </button>
-          <button
-            type="submit"
-            value="Plaats bestelling"
-            className="bg-[--primary] py-1 rounded-lg font-medium w-fit px-5 text-slate-100 hover:scale-95 hover:shadow-sm"
-          >
-            Vraag offerte aan
-          </button>
-          <span className="py-2">
+          <article className="flex text-base gap-x-5 py-3">
+            <button
+              type="submit"
+              value="Plaats bestelling"
+              className="bg-[--primary] py-1 rounded-lg font-medium w-fit px-5 text-slate-100 hover:scale-95 hover:shadow-lg shadow-sm"
+            >
+              Afrekenen
+            </button>
+            <button
+              type="submit"
+              value="Plaats bestelling"
+              className="border text-slate-950 dark:text-slate-50 py-1 rounded-lg font-medium w-fit px-5 text-slate-100 hover:scale-95 hover:shadow-sm"
+            >
+              Offerte
+            </button>
+          </article>
+          <span className="text-sm rounded-lg w-fit">
             Bij de volgende stap kies je betaalmethode
           </span>
         </form>
