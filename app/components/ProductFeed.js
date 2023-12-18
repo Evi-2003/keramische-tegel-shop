@@ -14,10 +14,13 @@ export default async function ProductFeed({ searchParams }) {
   let hoeveelProducten = 1;
   let huidigePagina = searchParams.pagina || 0;
   let aantalPerPagina = 24;
+  console.log(searchParams.fabrikant);
   const products = await getProducts(
     searchParams.afmetingen,
     searchParams.zoeken,
-    searchParams.categorie
+    searchParams.categorie,
+    searchParams.dikte,
+    searchParams.fabrikant
   );
 
   let start = huidigePagina;
@@ -30,7 +33,7 @@ export default async function ProductFeed({ searchParams }) {
   }
   return (
     <>
-      {products.length >= 1 ? (
+      {products.length >= 0 ? (
         <span className="hidden md:block border-2 border-solid border-slate-300 dark:text-slate-100 col-span-full row-start-2 text-slate-900 py-1 px-5 rounded-lg w-fit h-fit text-base justify-self-center">
           {products.length} resultaten gevonden
         </span>

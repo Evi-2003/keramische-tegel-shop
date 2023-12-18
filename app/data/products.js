@@ -1,35 +1,43 @@
-export default async function getProducts(afmetingen, zoekOpdracht, categorie, aantal){
-
+export default async function getProducts(
+  afmetingen,
+  zoekOpdracht,
+  categorie,
+  dikte
+) {
   const whereClauses = [];
 
-  if(afmetingen) {
-    const afmetingMetSpaties = afmetingen.split('x').join(' x ');
-    whereClauses.push(`attribute: "pa_afmetingen", attributeTerm: "${afmetingMetSpaties}"`);
+  if (afmetingen) {
+    const afmetingMetSpaties = afmetingen.split("x").join(" x ");
+    whereClauses.push(
+      `attribute: "pa_afmetingen", attributeTerm: "${afmetingMetSpaties}"`
+    );
   }
-    
-  if(zoekOpdracht) {
-    console.log(zoekOpdracht)
-    const zoekFilter = zoekOpdracht.replace(/ /g, '-');
-    console.log(zoekFilter)
+
+  if (zoekOpdracht) {
+    console.log(zoekOpdracht);
+    const zoekFilter = zoekOpdracht.replace(/ /g, "-");
+    console.log(zoekFilter);
     whereClauses.push(`search: "${zoekOpdracht}"`);
   }
-  
-  if(categorie) {
+
+  if (categorie) {
     whereClauses.push(`categoryIn: "${categorie}"`);
   }
 
-  const res = await fetch(
-    process.env.NEXT_PUBLIC_WORDPRESS_API_URL,{
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        query:
-    `query AllProducts {
+  if (dikte) {
+    whereClauses.push(`attribute: "pa_dikte", attributeTerm: "${dikte}"`);
+  }
+
+  const res = await fetch(process.env.NEXT_PUBLIC_WORDPRESS_API_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `query AllProducts {
       products(
         first: 100,
-        where: { ${whereClauses.join(', ')} }
+        where: { ${whereClauses.join(", ")} }
       ) {
           nodes {
             id
@@ -56,12 +64,12 @@ export default async function getProducts(afmetingen, zoekOpdracht, categorie, a
             }
           }
         }
-      }`
-        })
+      }`,
+    }),
   });
-  const { data } = await res.json()
+  const { data } = await res.json();
 
-  const getProducts = data.products.nodes
+  const getProducts = data.products.nodes;
 
-  return getProducts
+  return getProducts;
 }

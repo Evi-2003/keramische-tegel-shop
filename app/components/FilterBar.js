@@ -60,14 +60,47 @@ export default function FilterBar() {
   }, [searchParams]);
 
   const options = [
+    { value: "100x100x4cm", label: "100 x 100 x 4cm" },
+    { value: "120x120x2cm", label: "120 x 120 x 2cm" },
+    { value: "20x40x5cm", label: "20 x 40 x 5cm" },
+    { value: "30x120x2cm", label: "30 x 120 x 2cm" },
+    { value: "40x80x4cm", label: "40 x 80 x 4cm" },
+    { value: "45x90x3cm", label: "45 x 90 x 3cm" },
+    { value: "595x595x2cm", label: "59.5 x 59.5 x 2cm" },
+    { value: "595x595x3cm", label: "59.5 x 59.5 x 3cm" },
+    { value: "60x120x2cm", label: "60 x 120 x 2cm" },
+    { value: "60x60x2cm", label: "60 x 60 x 2cm" },
+    { value: "60x60x3cm", label: "60 x 60 x 3cm" },
+    { value: "60x60x4cm", label: "60 x 60 x 4cm" },
+    { value: "60x60x5cm", label: "60 x 60 x 5cm" },
+    { value: "70x70x32cm", label: "70 x 70 x 3,2cm" },
     { value: "80x80x2cm", label: "80 x 80 x 2cm" },
     { value: "80x80x3cm", label: "80 x 80 x 3cm" },
+    { value: "80x80x4cm", label: "80 x 80 x 4cm" },
+    { value: "90x90x3cm", label: "90 x 90 x 3cm" },
   ];
   const categorieën = [
-    { value: "tuin-tegels", label: "Tuin Tegels" },
-    { value: "woon-tegels", label: "Woon tegels" },
+    { value: "binnen-tegels", label: "Tegels Binnen" },
+    { value: "buiten-tegels", label: "Tegels Buiten" },
+    { value: "oprit-tegels", label: "Tegels Oprit" },
+    { value: "terras-tegels", label: "Tegels Dakterras" },
   ];
-
+  const diktes = ["1cm", "2cm", "3cm", "4cm", "5cm"];
+  const dikteInputs = diktes.map((dikte) => (
+    <div className="flex items-center" key={dikte}>
+      <input
+        className="col-start-1 rounded mr-2"
+        type="checkbox"
+        value={dikte}
+        name="dikte"
+        id={dikte}
+        onChange={handleSelectChange("dikte", true)}
+      />
+      <label className="w-fit col-start-2" htmlFor={dikte}>
+        {dikte}
+      </label>
+    </div>
+  ));
   return (
     <form
       action={sendFilters}
@@ -153,32 +186,7 @@ export default function FilterBar() {
         <section className="mt-4">
           <h2 className="text-lg font-semibold mb-2">Dikte</h2>
           <fieldset className="grid items-center space-y-2">
-            <div className="flex items-center">
-              <input
-                className="col-start-1 rounded mr-2"
-                type="checkbox"
-                value="1cm"
-                name="dikte"
-                id="1cm"
-                onChange={handleSelectChange("dikte", true)}
-              />
-              <label className="w-fit col-start-2" htmlFor="dikte">
-                1cm
-              </label>
-            </div>
-            <div className="flex items-center">
-              <input
-                className="col-start-1 rounded mr-2"
-                type="checkbox"
-                value="2cm"
-                name="dikte"
-                id="2cm"
-                onChange={handleSelectChange("dikte", true)}
-              />
-              <label className="w-fit col-start-2" htmlFor="dikte">
-                2cm
-              </label>
-            </div>
+            {dikteInputs}
           </fieldset>
         </section>
         <div className="flex flex-col justify-between items-center mt-4">
