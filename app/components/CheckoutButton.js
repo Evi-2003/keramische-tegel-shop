@@ -1,38 +1,35 @@
-
-import { useState } from 'react'
-import { useShoppingCart } from 'use-shopping-cart'
-
+import { useState } from "react";
+import { useShoppingCart } from "use-shopping-cart";
 
 export default function CheckoutButton() {
-
-  const [status, setStatus] = useState('idle')
+  const [status, setStatus] = useState("idle");
   const { redirectToCheckout, cartCount, totalPrice, cartDetails } =
-    useShoppingCart()
+    useShoppingCart();
 
   async function handleClick(event) {
-    event.preventDefault()
+    event.preventDefault();
     if (cartCount > 0) {
-      setStatus('Effe denken')
+      setStatus("Effe denken");
 
       try {
-        const res = await fetch('/session', {
-          method: 'POST',
-          body: JSON.stringify(cartDetails)
-        })
+        const res = await fetch("/session", {
+          method: "POST",
+          body: JSON.stringify(cartDetails),
+        });
 
-        const data = await res.json()
-        const result = await redirectToCheckout(data.sessionId)
+        const data = await res.json();
+        const result = await redirectToCheckout(data.sessionId);
 
         if (result?.error) {
-          console.error(result.error)
-          setStatus('redirect-error')
+          console.error(result.error);
+          setStatus("redirect-error");
         }
       } catch (error) {
-        console.error(error)
-        setStatus('redirect-error')
+        console.error(error);
+        setStatus("redirect-error");
       }
     } else {
-      setStatus('no-items')
+      setStatus("no-items");
     }
   }
 
@@ -40,11 +37,11 @@ export default function CheckoutButton() {
     <>
       <span className="text-red-700 text-xs text-center">
         {totalPrice && totalPrice < 30
-          ? 'Je moet wel minimaal 30 cent betalen'
+          ? "Je moet wel minimaal 30 cent betalen"
           : cartCount && cartCount > 20
-          ? 'Je mag niet meer dan 20 items hebben'
-          : status === 'redirect-error'
-          ? 'Oepsie, er is chaos op de website, probeer het later nog eens'
+          ? "Je mag niet meer dan 20 items hebben"
+          : status === "redirect-error"
+          ? "Oepsie, er is chaos op de website, probeer het later nog eens"
           : null}
       </span>
       <button
@@ -53,13 +50,13 @@ export default function CheckoutButton() {
         disabled={
           (totalPrice && totalPrice < 30) ||
           (cartCount && cartCount > 20) ||
-          status == 'no-items'
+          status == "no-items"
             ? true
             : false
         }
       >
-        {status !== 'loading' ? 'Afrekenen' : 'Loading...'}
+        {status !== "loading" ? "Afrekenen" : "Loading..."}
       </button>
     </>
-  )
+  );
 }

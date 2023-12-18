@@ -1,9 +1,9 @@
-'use client'
+"use client";
 import ShoppingCart from "./ShoppingCart";
 function FullCart() {
-    return (
-        <>
-            <ShoppingCart />
-        </>
-    );
+  return (
+    <>
+      <ShoppingCart />
+    </>
+  );
 }

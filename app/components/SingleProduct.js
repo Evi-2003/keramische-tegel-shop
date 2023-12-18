@@ -13,12 +13,12 @@ import { usePathname, useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import { lazy, Suspense } from "react";
 import { getRouteProps } from "next/navigation";
-import { useRouter } from 'next/navigation'
-import { redirect } from "next/navigation"
+import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 // eslint-disable-next-line
 export default function Product({ product, slug }) {
   let productData = product.product;
-  const router = useRouter()
+  const router = useRouter();
   function removeHtmlTags(str, shouldClean = true) {
     if (shouldClean) {
       str = str.replace(/<[^>]*>/g, "");
@@ -26,17 +26,25 @@ export default function Product({ product, slug }) {
     }
     return str;
   }
-  async function quantityUrlChange(connection, path, searchParams, option, value, action){
-    const params = new URLSearchParams(searchParams)
-    params.set(option, value)
-    const newPath = connection + process.env.NEXT_PUBLIC_DOMAIN + '/' + path + '?' + params;
-    
-    const routeProps = await getRouteProps(newPath)
-    
+  async function quantityUrlChange(
+    connection,
+    path,
+    searchParams,
+    option,
+    value,
+    action
+  ) {
+    const params = new URLSearchParams(searchParams);
+    params.set(option, value);
+    const newPath =
+      connection + process.env.NEXT_PUBLIC_DOMAIN + "/" + path + "?" + params;
+
+    const routeProps = await getRouteProps(newPath);
+
     if (action === "replace") {
-      routeProps.replace()
+      routeProps.replace();
     } else {
-      routeProps.push()
+      routeProps.push();
     }
   }
   function cleanupObject(obj) {
@@ -126,25 +134,25 @@ export default function Product({ product, slug }) {
   const decreaseQuantity = () => {
     if (quantity >= minHoeveelheidTegels) {
       setQuantity(quantity - 1);
-      router.push('?hoeveelheid=' + (quantity - 1))
+      router.push("?hoeveelheid=" + (quantity - 1));
     }
   };
   const handleQuantityChange = (event) => {
     const newQuantity = parseInt(event.target.textContent);
     if (!isNaN(newQuantity) && newQuantity >= minHoeveelheidTegels) {
       setQuantity(newQuantity);
-      console.log('aa')
-      router.push('?hoeveelheid=' + newQuantity)
+      console.log("aa");
+      router.push("?hoeveelheid=" + newQuantity);
     } else {
       alert("Minimum hoeveelheid tegels is " + minHoeveelheidTegels);
       event.target.textContent = parseInt(minHoeveelheidTegels);
       setQuantity(parseInt(minHoeveelheidTegels));
-      router.push('?hoeveelheid=' + minHoeveelheidTegels)
+      router.push("?hoeveelheid=" + minHoeveelheidTegels);
     }
   };
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
-    router.push('?hoeveelheid=' + (quantity + 1))
+    router.push("?hoeveelheid=" + (quantity + 1));
   };
 
   const addToCart = () => {
@@ -404,7 +412,7 @@ export default function Product({ product, slug }) {
             )}
           </select>
 
-          <dl className="col-start-1 col-span-2 row-start-[8] text-lg grid grid-cols-2 grid-rows-auto">
+          <dl className="col-start-1 col-span-2 row-start-[8] text-lg grid grid-cols-2 grid-rows-auto pb-2">
             <dt className="col-start-1 row-start-1">Incl. btw</dt>
             <dd
               className="col-start-1 row-start-2"
@@ -432,7 +440,7 @@ export default function Product({ product, slug }) {
             >
               € {totalePrijsZonderBtw}
             </dd>
-            <dt className="col-span-1 row-start-3">Prijs per tegel</dt>
+            <dt className="col-span-1 row-start-3">Prijs per m2</dt>
             <dd
               className="col-start-1 row-start-4"
               aria-label={
@@ -447,11 +455,24 @@ export default function Product({ product, slug }) {
               € {prijsOpFormaat}
             </dd>
           </dl>
-
+          <p className="border px-4 rounded-lg col-span-full md:col-start-1 row-start-[10] w-fit text-slate-950 font-medium dark:text-slate-50 flex items-center justify-center gap-x-2">
+            <span class="relative flex h-3 w-3">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+            </span>
+            Op voorraad
+          </p>
+          <Link
+            href="tel:0317 765 005"
+            aria-label="0317 765 005"
+            className="hover:scale-95 hover:shadow-lg border px-4 py-1 rounded-lg md:col-start-2 col-span-full row-start-[11] md:row-start-[10] w-fit text-slate-950 font-medium dark:text-slate-50 flex items-center justify-center gap-x-2"
+          >
+            Vragen? Bel 0317 765 005
+          </Link>
           <a
             onClick={() => addToCart(productData)}
             href="/winkelmand"
-            className="flex top-2 relative col-span-full row-start-[10] text-left px-5 bg-green-500 dark:bg-green-800 text-white font-semibold w-fit py-1 rounded-lg text-lg hover:scale-95 shadow-lg hover:shadow-xl"
+            className="flex top-2 relative col-span-full row-start-[12] md:row-start-[11] text-left px-5 bg-green-600 dark:bg-green-800 text-white font-semibold w-fit py-1 rounded-lg text-lg hover:scale-95 shadow-lg hover:shadow-xl"
           >
             Toevoegen aan winkelmand
           </a>
@@ -485,11 +506,24 @@ export default function Product({ product, slug }) {
           </section>
         ) : (
           <section className="gap-y-5 md:w-1/3 h-96 md:h-fit inline-flex items-center p-10 rounded-lg mt-5 flex-col justify-items-center justify-center shadow-md hover:shadow-lg border-2 border-solid border-primary relative">
-            <iframe frameborder="no" className="h-[164px]" title="Bekijk onze reviews via 5sterrenspecialist.nl" allowtransparency="" src="https://www.5sterrenspecialist.nl/widget.html?hash=43db16322af3ee96ea945c67bd694b71&type=reviews&webshop-or-regular=webshop&logo-position=top&size=large&logo-color=blue&background=white&border=1"></iframe>
+            <iframe
+              frameborder="no"
+              className="h-[164px]"
+              title="Bekijk onze reviews via 5sterrenspecialist.nl"
+              allowtransparency=""
+              src="https://www.5sterrenspecialist.nl/widget.html?hash=43db16322af3ee96ea945c67bd694b71&type=reviews&webshop-or-regular=webshop&logo-position=top&size=large&logo-color=blue&background=white&border=1"
+            ></iframe>
             <ul className="text-lg items-center justify-center">
               <li className="flex w-full items-center dark:text-slate-50">
                 <CheckMarkGreen />{" "}
-                <a href="https://maps.app.goo.gl/FYbZueE6XBV4nC6x7" target="_blank" aria-label="Grote Showtuin - Open de routebeschrijving naar Nudetuin / Keramische tegel shop" class="hover:underline ">Grote Showtuin</a>
+                <a
+                  href="https://maps.app.goo.gl/FYbZueE6XBV4nC6x7"
+                  target="_blank"
+                  aria-label="Grote Showtuin - Open de routebeschrijving naar Nudetuin / Keramische tegel shop"
+                  class="hover:underline "
+                >
+                  Grote Showtuin
+                </a>
               </li>
               <li className="hidden md:flex  w-full text-left items-center dark:text-white ">
                 <CheckMarkGreen /> Complete tuininrichting
@@ -501,12 +535,12 @@ export default function Product({ product, slug }) {
                 <CheckMarkGreen />{" "}
                 <span className="hidden md:flex">Direct contact:</span>
                 <a
-   href="tel:0317 765 005"
-   aria-label="Bel Keramische Tegel Shop op 0317 765 005"
-   className="hover:underline"
->
-   &nbsp;0317 765 005
-</a>
+                  href="tel:0317 765 005"
+                  aria-label="Bel Keramische Tegel Shop op 0317 765 005"
+                  className="hover:underline"
+                >
+                  &nbsp;0317 765 005
+                </a>
               </li>
             </ul>
           </section>
@@ -524,4 +558,3 @@ export default function Product({ product, slug }) {
     </>
   );
 }
-

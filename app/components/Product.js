@@ -25,7 +25,6 @@ export default function Product({ product, afmeting }) {
   const afmetingMetSpaties = afmetingFromProduct.replace(/-x-/g, " x ");
 
   return (
-    
     <article
       key={product.id}
       className="product-card flex flex-col w-full h-fit rounded-2xl text-left transform transition hover:scale-105"
@@ -49,7 +48,7 @@ export default function Product({ product, afmeting }) {
 
         <span
           aria-label={"Prijs van " + product.name + " is €" + product.price}
-          className="product-price absolute bg-white text-black font-semibold items-center px-2 py-1 rounded-lg bottom-0 right-0 m-4 text-sm"
+          className="product-price absolute bg-white text-black font-semibold items-center px-2 py-1 rounded-lg bottom-0 right-0 m-4 text-xs"
         >
           € {removeHtmlTags(product.price)}
         </span>

@@ -88,7 +88,9 @@ export default function FilterBar() {
 
       <section
         className={`transition-all duration-500 overflow-hidden ${
-          showFilters || window.innerWidth >= 768 ? "block w-4/6 md:w-full md:space-y-3" : "hidden"
+          showFilters || window.innerWidth >= 768
+            ? "block w-4/6 md:w-full md:space-y-3"
+            : "hidden"
         }`}
       >
         <section>

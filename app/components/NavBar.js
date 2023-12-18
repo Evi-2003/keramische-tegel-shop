@@ -1,12 +1,12 @@
-'use client'
+"use client";
 
-import { useShoppingCart } from 'use-shopping-cart'
-import Image from 'next/image'
-import Link from 'next/link'
-import ShoppingCart from './ShoppingCart'
+import { useShoppingCart } from "use-shopping-cart";
+import Image from "next/image";
+import Link from "next/link";
+import ShoppingCart from "./ShoppingCart";
 
 export default function NavBar() {
-  const { handleCartClick, cartCount } = useShoppingCart()
+  const { handleCartClick, cartCount } = useShoppingCart();
   return (
     <nav className="py-5 bg-white px-12 flex text-black justify-between">
       <Link
@@ -28,5 +28,5 @@ export default function NavBar() {
       </button>
       <ShoppingCart />
     </nav>
-  )
+  );
 }

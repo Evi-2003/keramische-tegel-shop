@@ -21,7 +21,7 @@ export default async function ProductFeed({ searchParams }) {
   );
 
   let start = huidigePagina;
-  let eind = ( start * huidigePagina ) + aantalPerPagina;
+  let eind = start * huidigePagina + aantalPerPagina;
   let productPagination = products.slice(start, eind);
   function removeHtmlTags(str) {
     str = str.replace(/<[^>]*>/g, "");
@@ -48,10 +48,10 @@ export default async function ProductFeed({ searchParams }) {
       </section>
       <section className="col-span-full md:col-start-1">
         <Suspense fallback={<span>Filters ophalen</span>}>
-            <Pagination
-              searchparams={searchParams}
-              maxProducten={products.length}
-            />
+          <Pagination
+            searchparams={searchParams}
+            maxProducten={products.length}
+          />
         </Suspense>
       </section>
     </>
