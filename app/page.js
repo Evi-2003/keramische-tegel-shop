@@ -28,9 +28,10 @@ import showroom from "../public/Showroom.jpeg";
 import Image from "next/image";
 import { Suspense } from "react";
 export const metadata = {
-  title: 'Keramische Tegel Shop',
-  description: 'Keramische Tegel Shop heeft een groot assortiment aan keramische tegels. Wij hebben tegels voor binnen, buiten, dakterrassen, oprit en zwembad en meer. ',
-}
+  title: "Keramische Tegel Shop",
+  description:
+    "Keramische Tegel Shop heeft een groot assortiment aan keramische tegels. Wij hebben tegels voor binnen, buiten, dakterrassen, oprit en zwembad en meer. ",
+};
 export default async function Home() {
   const MostSoldProduct = await getPopulairProducts();
   const products = await getProducts();
@@ -41,9 +42,7 @@ export default async function Home() {
           Geniet van een moderne tuin, met keramische tegels.
         </h1>
         <section className="flex flex-col lg:grid grid-rows-2 md:grid-cols-5 md:grid-rows-3 space-x-0 md:space-x-5 md:h-[28rem] xl:h-[24rem] 2xl:h-[29rem] relative w-full">
-          <section
-            className="row-start-1 md:row-span-2 md:col-span-4"
-          >
+          <section className="row-start-1 md:row-span-2 md:col-span-4">
             <InspiratieCarousel></InspiratieCarousel>
           </section>
 
@@ -61,7 +60,7 @@ export default async function Home() {
 
         <section className="grid grid-cols-1 md:grid-cols-2 grid-rows-auto gap-5">
           <Link
-            href="/shop?"
+            href="shop?dikte=1cm"
             aria-label="Bekijk de Keramiek 1 cm, geschikt voor binnen"
             className="col-start-1 lg:row-start-1 flex flex-col text-black dark:text-slate-100 hover:scale-95"
           >
@@ -81,7 +80,7 @@ export default async function Home() {
           </Link>
 
           <Link
-            href="/shop?"
+            href="shop?dikte=2cm"
             aria-label="Bekijk de Keramiek 2 cm Geschikt voor binnen & dakterrassen"
             className="lg:col-start-2 lg:row-start-1 flex flex-col text-black dark:text-slate-100 hover:scale-95"
           >
@@ -101,7 +100,7 @@ export default async function Home() {
           </Link>
 
           <Link
-            href="/shop?"
+            href="shop?dikte=3cm"
             aria-label="Bekijk de Keramiek 3 cm Geschikt voor buiten"
             className="col-start-1 lg:row-start-2 flex flex-col text-black dark:text-slate-100 hover:scale-95"
           >
@@ -121,7 +120,7 @@ export default async function Home() {
           </Link>
 
           <Link
-            href="/shop?"
+            href="shop?dikte=4cm"
             aria-label="Bekijk de Keramiek 4 cm Geschikt voor buiten"
             className="lg:col-start-2 lg:row-start-2 flex flex-col text-black dark:text-slate-100 hover:scale-95"
           >
@@ -141,7 +140,7 @@ export default async function Home() {
           </Link>
 
           <Link
-            href="/shop?"
+            href="shop?dikte=4cm"
             aria-label="Bekijk de 
             Keramiek 5 cm Geschikt voor buiten"
             className="col-start-1 lg:row-start-3 flex flex-col text-black dark:text-slate-100 hover:scale-95"
@@ -162,7 +161,7 @@ export default async function Home() {
           </Link>
 
           <Link
-            href="/shop?"
+            href="shop?dikte=5cm"
             aria-label="Bekijk de Keramiek 6 cm Geschikt voor oprit"
             className="lg:col-start-2 lg:row-start-3 flex flex-col text-black dark:text-slate-100 hover:scale-95"
           >
@@ -187,28 +186,28 @@ export default async function Home() {
             Onze fabrikanten
           </h2>
           <Link
-   href="/shop?"
-   aria-label="Tegels van Claessen"
-   className="col-start-1 row-start-3 flex flex-col text-black dark:text-slate-100 hover:scale-95"
->
-   <Image
-      src={claessen}
-      alt="Tegels van Claessen"
-      width={300}
-      quality="80"
-      placeholder="blur"
-      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-      loading="lazy"
-      height={100}
-      className="h-32 w-full object-contain rounded-lg shadow-sm hover:shadow-xl"
-   />
-   <h3 className="text-lg font-medium pt-3">Claessen</h3>
-</Link>
-<Link
-   href="/shop?"
-   aria-label="Tegels van Excluton"
-   className="col-start-2 row-start-2 flex flex-col text-black dark:text-slate-100 hover:scale-95"
->
+            href="/shop?"
+            aria-label="Tegels van Claessen"
+            className="col-start-1 row-start-3 flex flex-col text-black dark:text-slate-100 hover:scale-95"
+          >
+            <Image
+              src={claessen}
+              alt="Tegels van Claessen"
+              width={300}
+              quality="80"
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
+              loading="lazy"
+              height={100}
+              className="h-32 w-full object-contain rounded-lg shadow-sm hover:shadow-xl"
+            />
+            <h3 className="text-lg font-medium pt-3">Claessen</h3>
+          </Link>
+          <Link
+            href="/shop?"
+            aria-label="Tegels van Excluton"
+            className="col-start-2 row-start-2 flex flex-col text-black dark:text-slate-100 hover:scale-95"
+          >
             <figure className="h-32 flex justify-center items-center">
               <Image
                 src={excluton}
@@ -255,7 +254,6 @@ export default async function Home() {
               loading="lazy"
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-
               height={100}
               className="h-32 w-full object-contain rounded-lg shadow-sm hover:shadow-xl bg-black px-5"
             />
@@ -354,11 +352,12 @@ export default async function Home() {
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
             height={300}
             loading="lazy"
-            
             className="w-fit object-contain h-72 rounded-lg col-start-1 row-start-2md:row-start-1"
           />
           <article className="row-start-2 md:row-start-1 col-start-1 md:col-start-2 text-left md:mx-5">
-            <h2 className="text-2xl mb-3 lg:text-3xl font-medium -mt-5 md:-mt-0">Showroom</h2>
+            <h2 className="text-2xl mb-3 lg:text-3xl font-medium -mt-5 md:-mt-0">
+              Showroom
+            </h2>
             <table class="table-auto w-full text-center">
               <thead>
                 <tr className="border">
