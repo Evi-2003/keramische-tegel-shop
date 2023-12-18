@@ -11,7 +11,7 @@ import {
 import { useEffect } from "react";
 import { useState } from "react";
 
-export default function FilterBar() {
+export default function FilterBar(currentSearchParams) {
   const [showFilters, setShowFilters] = useState(false);
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams);
@@ -31,14 +31,18 @@ export default function FilterBar() {
         params.delete(key);
 
         const checkboxContainer = event.target.parentElement.parentElement;
-
         const checkboxes = checkboxContainer.querySelectorAll(`[name=${key}]`);
+        const selectedCheckboxes = Array.from(checkboxes).filter(
+          (checkbox) => checkbox.checked
+        );
 
-        for (let checkbox of checkboxes) {
-          if (checkbox.checked) {
-            params.append(key, checkbox.value);
-          }
-        }
+        const selectedValues = selectedCheckboxes.map(
+          (checkbox) => checkbox.value
+        );
+
+        selectedValues.forEach((value) => {
+          params.append(key, value);
+        });
       } else {
         if (event) {
           params.set(key, event.value);
@@ -85,21 +89,27 @@ export default function FilterBar() {
     { value: "oprit-tegels", label: "Tegels Oprit" },
     { value: "terras-tegels", label: "Tegels Dakterras" },
   ];
-  const diktes = ["1cm", "2cm", "3cm", "4cm", "5cm"];
+
+  const dikteIsInUrl = currentSearchParams.searchParams; // 3cm
+  const diktes = ["1cm", "2cm", "3cm", "4cm", "5cm", "6cm"];
   const dikteInputs = diktes.map((dikte) => (
-    <div className="flex items-center" key={dikte}>
-      <input
-        className="col-start-1 rounded mr-2"
-        type="checkbox"
-        value={dikte}
-        name="dikte"
-        id={dikte}
-        onChange={handleSelectChange("dikte", true)}
-      />
-      <label className="w-fit col-start-2" htmlFor={dikte}>
-        {dikte}
-      </label>
-    </div>
+    <>
+      {console.log(typeof dikte + " " + typeof dikteIsInUrl)}
+      <div className="flex items-center" key={dikte}>
+        <input
+          className="col-start-1 rounded mr-2"
+          type="checkbox"
+          value={dikte}
+          name="dikte"
+          id={dikte}
+          onChange={handleSelectChange("dikte", true)}
+          checked={dikteIsInUrl.dikte == dikte}
+        />
+        <label className="w-fit col-start-2" htmlFor={dikte}>
+          {dikte}
+        </label>
+      </div>
+    </>
   ));
   return (
     <form

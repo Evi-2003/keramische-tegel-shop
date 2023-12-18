@@ -140,7 +140,7 @@ export default async function Home() {
           </Link>
 
           <Link
-            href="shop?dikte=4cm"
+            href="shop?dikte=5cm"
             aria-label="Bekijk de 
             Keramiek 5 cm Geschikt voor buiten"
             className="col-start-1 lg:row-start-3 flex flex-col text-black dark:text-slate-100 hover:scale-95"
@@ -161,7 +161,7 @@ export default async function Home() {
           </Link>
 
           <Link
-            href="shop?dikte=5cm"
+            href="shop?dikte=6cm"
             aria-label="Bekijk de Keramiek 6 cm Geschikt voor oprit"
             className="lg:col-start-2 lg:row-start-3 flex flex-col text-black dark:text-slate-100 hover:scale-95"
           >
