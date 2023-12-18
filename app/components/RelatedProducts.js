@@ -10,7 +10,7 @@ export default function RelatedProducts(product) {
         {relatedProducts.map((element) => (
           <li
             key={element.id}
-            className="flex-shrink-0 inline-block w-1/2 md:w-3/6 xl:w-3/12 2xl:w-1/6 h-full mb-3 pb-3 transform transition hover:scale-95"
+            className="flex-shrink-0 inline-block w-full md:w-1/2 md:w-3/6 xl:w-3/12 2xl:w-1/6 h-full mb-3 pb-3 transform transition hover:scale-95"
           >
             <a
               href={"/producten/" + element.slug}
@@ -25,10 +25,10 @@ export default function RelatedProducts(product) {
                 height={320}
                 className="w-full"
               />
-              <span className="product-price absolute bg-white text-black font-semibold items-center px-2 py-1 rounded-lg bottom-0 right-0 m-4 text-xs">
+              <span className="absolute bottom-5 right-10 md:right-5 bg-white rounded-lg px-3 py-1 font-medium block whitespace-nowrap">
                 € {element.price},-
               </span>
-              <span className="product-price absolute bg-white text-black font-semibold items-center px-2 py-1 rounded-lg top-0 left-0 m-[1.25em!important] text-xs">
+              <span className="product-price hidden md:absolute bg-white text-black font-semibold items-center px-2 py-1 rounded-lg top-0 left-0 m-[1.25em!important] text-xs">
                 {element.attributes.nodes
                   .find((node) => node.name == "pa_afmetingen")
                   .options[0].replace(/-x-/g, " x ")}
