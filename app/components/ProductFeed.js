@@ -33,12 +33,16 @@ export default async function ProductFeed({ searchParams }) {
   }
   return (
     <>
-      {products.length >= 0 ? (
+      {products.length >= 100 ? (
+        <span className="hidden md:block border-2 border-solid border-slate-300 dark:text-slate-100 col-span-full row-start-2 text-slate-900 py-1 px-5 rounded-lg w-fit h-fit text-base justify-self-center">
+          100+ resultaten gevonden
+        </span>
+      ) : products.length > 0 ? (
         <span className="hidden md:block border-2 border-solid border-slate-300 dark:text-slate-100 col-span-full row-start-2 text-slate-900 py-1 px-5 rounded-lg w-fit h-fit text-base justify-self-center">
           {products.length} resultaten gevonden
         </span>
       ) : (
-        <span className="hidden md:block border-2 border-solid border-slate-300 dark:text-slate-100  col-span-full text-slate-900 py-1 px-5 rounded-lg w-fit h-fit text-base justify-self-center">
+        <span className="hidden md:block border-2 border-solid border-slate-300 dark:text-slate-100 col-span-full text-slate-900 py-1 px-5 rounded-lg w-fit h-fit text-base justify-self-center">
           Geen resultaten gevonden
         </span>
       )}
