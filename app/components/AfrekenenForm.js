@@ -1,5 +1,5 @@
 "use client";
-import makeOrder from "../checkout/makeOrder.js";
+import makeOrder from "../checkout/makeOrder";
 import { useShoppingCart } from "use-shopping-cart";
 export default function AfrekenenForm() {
   const { addItem, totalPrice, cartCount, cartDetails, setItemQuantity } =
@@ -122,6 +122,7 @@ export default function AfrekenenForm() {
             <button
               type="submit"
               value="Plaats bestelling"
+              onSubmit={maakDeOrder}
               className="bg-[--primary] py-1 rounded-lg font-medium w-fit px-5 text-slate-100 hover:scale-95 hover:shadow-lg shadow-sm"
             >
               Afrekenen

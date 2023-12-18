@@ -60,11 +60,11 @@ export default async function makeOrder(line_items, order) {
     if (res.ok) {
       const data = await res.json();
       betalen = data.payment_url;
-      redirect(betalen);
     } else {
       console.error(`Er is wat misgegaan ${res.status}`);
     }
   } catch (error) {
     console.error("Er is iets fout gegaan", error);
   }
+  redirect(betalen);
 }
