@@ -127,13 +127,6 @@ export default function AfrekenenForm() {
             >
               Afrekenen
             </button>
-            <button
-              type="submit"
-              value="Plaats bestelling"
-              className="border text-slate-950 dark:text-slate-50 py-1 rounded-lg font-medium w-fit px-5 text-slate-100 hover:scale-95 hover:shadow-sm"
-            >
-              Offerte
-            </button>
           </article>
           <span className="text-sm rounded-lg w-fit">
             Bij de volgende stap kies je betaalmethode
