@@ -588,7 +588,7 @@ export default function Product({ product, slug }) {
               Product in 3D
             </h3>
             <svg
-              className="w-10 h-10 absolute right-0 top-0 m-3"
+              className="w-10 h-10 absolute right-0 top-0 m-3 dark:fill-white"
               version="1.1"
               viewBox="0 0 1200 1200"
               xmlns="https://www.w3.org/2000/svg"

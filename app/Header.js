@@ -86,7 +86,7 @@ export default function Header() {
   }, []);
   return (
     <>
-      <header className="bg-[--wit] dark:bg-[#0D0D0D] text-[--menu-tekst] dark:text-slate-100 h-fit w-full flex flex-col justify-center items-center md:sticky top-0 z-50">
+      <header className="bg-[--wit] dark:bg-[#0D0D0D] text-[--menu-tekst] dark:text-slate-100 h-fit w-full flex flex-col justify-center items-center top-0 z-50">
         {/*<section className=" dark:bg-slate-950 dark:text-slate-50 w-full text-center py-2 md:sticky top-0">
           <span className="font-semibold">
             Fijne feestdagen! <br aria-hidden="true" className="md:hidden"></br>
