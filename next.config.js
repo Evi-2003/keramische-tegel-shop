@@ -4,10 +4,10 @@ module.exports = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'betalen.keramischetegelshop.nl',
-        port: '',
+        protocol: "https",
+        hostname: "betalen.keramischetegelshop.nl",
+        port: "",
       },
     ],
   },
-}
+};
