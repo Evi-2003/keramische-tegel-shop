@@ -32,13 +32,13 @@ export default function ShoppingCart() {
         <h1 className="mb-3 text-3xl w-full text-center font-medium">
           Winkelmand
         </h1>
-        <table className="table w-full table-auto text-base font-normal space-x-5 row-start-1 col-span-full">
+        <table className="table w-full table-auto text-base font-normal row-start-1 col-span-full">
           <thead>
             <tr>
               <th></th>
               <th className="pb-3 lg:px-5">Product</th>
               <th className="pb-3 lg:px-5">Prijs</th>
-              <th className="pb-3 lg:px-5">Hoeveelheid</th>
+              <th className="pb-3 lg:px-2">Aantal (m2)</th>
             </tr>
           </thead>
           <tbody>
@@ -60,7 +60,7 @@ export default function ShoppingCart() {
         {cartCount && cartCount > 0 ? (
           <>
             <span className="row-start-2 col-start-1 mx-5">
-              Totaalprijs: €{totalPrice / 100},-
+              Totaalprijs: €{(totalPrice / 100).toFixed(2)},-
             </span>
           </>
         ) : (

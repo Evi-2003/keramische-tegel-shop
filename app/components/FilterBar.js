@@ -114,7 +114,7 @@ export default function FilterBar(currentSearchParams) {
   return (
     <form
       action={sendFilters}
-      className={`bg-white md:sticky self-start flex w-full items-center flex-col text-gray-800 dark:text-slate-100 sm:space-y-4 md:p-5 ${
+      className={`md:sticky self-start flex w-full items-center flex-col text-gray-800 dark:text-slate-100 sm:space-y-4 md:p-5 ${
         showFilters ? "border shadow-lg rounded-lg p-5" : ""
       } sm:border sm:shadow-lg sm:rounded-lg w-full
   `}

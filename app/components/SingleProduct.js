@@ -155,15 +155,6 @@ export default function Product({ product, slug }) {
     router.push("?hoeveelheid=" + (quantity + 1));
   };
 
-  const addToCart = () => {
-    const productForCart = formatProductData(productData, quantity);
-    console.log(productForCart[0]);
-    addItem(productForCart[0], { count: quantity });
-  };
-  function minimaleBestelFormaat(nummer) {
-    return nummer.replace(/-/g, ".");
-  }
-
   let m2Size;
 
   useEffect(() => {
@@ -309,6 +300,18 @@ export default function Product({ product, slug }) {
     let parts = str.split(".");
     return parts.length >= 3 ? parts.slice(0, 2).join(".") : str;
   };
+  const addToCart = () => {
+    const m2SizeOrder = parseFloat(m2SizeCalculated * quantity);
+    const productForCart = formatProductData(
+      productData,
+      m2SizeOrder,
+      quantity
+    );
+    addItem(productForCart[0], { count: m2SizeOrder });
+  };
+  function minimaleBestelFormaat(nummer) {
+    return nummer.replace(/-/g, ".");
+  }
   return (
     <>
       <article
@@ -445,9 +448,7 @@ export default function Product({ product, slug }) {
                 "Prijs van " +
                 (productData.name || "Geen naam") +
                 " is €" +
-                ((productData.price && totalePrijsZonderBtw) ||
-                  "Geen prijs gevonden") +
-                " exclusief belasting"
+                prijsOpFormaat
               }
             >
               € {prijsOpFormaat}
