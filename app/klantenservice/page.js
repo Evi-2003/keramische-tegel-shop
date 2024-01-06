@@ -28,13 +28,16 @@ export default function contact() {
           <span className="w-16 h-full absolute left-0 top-0 flex text-center items-center justify-center rounded-lg">
             <svg
               width="1200pt"
-              height="1200pt"
               class="fill-black dark:fill-white w-8 h-8"
+              height="1200pt"
               version="1.1"
               viewBox="0 0 1200 1200"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path d="m950 150h-700c-82.727 0-150 67.273-150 150v422.18c0 82.727 67.273 150 150 150h210.3l78.125 140.6c12.602 22.699 35.625 36.25 61.574 36.25s49-13.551 61.602-36.25l78.125-140.6h210.27c82.727 0 150-67.273 150-150v-422.18c0-82.727-67.273-150-150-150zm-650 425c-41.426 0-75-33.574-75-75s33.574-75 75-75 75 33.574 75 75-33.574 75-75 75zm300 0c-41.426 0-75-33.574-75-75s33.574-75 75-75 75 33.574 75 75-33.574 75-75 75zm300 0c-41.426 0-75-33.574-75-75s33.574-75 75-75 75 33.574 75 75-33.574 75-75 75z" />
+              <g>
+                <path d="m843.84 663.12-82.199-60c-10.32-7.5586-23.039-10.68-35.762-8.6406-12.719 1.9219-23.879 8.7617-31.32 19.078l-25.441 34.801c-1.3203 1.8008-0.83984 0.12109-1.4414 2.3984-0.12109 0.23828-1.5586 2.1602-6.1211 2.8789-7.6797 1.1992-30.719-0.23828-80.52-40.078l-4.8008-3.4805c-52.441-34.922-60.84-56.398-62.039-64.078-0.60156-3.9609 0.35938-5.8789 0.23828-6 1.6797-1.0781 1.1992-1.0781 2.5195-2.7617l25.441-34.801c7.5586-10.32 10.68-23.039 8.6406-35.762-2.0391-12.719-8.7617-23.879-19.078-31.441l-83.641-61.078c-21.359-15.602-51.48-10.922-67.078 10.441l-25.68 35.281c-22.68 31.078-28.801 73.559-15.961 111 19.801 57.719 70.32 119.04 150.24 182.4 1.0781 1.3203 2.2812 2.3984 3.7188 3.4805 2.0391 1.4414 4.0781 2.8789 6.1211 4.1992 1.9219 1.5586 3.9609 3 5.8789 4.5586 1.3203 1.0781 2.8789 1.9219 4.4414 2.5195 84.719 56.762 158.52 86.16 219.6 87.48h2.3984c37.922 0 74.039-18.602 96.961-50.16l25.68-35.281c7.5586-10.32 10.68-23.039 8.6406-35.762-2.0391-12.711-9.1172-23.633-19.438-31.191zm-18.602 45.84-25.68 35.281c-16.559 22.68-42.602 35.762-69.602 35.281-38.762-0.83984-106.32-16.801-209.4-87.602-98.762-76.559-134.64-136.08-147.24-172.68-9.1211-26.398-4.9219-56.398 11.039-78.121l25.801-35.281c1.9219-2.6406 4.6797-4.3203 7.8008-4.8008 3.1211-0.48047 6.3594 0.23828 9 2.1602l83.641 61.078c2.6406 1.9219 4.3203 4.6797 4.8008 7.8008 0.48047 3.1211-0.23828 6.3594-2.1602 9l-24.602 33.719c-5.7617 6.2383-11.52 17.641-10.559 32.039 1.9219 28.922 27.48 59.281 77.641 92.641l3.6016 2.5195c47.52 38.039 84.359 53.16 112.44 46.078 14.039-3.4805 23.16-12.359 27.359-19.801l24.602-33.719c3.8398-5.3984 11.398-6.4805 16.801-2.6406l82.199 60c2.6406 1.9219 4.3203 4.6797 4.8008 7.8008 0.35156 3.4844-0.36719 6.7266-2.2891 9.2461z" />
+                <path d="m600 171.72c-230.04 0-417.24 187.2-417.24 417.24 0 98.641 34.801 193.68 98.281 268.8l-74.039 144.36c-3.2383 6.3594-2.3984 14.16 2.1602 19.68 3.4805 4.1992 8.6406 6.4805 13.801 6.4805 1.6797 0 3.4805-0.23828 5.1602-0.71875l198.6-59.039c54.602 24.961 112.8 37.559 173.28 37.559 230.04 0 417.24-187.2 417.24-417.24-0.007813-230.04-187.21-417.12-417.25-417.12zm0 798.36c-57.359 0-112.56-12.48-164.16-37.078-4.0781-1.9219-8.6406-2.2812-12.84-0.96094l-164.76 48.961 60.359-117.72c3.3594-6.6016 2.3984-14.641-2.6406-20.281-62.641-69.961-97.199-160.32-97.199-254.16 0-210.24 171-381.24 381.24-381.24 210.24 0 381.24 171 381.24 381.24 0.003906 210.24-171 381.24-381.23 381.24z" />
+              </g>
             </svg>
           </span>
 
@@ -141,9 +144,9 @@ export default function contact() {
             Is er een kleurverschil met het geleverde product?
           </summary>
           <p className="text-left mx-5 text-base">
-            Alle foto&apos;s zijn gemaakt van de tegels zelf. Het kan zo zijn dat
-            door de belichting of de instellingen van uw beeldscherm de kleur
-            iets afwijkt. Als je altijd langskomen bij onze showroom.
+            Alle foto&apos;s zijn gemaakt van de tegels zelf. Het kan zo zijn
+            dat door de belichting of de instellingen van uw beeldscherm de
+            kleur iets afwijkt. Als je altijd langskomen bij onze showroom.
           </p>
         </details>
         <details className="border-2 p-5 h-fit rounded-lg mt-2 w-full transform transition-all text-center open:bg-[--primary] open:text-white open:shadow-2xl hover:shadow-lg">
@@ -226,10 +229,20 @@ export default function contact() {
           className="object-cover rounded-xl shadow-md col-start-1 place-self-center"
         />
         <article className="text-left my-2 col-start-2 row-start-1 w-full place-self-start">
-          <h2 className="text-2xl font-medium">
-            Showroom
-          </h2>
-          <p>Kom langs bij onze showroom in Wageningen! vindt hier een enorme presentatie aan sierbestrating, tuintegels, kunstgras en overige producten voor uw tuin. Wij zijn onderdeel van <Link href="https://nudetuin.nl" target="_blank" aria-label="Website van Nudetuin" className="text-[--primary] hover:underline hover:scale-95">Nudetuin</Link></p>
+          <h2 className="text-2xl font-medium">Showroom</h2>
+          <p>
+            Kom langs bij onze showroom in Wageningen! vindt hier een enorme
+            presentatie aan sierbestrating, tuintegels, kunstgras en overige
+            producten voor uw tuin. Wij zijn onderdeel van{" "}
+            <Link
+              href="https://nudetuin.nl"
+              target="_blank"
+              aria-label="Website van Nudetuin"
+              className="text-[--primary] hover:underline hover:scale-95"
+            >
+              Nudetuin
+            </Link>
+          </p>
           <ul className="mt-1 col-start-2 row-start-2">
             <li className="hover:underline hover:scale-95">
               <a
@@ -249,7 +262,8 @@ export default function contact() {
                 target="_blank"
               >
                 <b>Adres</b>
-                <br aria-hidden="true"></br>Nudepark 93, 6702 DZ Wageningen
+                <br aria-hidden="true"></br>Nudepark 93
+                <br aria-hidden="true"></br> 6702 DZ Wageningen
               </Link>
             </li>
             <li className="hover:underline hover:scale-95">

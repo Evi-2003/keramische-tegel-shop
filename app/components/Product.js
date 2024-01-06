@@ -22,7 +22,9 @@ export default function Product({ product, afmeting }) {
   const afmetingFromProduct = product.attributes.nodes.find(
     (node) => node.name == "pa_afmetingen"
   ).options[0];
-  const afmetingMetSpaties = afmetingFromProduct.replace(/-x-/g, " x ");
+  const afmetingMetSpaties = afmetingFromProduct
+    .replace(/-x-/g, " x ")
+    .replace(/cm/g, " cm");
 
   return (
     <article

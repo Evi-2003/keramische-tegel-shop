@@ -400,7 +400,8 @@ export default async function Home() {
                   target="_blank"
                 >
                   <b>Adres</b>
-                  <br aria-hidden="true"></br>Nudepark 93, 6702 DZ Wageningen
+                  <br aria-hidden="true"></br>Nudepark 93
+                  <br aria-hidden="true"></br> 6702 DZ Wageningen
                 </Link>
               </li>
               <li className="hover:underline hover:scale-95">

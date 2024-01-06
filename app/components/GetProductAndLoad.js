@@ -1,7 +1,7 @@
 import getProductBySlug from "../data/getProductBySlug";
 import Product from "./SingleProduct";
 import { PageWrapper } from "./pageWrapper.tsx";
-import Head from "next/head";
+
 export default async function GetProductAndLoad({ slug, searchParams }) {
   let product = await getProductBySlug(slug);
   let huidigeKleur = product.product.attributes.nodes.find(

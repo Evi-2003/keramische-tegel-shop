@@ -4,18 +4,13 @@ import Image from "next/image";
 import CheckMarkGreen from ".//components/CheckMark";
 import logo from "../public/logo.png";
 import optionsUrl from ".//components/serverActionUrl";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import Snowfall from "react-snowfall";
-import SnowFlake from "../public/snowflake.svg";
-import Script from "next/script";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const searchParams = useSearchParams();
   const zoekTerm = searchParams.get("zoeken");
-  const params = new URLSearchParams(searchParams);
 
   function search(opdracht) {
     const zoekOpdracht = opdracht.get("zoeken");
@@ -91,30 +86,14 @@ export default function Header() {
   }, []);
   return (
     <>
-      <figure className="z-[99]">
-        <Snowfall
-          snowflakeCount={4}
-          style={{
-            position: "fixed",
-            width: "100vw",
-            height: "100vh",
-          }}
-          images={SnowFlake}
-          radius={[7, 1]}
-          color={
-            isDarkMode ? "rgba(255, 255, 255, 0.3)" : "rgba(150, 199, 245, 0.3)"
-          }
-        />
-      </figure>
-
-      <header className="bg-[--wit] dark:bg-[#0d0c0c] text-[--menu-tekst] dark:text-slate-100 h-fit w-full flex flex-col justify-center items-center md:sticky top-0 z-50">
-        <section className=" dark:bg-slate-950 dark:text-slate-50 w-full text-center py-2 md:sticky top-0">
+      <header className="bg-[--wit] dark:bg-[#0D0D0D] text-[--menu-tekst] dark:text-slate-100 h-fit w-full flex flex-col justify-center items-center md:sticky top-0 z-50">
+        {/*<section className=" dark:bg-slate-950 dark:text-slate-50 w-full text-center py-2 md:sticky top-0">
           <span className="font-semibold">
             Fijne feestdagen! <br aria-hidden="true" className="md:hidden"></br>
             De showroom is gesloten op eerste kerstdag!
           </span>
-        </section>
-        <section className="bg-slate-100 dark:bg-black w-full flex justify-center font-medium text-sm">
+  </section>*/}
+        <section className="bg-slate-50 dark:bg-black w-full flex justify-center font-medium text-sm">
           <nav className="w-full md:w-4/5 2xl:w-3/5 py-2 dark:text-slate-100 flex justify-between">
             <ul className="w-full flex mx-5 space-x-5 md:mx-0 md:space-x-10 justify-center text-xs">
               <li className="flex">

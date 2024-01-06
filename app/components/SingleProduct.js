@@ -166,18 +166,6 @@ export default function Product({ product, slug }) {
 
   let m2Size;
 
-  const prijsOpFormaat = removeHtmlTags(productData.price);
-  const prijsinFloat = parseFloat(prijsOpFormaat.replace(",", ".")) * quantity;
-  const totalePrijs = prijsinFloat.toFixed(2).toString().replace(".", ",");
-
-  const totalePrijsZonderBtwinFloat = parseFloat(
-    prijsinFloat - (prijsinFloat / 100) * 21
-  ).toFixed(2);
-  const totalePrijsZonderBtw = parseFloat(totalePrijsZonderBtwinFloat)
-    .toFixed(2)
-    .toString()
-    .replace(".", ",");
-
   useEffect(() => {
     if (searchParams.get("afmeting") != undefined) {
       document.querySelector("select").value = searchParams.get("afmeting");
@@ -197,7 +185,8 @@ export default function Product({ product, slug }) {
   };
   const afmetingMetSpaties = afmetingFromProduct
     .replace(/-x-/g, " x ")
-    .replace(/-/g, ".");
+    .replace(/-/g, ".")
+    .replace(/cm/g, " cm");
   const length = parseInt(dimensions[0]);
   const widthTegel = parseInt(dimensions[1]);
   const thickness = parseInt(dimensions[2].replace("cm", ""));
@@ -301,7 +290,25 @@ export default function Product({ product, slug }) {
     changeWidth(e.target.value);
     window.location.href = e.target.value;
   };
+  const m2SizeTotalOrder = m2SizeCalculated * quantity;
+  const prijsOpFormaat = removeHtmlTags(productData.price);
+  console.log("Totale M2 Order: " + m2SizeTotalOrder);
+  console.log("Prijs per tegel: " + prijsOpFormaat.replace(",", "."));
+  const prijsinFloat =
+    parseFloat(prijsOpFormaat.replace(",", ".")) * m2SizeTotalOrder; // Prijs
+  const totalePrijs = prijsinFloat.toFixed(2).toString().replace(".", ",");
 
+  const totalePrijsZonderBtwinFloat = parseFloat(
+    prijsinFloat - (prijsinFloat / 100) * 21
+  ).toFixed(2);
+  const totalePrijsZonderBtw = parseFloat(totalePrijsZonderBtwinFloat)
+    .toFixed(2)
+    .toString()
+    .replace(".", ",");
+  const shortenToString = (str) => {
+    let parts = str.split(".");
+    return parts.length >= 3 ? parts.slice(0, 2).join(".") : str;
+  };
   return (
     <>
       <article
@@ -316,22 +323,27 @@ export default function Product({ product, slug }) {
           height={320}
           className="row-start-1 col-start-1 col-span-2 w-10/12 lg:w-11/12 2xl:w-4/5 justify-self-center shadow-lg object-cover hover:scale-105"
         ></Image>
-        <aside className="row-start-2 grid grid-cols-2 2xl:w-2/3 auto-rows-min tempalte-col lg:row-start-1 lg:col-start-3 lg:col-span-3 m-5 md:mx-10 justify-start self-start text-left space-y-1 rounded-lg">
+        <aside className="row-start-2 grid grid-cols-2 2xl:w-2/3 auto-rows-min tempalte-col lg:row-start-1 lg:col-start-3 lg:col-span-3 m-5 md:mx-10 justify-start self-start text-left space-y-1 rounded-lg gap-1">
           <h1 className="text-[1.70rem] font-semibold  row-start-1 col-span-full">
             {productData.name} <br aria-hidden="true" />
-            <span className="-mt-5 flex w-fit bg-[--primary] text-white px-5 rounded-lg text-base shadow-lg font-medium">
+            <span className="-mt-5 flex w-fit border-[2px] border-[--primary] text-slate-950 dark:text-slate-50 py-1 px-5 rounded-lg text-base shadow-lg font-medium">
               {afmetingMetSpaties}
             </span>
           </h1>
 
-          <p className="hidden md:block text-base row-start-2 col-span-full h-36 text-ellipsis overflow-hidden line-clamp-6">
+          <p className="hidden md:block text-base row-start-2 col-span-full text-ellipsis overflow-hidden line-clamp-6">
             <span className="text-lg font-medium ">
               De {productData.name} in het kort:
             </span>
             <br aria-hidden="true" />
             {productData.shortDescription &&
-              removeHtmlTags(productData.shortDescription)}
+              shortenToString(removeHtmlTags(productData.shortDescription))}
+            .<br aria-hidden="true"></br>
+            <a href="#lees-meer" className="font-medium hover:underline">
+              Lees meer
+            </a>
           </p>
+
           <h3 className="text-lg font-medium  col-start-1 col-span-2 row-start-3">
             Aantal (m2)
           </h3>
@@ -339,7 +351,7 @@ export default function Product({ product, slug }) {
             {(m2SizeCalculated * quantity).toFixed(2)}
           </span>
           <h3 className="col-span-2 text-lg font-medium  row-start-3 col-start-2">
-            Hoeveelheid<br aria-hidden="true"></br>
+            Aantal (tegels)<br aria-hidden="true"></br>
           </h3>
           <div className="col-start-2 row-start-4 text-lg border-2 border-solid border-[--primary] w-fit h-fit self-start flex items-center rounded-lg">
             {quantity > minHoeveelheidTegels ? (
@@ -413,7 +425,7 @@ export default function Product({ product, slug }) {
           </select>
 
           <dl className="col-start-1 col-span-2 row-start-[8] text-lg grid grid-cols-2 grid-rows-auto pb-2">
-            <dt className="col-start-1 row-start-1">Incl. btw</dt>
+            <dt className="col-start-1 row-start-1">Totale prijs</dt>
             <dd
               className="col-start-1 row-start-2"
               aria-label={
@@ -424,25 +436,11 @@ export default function Product({ product, slug }) {
                 " inclusief belasting"
               }
             >
-              € {totalePrijs}
+              € {totalePrijs} <span className="text-xs">incl. BTW</span>
             </dd>
-            <dt className="col-start-2 row-start-1 ">Excl. btw</dt>
+            <dt className="col-span-2 row-start-1">Prijs per m2</dt>
             <dd
               className="col-start-2 row-start-2"
-              aria-label={
-                "Prijs van " +
-                (productData.name || "Geen naam") +
-                " is €" +
-                ((productData.price && totalePrijsZonderBtw) ||
-                  "Geen prijs gevonden") +
-                " exclusief belasting"
-              }
-            >
-              € {totalePrijsZonderBtw}
-            </dd>
-            <dt className="col-span-1 row-start-3">Prijs per m2</dt>
-            <dd
-              className="col-start-1 row-start-4"
               aria-label={
                 "Prijs van " +
                 (productData.name || "Geen naam") +
@@ -472,17 +470,25 @@ export default function Product({ product, slug }) {
           <a
             onClick={() => addToCart(productData)}
             href="/winkelmand"
+            id="lees-meer"
             className="flex top-2 relative col-span-full row-start-[12] md:row-start-[11] text-left px-5 bg-green-600 dark:bg-green-800 text-white font-semibold w-fit py-1 rounded-lg text-lg hover:scale-95 shadow-lg hover:shadow-xl"
           >
             Toevoegen aan winkelmand
           </a>
         </aside>
       </article>
-
+      <section className="w-full mt-5 flex flex-col sm:flex-row justify-center">
+        <ul className="flex flex-col sm:flex-row items-center justify-center gap-x-32 gap-y-8 text-xl py-5">
+          <li>Kleurvast</li>
+          <li>Slijtvast</li>
+          <li>Maatvast</li>
+          <li>Krasbestendig</li>
+        </ul>
+      </section>
       <section className="dark:text-slate-100 md:space-x-5 w-full flex md:flex-row flex-col">
         <section className="overflow-auto flex-1 inline-flex items-center shadow-md hover:shadow-lg border-2 border-solid border-primary p-10 rounded-lg mt-5 flex-col justify-items-center md:w-2/3">
           <h2 className="text-2xl font-medium mb-2 w-full text-left">
-            Beschrijving {productData.name}
+            Over de {productData.name}
           </h2>
           <div
             dangerouslySetInnerHTML={{ __html: productData.description }}

@@ -31,23 +31,23 @@ export async function generateMetadata({ params: { slug } }) {
         .replace(/<\/?[^>]+(>|$)/g, ""); // Inclusief het laatste puntteken
     }
   }
-  console.log(product.product.image.sourceUrl);
+
   return {
     "@context": "https://schema.org",
     "@type": "Product",
-    "name": product?.product?.name + ' ' + afmetingMetSpaties,
-    "title": product?.product?.name + ' ' + afmetingMetSpaties,
-    "description": beperkLengte(product?.product?.description, 160),
-    "image": product?.product?.image?.sourceUrl,
-    "offers": {
+    name: product?.product?.name + " " + afmetingMetSpaties,
+    title: product?.product?.name + " " + afmetingMetSpaties,
+    description: beperkLengte(product?.product?.description, 160),
+    image: product?.product?.image?.sourceUrl,
+    offers: {
       "@type": "Offer",
-      "priceCurrency": "EUR",
-      "price": product?.product?.price,
-      "availability": "https://schema.org/InStock",
-      "seller": {
+      priceCurrency: "EUR",
+      price: product?.product?.price,
+      availability: "https://schema.org/InStock",
+      seller: {
         "@type": "Organization",
-        "name": "Keramische Tegel Shop"
-      }
-    }
+        name: "Keramische Tegel Shop",
+      },
+    },
   };
 }

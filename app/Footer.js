@@ -18,7 +18,6 @@ export default function Footer() {
               height={100}
               alt="Logo van Keramische Tegel Shop"
               loading="lazy"
-
             ></Image>
           </Link>
           <span className="col-start-1 row-start-1 text-lg font-bold">
@@ -183,23 +182,25 @@ export default function Footer() {
               </a>
             </li>
             <li className="hover:underline hover:scale-95">
-              <Link
-                href="https://maps.app.goo.gl/dfEmEZo1ntC5vVpn8"
-                aria-label="Routebeschrijving naar de showroom van Keramische Tegel Shop"
-                className="hover:scale-95 hover:underline"
-                target="_blank"
-              >
-                Adres Showroom: <br aria-hidden="true"></br>Nudepark 93, 6702 DZ
-                Wageningen
-              </Link>
-            </li>
-            <li className="hover:underline hover:scale-95">
               <a
                 href="email:info@keramischetegelshop.nl"
                 aria-label="Stuur een mail"
               >
                 Email: info@keramischetegelshop.nl
               </a>
+            </li>
+            <li className="hover:underline hover:scale-95">
+              <Link
+                href="https://maps.app.goo.gl/dfEmEZo1ntC5vVpn8"
+                aria-label="Routebeschrijving naar de showroom van Keramische Tegel Shop"
+                className="hover:scale-95 hover:underline"
+                target="_blank"
+              >
+                <span className="font-semibold pt-4">Adres</span>{" "}
+                <br aria-hidden="true"></br>
+                Nudepark 93
+                <br aria-hidden="true" /> 6702 DZ Wageningen
+              </Link>
             </li>
           </ul>
         </nav>

@@ -6,9 +6,6 @@ import Image from "next/image";
 import formatProductData from "../data/formatProductData";
 
 export default function ProductZonderAfmeting({ product, afmeting }) {
-  const { addItem, cartDetails } = useShoppingCart();
-
-  let productCartData = formatProductData(product);
   function removeHtmlTags(str) {
     if (typeof str === "string") {
       str = str.replace(/<[^>]*>/g, "");
@@ -16,37 +13,6 @@ export default function ProductZonderAfmeting({ product, afmeting }) {
       return str;
     }
   }
-  const { name } = product.name;
-
-  const [quantity, setQuantity] = useState(1);
-
-  const decreaseQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
-
-  const increaseQuantity = () => {
-    setQuantity(quantity + 1);
-  };
-
-  const addToCart = () => {
-    addItem(product, { count: quantity });
-    setQuantity(1);
-  };
-  function formatAfmeting(text) {
-    return text.replace(/-/g, " ");
-  }
-  function removeText(str) {
-    var re = new RegExp("product_variation:", "g");
-    return str.replace(re, "");
-  }
-
-  let productId = removeText(atob(product.id));
-  const afmetingFromProduct = product.attributes.nodes.find(
-    (node) => node.name == "pa_afmetingen"
-  ).options[0];
-  const afmetingMetSpaties = afmetingFromProduct.replace(/-x-/g, " x ");
 
   return (
     <article
