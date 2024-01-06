@@ -168,22 +168,6 @@ export default function Product({ product, slug }) {
     }
   }, []);
 
-  const dimensions = afmetingFromProduct.split("-x-");
-  const afmetingMetSlug = {
-    afmeting: afmetingFromProduct.replace(/-x-/g, " x ").replace(/-/g, "."),
-    slug: productData.slug,
-    id: productData.databaseId,
-  };
-  const afmetingMetSpaties = afmetingFromProduct
-    .replace(/-x-/g, " x ")
-    .replace(/-/g, ".")
-    .replace(/cm/g, " cm");
-  const length = parseInt(dimensions[0]);
-  const widthTegel = parseInt(dimensions[1]);
-  const thickness = parseInt(dimensions[2].replace("cm", ""));
-
-  const m2SizeCalculated = (length * widthTegel) / 10000;
-
   const getVariations = (productData, currentDimension) => {
     // splits het huidige productSlug op "-" en verwijder het laatste onderdeel (de afmeting)
     const baseSlug = currentDimension.slug.split("-").slice(0, -1).join("-");
@@ -212,13 +196,6 @@ export default function Product({ product, slug }) {
     return variants;
   };
 
-  const afmetingen = getVariations(
-    productData.variantAttributes,
-    afmetingMetSlug
-  );
-  if (afmetingMetSlug) {
-    afmetingen.unshift(afmetingMetSlug);
-  }
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
@@ -281,6 +258,42 @@ export default function Product({ product, slug }) {
     changeWidth(e.target.value);
     window.location.href = e.target.value;
   };
+
+  const shortenToString = (str) => {
+    let parts = str.split(".");
+    return parts.length >= 3 ? parts.slice(0, 2).join(".") : str;
+  };
+  const dimensions = afmetingFromProduct.split("-x-");
+  const afmetingMetSlug = {
+    afmeting: afmetingFromProduct.replace(/-x-/g, " x ").replace(/-/g, "."),
+    slug: productData.slug,
+    id: productData.databaseId,
+  };
+  const afmetingMetSpaties = afmetingFromProduct
+    .replace(/-x-/g, " x ")
+    .replace(/-/g, ".")
+    .replace(/cm/g, " cm");
+  const length = parseInt(dimensions[0]);
+  const widthTegel = parseInt(dimensions[1]);
+  const thickness = parseInt(dimensions[2].replace("cm", ""));
+
+  const m2SizeCalculated = (length * widthTegel) / 10000;
+  const m2SizeCalculatedMinimumQuantity =
+    m2SizeCalculated * minHoeveelheidTegels;
+  const addToCart = () => {
+    const m2SizeOrder = parseFloat(m2SizeCalculated * quantity);
+    const productForCart = formatProductData(
+      productData,
+      m2SizeOrder,
+      quantity,
+      m2SizeCalculatedMinimumQuantity,
+      m2SizeCalculated
+    );
+    addItem(productForCart[0], { count: m2SizeOrder });
+  };
+  function minimaleBestelFormaat(nummer) {
+    return nummer.replace(/-/g, ".");
+  }
   const m2SizeTotalOrder = m2SizeCalculated * quantity;
   const prijsOpFormaat = removeHtmlTags(productData.price);
   console.log("Totale M2 Order: " + m2SizeTotalOrder);
@@ -296,21 +309,12 @@ export default function Product({ product, slug }) {
     .toFixed(2)
     .toString()
     .replace(".", ",");
-  const shortenToString = (str) => {
-    let parts = str.split(".");
-    return parts.length >= 3 ? parts.slice(0, 2).join(".") : str;
-  };
-  const addToCart = () => {
-    const m2SizeOrder = parseFloat(m2SizeCalculated * quantity);
-    const productForCart = formatProductData(
-      productData,
-      m2SizeOrder,
-      quantity
-    );
-    addItem(productForCart[0], { count: m2SizeOrder });
-  };
-  function minimaleBestelFormaat(nummer) {
-    return nummer.replace(/-/g, ".");
+  const afmetingen = getVariations(
+    productData.variantAttributes,
+    afmetingMetSlug
+  );
+  if (afmetingMetSlug) {
+    afmetingen.unshift(afmetingMetSlug);
   }
   return (
     <>
